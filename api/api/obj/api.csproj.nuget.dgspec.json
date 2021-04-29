@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api\\api.csproj": {}
+    "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api.csproj": {}
   },
   "projects": {
-    "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api\\api.csproj": {
+    "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api\\api.csproj",
+        "projectUniqueName": "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api\\api.csproj",
+        "projectPath": "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api.csproj",
         "packagesPath": "C:\\Users\\Jakub\\.nuget\\packages\\",
-        "outputPath": "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\api\\obj\\",
+        "outputPath": "D:\\SZKOLA\\course-of-covid-monitor\\api\\api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
