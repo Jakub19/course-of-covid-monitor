@@ -1,0 +1,14 @@
+.navbar__profile--container{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.navbar__profile--icon{
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 1px #34498C solid;
+    border-radius: 25px;
+    margin: 0px 10px;
+}

@@ -1,0 +1,49 @@
+.navbar{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    width: 100%;
+}
+
+.navbar__logo{
+    height: 50px;
+}
+
+.navbar__buttons{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.navbar__button{
+    height: 50px;
+    margin: 0px 30px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.navbar__button--register{
+    width: 150px;
+    border: 1px #FA555F solid;
+    border-radius: 25px;
+    margin-right: 0;
+    color: #FA555F;
+}
+
+.navbar__button:hover {
+    color: #34498C;
+    transition: 0.2s;
+}
+
+.navbar__button--register:hover{
+    color: white;
+    background-color: #FA555F;
+}
