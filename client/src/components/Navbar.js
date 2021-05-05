@@ -17,7 +17,6 @@ function Navbar(props) {
                     <button className="navbar__button navbar__button--register">Register now</button></>
                 }
             </div>
-
         </nav>
     )
 }

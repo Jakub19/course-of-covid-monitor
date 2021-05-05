@@ -1,0 +1,21 @@
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100vh;
+    padding: 100px;
+    width: 65%;
+}
+
+.hero__title{
+    font-size: 4rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.hero__description{
+    font-size: 2rem;
+    font-weight: 200;
+    text-align: left;
+}
