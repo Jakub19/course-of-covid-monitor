@@ -1,14 +1,70 @@
-.navbar__profile--container{
+.navbarProfile{
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    height: 70px;
+    width: 100%;
+}
+
+.navbarProfile__logo{
+    height: 50px;
+}
+
+.navbarProfile__profile--container{
     display: flex;
     flex-flow: row;
     align-items: center;
 }
 
-.navbar__profile--icon{
+.navbarProfile__profile--icon{
     content: "";
     width: 50px;
     height: 50px;
     border: 1px #34498C solid;
     border-radius: 25px;
     margin: 0px 10px;
+}
+
+.navbarProfile__buttons{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+#btn1 { border-right: 0; }
+
+.navbarProfile__button{
+    height: 70px;
+    width: 160px;
+    border: none;
+    border-left: 1px #e7e7e7 solid;
+    border-right: 1px #e7e7e7 solid;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.navbarProfile__button--box{
+    height: 3px;
+    width: 100%;
+    bottom: 0;
+    position: relative;
+    background-color: #34498C;
+}
+
+.navbarProfile__button:active{
+    color: #34498C;
+    transition: 0.2s;
+}
+
+.navbarProfile__button:hover {
+    color: #34498C;
+    transition: 0.2s;
 }
