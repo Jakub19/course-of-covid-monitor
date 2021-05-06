@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from '../images/logos/logo.svg'
-import NavbarProfile from './NavbarProfile'
 import './Navbar.css'
 
 function Navbar(props) {
@@ -12,9 +11,12 @@ function Navbar(props) {
             <div className="navbar__buttons">
                 <button className="navbar__button">FAQ</button>
                 {isLoggedIn
-                    ? <NavbarProfile />
+                    ? <div className="navbar__profile--container">
+                        <div className="navbar__profile--icon"></div>
+                        <div className="navbar__profile--username">Jan Kowalski</div>
+                    </div>
                     : <><button className="navbar__button">Sign In</button>
-                    <button className="navbar__button navbar__button--register">Register now</button></>
+                        <button className="navbar__button navbar__button--register">Register now</button></>
                 }
             </div>
         </nav>
