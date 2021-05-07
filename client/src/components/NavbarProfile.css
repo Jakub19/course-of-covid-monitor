@@ -29,42 +29,47 @@
     margin: 0px 10px;
 }
 
-.navbarProfile__buttons{
+.tab{
     display: flex;
     flex-flow: row;
+    
+    list-style: none;
+    justify-content: center;
     align-items: center;
 }
 
 #btn1 { border-right: 0; }
 
-.navbarProfile__button{
+.tab__button{
+    display: flex;
     height: 70px;
     width: 160px;
     border: none;
     border-left: 1px #e7e7e7 solid;
     border-right: 1px #e7e7e7 solid;
     background-color: rgba(255, 255, 255, 0);
-    text-align: center;
     text-decoration: none;
     font-size: 16px;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.navbarProfile__button--box{
+.tab__indicator{
     height: 3px;
-    width: 100%;
-    bottom: 0;
-    position: relative;
+    width: 160px;
+    left: 0;
+    position: absolute;
     background-color: #34498C;
 }
 
-.navbarProfile__button:active{
+.tab__button--active{
     color: #34498C;
     transition: 0.2s;
 }
 
-.navbarProfile__button:hover {
+.tab__button:hover {
     color: #34498C;
     transition: 0.2s;
 }
