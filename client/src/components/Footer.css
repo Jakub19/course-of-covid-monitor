@@ -1,0 +1,17 @@
+.footer{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3F3F3F;
+}
+
+.footer__link, .footer__copyright, .footer__conditions{
+    text-decoration: none;
+    color: #EFEFEF;
+    padding: 10px;
+}
+
+.footer__copyright, .footer__conditions{
+    margin: 0;
+}

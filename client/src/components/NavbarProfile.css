@@ -1,0 +1,75 @@
+.navbarProfile{
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    height: 70px;
+    width: 100%;
+}
+
+.navbarProfile__logo{
+    height: 50px;
+}
+
+.navbarProfile__profile--container{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.navbarProfile__profile--icon{
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 1px #34498C solid;
+    border-radius: 25px;
+    margin: 0px 10px;
+}
+
+.tab{
+    display: flex;
+    flex-flow: row;
+    
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn1 { border-right: 0; }
+
+.tab__button{
+    display: flex;
+    height: 70px;
+    width: 160px;
+    border: none;
+    border-left: 1px #e7e7e7 solid;
+    border-right: 1px #e7e7e7 solid;
+    background-color: rgba(255, 255, 255, 0);
+    text-decoration: none;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.tab__indicator{
+    height: 3px;
+    width: 160px;
+    left: 0;
+    position: absolute;
+    background-color: #34498C;
+}
+
+.tab__button--active{
+    color: #34498C;
+    transition: 0.2s;
+}
+
+.tab__button:hover {
+    color: #34498C;
+    transition: 0.2s;
+}
