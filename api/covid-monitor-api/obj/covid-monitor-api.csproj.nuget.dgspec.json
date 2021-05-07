@@ -9,15 +9,16 @@
       "restore": {
         "projectUniqueName": "C:\\Users\\patry\\source\\repos\\covid-monitor-api\\covid-monitor-api\\covid-monitor-api.csproj",
         "projectName": "covid-monitor-api",
-        "projectPath": "C:\\Users\\patry\\source\\repos\\covid-monitor-api\\covid-monitor-api\\covid-monitor-api.csproj",
-        "packagesPath": "C:\\Users\\patry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\patry\\source\\repos\\covid-monitor-api\\covid-monitor-api\\obj\\",
+        "projectPath": "D:\\SZKOLA\\course-of-covid-monitor\\api\\covid-monitor-api\\covid-monitor-api.csproj",
+        "packagesPath": "C:\\Users\\Jakub\\.nuget\\packages\\",
+        "outputPath": "D:\\SZKOLA\\course-of-covid-monitor\\api\\covid-monitor-api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\patry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jakub\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
