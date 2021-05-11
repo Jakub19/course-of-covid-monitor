@@ -1,0 +1,7 @@
+.profileBackground{
+    position: absolute;
+    z-index: -99;
+    width: 100vw;
+    height: 100vh;
+    background: url(../images/background.png) no-repeat fixed 100%;
+}

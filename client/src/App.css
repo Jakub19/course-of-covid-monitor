@@ -1,8 +1,4 @@
 .App {
-  text-align: center;
-  z-index: -99;
-  background-image: url('./images/background.png');
-  background-size: cover;
   width: 100vw;
   height: 100vh;
 }

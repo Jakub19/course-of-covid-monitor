@@ -2,10 +2,12 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Footer from '../components/Footer'
+import Background from '../components/Background'
 
 function Homepage() {
     return (
         <div>
+            <Background />
             <Navbar />
             <Hero />
             <Footer />
