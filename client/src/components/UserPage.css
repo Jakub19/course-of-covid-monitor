@@ -1,0 +1,6 @@
+.userpage{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    height: 200vh;
+}

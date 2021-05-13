@@ -1,6 +1,6 @@
-.card{
-    height: 100px;
-    width: 200px;
+.profileCalendar{
+    height: inherit;
+    width: 100%;
     margin: 30px;
     background-color: #ffff ;
     border-radius: 20px;

@@ -6,7 +6,7 @@ import Background from '../components/Background'
 
 function Homepage() {
     return (
-        <div>
+        <div className="homepage">
             <Background />
             <Navbar />
             <Hero />

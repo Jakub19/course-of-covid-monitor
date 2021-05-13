@@ -1,9 +1,25 @@
-.profileSummary{
-    margin: 30px;
+
+
+.ProfileSummary__h1{
+margin-left: 30px;
+}
+
+.profileSummary__container{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .profileSummary__cards{
+    width: 50%;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.profileSummary__calendar{
+    width: 50%;
+    display: flex;
     flex-flow: row;
 }

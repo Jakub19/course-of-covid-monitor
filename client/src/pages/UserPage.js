@@ -4,15 +4,19 @@ import ProfileBackground from '../components/ProfileBackground'
 import ProfileOverview from '../components/ProfileOverview'
 import ProfileNavbar from '../components/ProfileNavbar'
 import ProfileSummary from '../components/ProfileSummary'
+import ProfileHistory from '../components/ProfileHistory'
+
+import "../components/UserPage.css"
 
 
 function UserPage() {
     return (
-        <div>
+        <div className='userpage'>
             <ProfileBackground />
             <ProfileNavbar />
             <ProfileOverview />
             <ProfileSummary />
+            <ProfileHistory />
             <Footer />
         </div>
     )
