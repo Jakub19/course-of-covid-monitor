@@ -1,7 +1,4 @@
 .profileAvatar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
     border: #34498C 4px solid;
     border-radius: 50%;
@@ -13,6 +10,10 @@
 }
 
 .profileAvatar__img{
-    width: 180px;
-    height: 180px;
+    position: relative;
+    text-align: center;
+    width: 172px;
+    height: 172px;
+    min-width: 172px;
+    min-height: 172px;
 }

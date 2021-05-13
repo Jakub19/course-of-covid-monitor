@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    height: 100vh;
+    height: 100vh; /* fix */
     padding: 100px;
     width: 65%;
 }
