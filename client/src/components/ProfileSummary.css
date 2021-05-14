@@ -8,14 +8,14 @@ margin-left: 30px;
     display: flex;
     flex-flow: row;
     width: 100%;
-    justify-content: space-between;
+    padding: 15px;
 }
 
 .profileSummary__cards{
     width: 50%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .profileSummary__calendar{

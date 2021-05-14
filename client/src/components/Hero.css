@@ -3,9 +3,10 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    height: 100vh; /* fix */
+    height: 100vh;
     padding: 100px;
-    width: 65%;
+    padding-right: 45%;
+    background: url(../images/background.png) no-repeat 100%;
 }
 
 .hero__title{

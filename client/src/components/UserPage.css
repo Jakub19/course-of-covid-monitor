@@ -2,5 +2,5 @@
     display: flex;
     flex-flow: column;
     justify-content: space-between;
-    height: 200vh;
+    background: url(../images/background.png) no-repeat fixed 100%;
 }
