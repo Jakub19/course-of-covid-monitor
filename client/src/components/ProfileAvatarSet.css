@@ -1,0 +1,18 @@
+.profileAvatarSet{
+    overflow: hidden;
+    border: #34498C 4px solid;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-top: 40px;
+    margin-left: 90px;
+}
+
+.profileAvatarSet__img{
+    position: relative;
+    text-align: center;
+    width: 192px;
+    height: 192px;
+    min-width: 192px;
+    min-height: 192px;
+}

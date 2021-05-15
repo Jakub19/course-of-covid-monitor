@@ -18,12 +18,14 @@ function ProfileOverview() {
                         <h4>End of quarantine: </h4><p>18.05.2021</p>
                     </div>
                     <div className="profileOverview__card--row">
-                        <h4>Forn submitted: </h4><p>5 times</p>
+                        <h4>Form submitted: </h4><p>5 times</p>
                     </div>
                 </div>
             </div>
         </div>
+              
     )
+   
 }
 
 export default ProfileOverview

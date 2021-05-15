@@ -14,7 +14,7 @@ function UserPage() {
             <ProfileNavbar />
             <ProfileOverview />
             <ProfileSummary />
-            <ProfileHistory />
+            <ProfileHistory /> 
             <Footer />
         </div>
     )
