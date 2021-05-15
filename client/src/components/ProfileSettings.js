@@ -1,37 +1,54 @@
 import React from 'react'
 import './ProfileSettings.css'
-import ProfileAvatarSet from './ProfileAvatarSet'
+import ProfileAvatar from './ProfileAvatar'
 
 function ProfileSettings() {
     return (
-        <div className='profileSettings'>
-            <div className="profileSettings__card">
-                <ProfileAvatarSet />
-                <h1 id="username">Jan Kowalski</h1>
-                    <div className="accountSet">
-                        <h2 id="account">Account</h2>
-                    </div>
-            </div>
-                <h1 className='line'></h1>
-                <h1 id="accountSettings">Account Settings</h1>
-                <div className="info">
-                    <h2 id="infoAccount">First name</h2>
-                    <input type="text" id="firstName"/>
-                    <h2 id="infoAccount2">Last name</h2>
-                    <input type="text" id="lastName"/>
-                    <h2 id="infoAccount3">E-mail</h2>
-                    <input type="text" id="email"/>
-                    <h2 id="infoAccount4">Phone number</h2>
-                    <input type="text" id="phoneNumber"/>
-                    <h2 id="infoAccount5">Address</h2>
-                    <input type="text" id="address"/>
-                    <h2 id="infoAccount6">City</h2>
-                    <input type="text" id="city"/>
+        <div className="profileSettings">
+            <div className='profileSettings__card'>
+                <div className="profileSettings__nav">
+                    <ProfileAvatar />
+                    <h1 className="profileSettings__username">Jan Kowalski</h1>
+                    <ul className="profileSettings__list">
+                        <li className="profileSettings__button profileSettings__button--active">Account</li>
+                        <li className="profileSettings__button">Password</li>
+                        <li className="profileSettings__button" >Notifications</li>
+                    </ul>
                 </div>
+                <div className="profileSettings__content">
+                    <h1 className="profileSettings__content--h1">Account Settings</h1>
+                    <form className="profileSettings__form">
+                        <label className="profileSettings__form--label">
+                            <h3>First name</h3>
+                            <input className="profileSettings__form--input" type="text" name="firstName" />
+                        </label>
+                        <label className="profileSettings__form--label">
+                            <h3>Last name</h3>
+                            <input className="profileSettings__form--input" type="text" name="lastName" />
+                        </label>
+                        <label className="profileSettings__form--label">
+                            <h3>E-mail</h3>
+                            <input className="profileSettings__form--input" type="text" name="email" />
+                        </label>
+                        <label className="profileSettings__form--label">
+                            <h3>Phone number</h3>
+                            <input className="profileSettings__form--input" type="text" name="phoneNumber" />
+                        </label>
+                        <label className="profileSettings__form--label">
+                            <h3>Address</h3>
+                            <input className="profileSettings__form--input" type="text" name="address" />
+                        </label>
+                        <label className="profileSettings__form--label">
+                            <h3>City</h3>
+                            <input className="profileSettings__form--input" type="text" name="city" />
+                        </label>
+                        <input className="profileSettings__submit" type="submit" value="Save" />
+                        <input className="profileSettings__cancel" type="reset" value="Cancel" />
+                    </form>
+                </div>
+            </div>
         </div>
-             
     )
-   
 }
 
 export default ProfileSettings

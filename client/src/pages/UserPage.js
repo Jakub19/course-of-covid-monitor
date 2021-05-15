@@ -2,10 +2,10 @@ import React from 'react'
 import Footer from '../components/Footer'
 import ProfileOverview from '../components/ProfileOverview'
 import ProfileNavbar from '../components/ProfileNavbar'
-import ProfileSummary from '../components/ProfileSummary'
-import ProfileHistory from '../components/ProfileHistory'
+import ProfileSettings from '../components/ProfileSettings'
 
-import "../components/UserPage.css"
+import "./UserPage.css"
+
 
 
 function UserPage() {
@@ -13,8 +13,7 @@ function UserPage() {
         <div className='userpage'>
             <ProfileNavbar />
             <ProfileOverview />
-            <ProfileSummary />
-            <ProfileHistory /> 
+            <ProfileSettings /> 
             <Footer />
         </div>
     )

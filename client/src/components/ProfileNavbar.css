@@ -1,5 +1,4 @@
 .profileNavbar{
-    position: absolute;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
@@ -33,7 +32,6 @@
 .tab{
     display: flex;
     flex-flow: row;
-    
     list-style: none;
     justify-content: center;
     align-items: center;
@@ -48,9 +46,9 @@
     border: none;
     border-left: 1px #e7e7e7 solid;
     border-right: 1px #e7e7e7 solid;
-    background-color: rgba(255, 255, 255, 0);
     text-decoration: none;
     font-size: 16px;
+    font-weight: 600;
     justify-content: center;
     align-items: center;
     cursor: pointer;

@@ -1,21 +1,19 @@
-
-
 .ProfileSummary__h1{
-margin-left: 30px;
+    margin-left: 50px;
 }
 
 .profileSummary__container{
     display: flex;
     flex-flow: row;
     width: 100%;
-    padding: 15px;
+    padding: 25px;
 }
 
 .profileSummary__cards{
     width: 50%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 .profileSummary__calendar{
