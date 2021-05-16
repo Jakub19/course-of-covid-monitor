@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileHistoryCard from './ProfileHistoryCard'
+import HistoryCard from './HistoryCard'
 import './ProfileHistory.css'
 
 function ProfileHistory() {
@@ -9,10 +9,10 @@ function ProfileHistory() {
                 Your health history
             </h1>
             <div className="profileHistory__container">
-                <ProfileHistoryCard />
-                <ProfileHistoryCard />
-                <ProfileHistoryCard />
-                <ProfileHistoryCard />
+                <HistoryCard />
+                <HistoryCard />
+                <HistoryCard />
+                <HistoryCard />
             </div>
         </div>
     )

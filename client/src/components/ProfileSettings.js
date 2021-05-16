@@ -1,13 +1,13 @@
 import React from 'react'
 import './ProfileSettings.css'
-import ProfileAvatar from './ProfileAvatar'
+import Avatar from './Avatar'
 
 function ProfileSettings() {
     return (
         <div className="profileSettings">
             <div className='profileSettings__card'>
                 <div className="profileSettings__nav">
-                    <ProfileAvatar />
+                    <Avatar />
                     <h1 className="profileSettings__username">Jan Kowalski</h1>
                     <ul className="profileSettings__list">
                         <li className="profileSettings__button profileSettings__button--active">Account</li>

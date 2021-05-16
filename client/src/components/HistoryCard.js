@@ -1,7 +1,7 @@
 import React from 'react'
-import './ProfileHistoryCard.css'
+import './HistoryCard.css'
 
-function ProfileHistoryCard() {
+function HistoryCard() {
     return (
         <div className="historyCard">
             
@@ -9,4 +9,4 @@ function ProfileHistoryCard() {
     )
 }
 
-export default ProfileHistoryCard
+export default HistoryCard

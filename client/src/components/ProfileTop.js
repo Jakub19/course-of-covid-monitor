@@ -1,11 +1,11 @@
 import React from 'react'
-import ProfileAvatar from './ProfileAvatar'
+import Avatar from './Avatar'
 import './ProfileTop.css'
 
 function ProfileTop() {
     return (
         <div className="profileTop">
-            <ProfileAvatar />
+            <Avatar />
             <div className="profileTop__card">
                 <div className="profileTop__card--headline">
                     Jan Kowalski

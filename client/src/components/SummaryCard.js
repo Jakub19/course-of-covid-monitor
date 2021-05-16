@@ -1,7 +1,7 @@
 import React from 'react'
-import './ProfileCard.css'
+import './SummaryCard.css'
 
-function ProfileCard(props) {
+function SummaryCard(props) {
     return (
         <div className="card">
             <div className="card__container">
@@ -22,4 +22,4 @@ function ProfileCard(props) {
     )
 }
 
-export default ProfileCard
+export default SummaryCard

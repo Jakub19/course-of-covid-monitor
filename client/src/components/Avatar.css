@@ -1,4 +1,4 @@
-.profileAvatar{
+.avatar{
     overflow: hidden;
     border: #34498C 4px solid;
     border-radius: 50%;
@@ -9,7 +9,7 @@
     margin: 25px;
 }
 
-.profileAvatar__img{
+.avatar__img{
     position: relative;
     text-align: center;
     width: 192px;

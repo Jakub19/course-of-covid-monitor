@@ -11,10 +11,8 @@ function ProfileOverview() {
             <ProfileTop />
             <ProfileSummary />
             <ProfileHistory /> 
-        </div>
-              
-    )
-   
+        </div>           
+    ) 
 }
 
 export default ProfileOverview
