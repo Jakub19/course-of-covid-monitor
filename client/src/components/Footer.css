@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #3F3F3F;
+    width: 100%;
 }
 
 .footer__link, .footer__copyright, .footer__conditions{

@@ -1,9 +1,9 @@
+.profileHistory{
+    padding-top: 100px;
+}
+
 .profileHistory__container{
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
-}
-
-.profileHistory__h1{
-    margin-left: 50px;
 }

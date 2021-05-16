@@ -1,23 +1,15 @@
-.ProfileSummary__h1{
-    margin-left: 50px;
+.profileSummary{
+    width: 100%;
+    padding-top: 100px;
 }
+
 
 .profileSummary__container{
-    display: flex;
-    flex-flow: row;
+    display: grid;
+    gap: 50px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 50px;
     width: 100%;
     padding: 25px;
-}
-
-.profileSummary__cards{
-    width: 50%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-}
-
-.profileSummary__calendar{
-    width: 50%;
-    display: flex;
-    flex-flow: row;
 }

@@ -1,8 +1,8 @@
 .historyCard{
-    height: 300px;
-    width: 800px;
     margin: 50px;
     background-color: #ffff ;
     border-radius: 20px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 25%);
+    width: 500px; /* temporary */
+    height: 200px; /* temporary */
 }
