@@ -14,8 +14,12 @@
 }
 
 .card__arrow{
-    width: 35%;
-    text-align: center;
+    margin: 0px 10px;
+    transition: 0.2s;
+}
+
+.card__arrow:hover{
+    transform: rotate(180deg);
 }
 
 .card__info{

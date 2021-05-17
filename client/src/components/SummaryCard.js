@@ -1,13 +1,12 @@
 import React from 'react'
 import './SummaryCard.css'
+import {ReactComponent as Arrow} from '../images/arrow.svg';
 
 function SummaryCard(props) {
     return (
         <div className="card">
             <div className="card__container">
-                <div className="card__arrow">
-                    <h1>^</h1>
-                </div>
+                <Arrow fill="red" className="card__arrow" />
                 <div className="card__info">
                     <div className="card__info--name">
                         <h3>{props.name}</h3>
@@ -17,7 +16,7 @@ function SummaryCard(props) {
                     </div>
                 </div>
             </div>
-                <h5 className="card__range--text">Normal range {props.range}</h5>
+            <h5 className="card__range--text">Normal range {props.range}</h5>
         </div>
     )
 }

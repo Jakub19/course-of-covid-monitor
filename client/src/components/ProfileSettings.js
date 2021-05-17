@@ -1,6 +1,9 @@
 import React from 'react'
 import './ProfileSettings.css'
 import Avatar from './Avatar'
+import SettingsAccount from './SettingsAccount'
+import SettingsPassword from './SettingsPassword'
+import SettingsNotifications from './SettingsNotifications'
 
 function ProfileSettings() {
     return (
@@ -16,35 +19,9 @@ function ProfileSettings() {
                     </ul>
                 </div>
                 <div className="profileSettings__content">
-                    <h1 className="profileSettings__content--h1">Account Settings</h1>
-                    <form className="profileSettings__form">
-                        <label className="profileSettings__form--label">
-                            <h3>First name</h3>
-                            <input className="profileSettings__form--input" type="text" name="firstName" />
-                        </label>
-                        <label className="profileSettings__form--label">
-                            <h3>Last name</h3>
-                            <input className="profileSettings__form--input" type="text" name="lastName" />
-                        </label>
-                        <label className="profileSettings__form--label">
-                            <h3>E-mail</h3>
-                            <input className="profileSettings__form--input" type="text" name="email" />
-                        </label>
-                        <label className="profileSettings__form--label">
-                            <h3>Phone number</h3>
-                            <input className="profileSettings__form--input" type="text" name="phoneNumber" />
-                        </label>
-                        <label className="profileSettings__form--label">
-                            <h3>Address</h3>
-                            <input className="profileSettings__form--input" type="text" name="address" />
-                        </label>
-                        <label className="profileSettings__form--label">
-                            <h3>City</h3>
-                            <input className="profileSettings__form--input" type="text" name="city" />
-                        </label>
-                        <input className="profileSettings__submit" type="submit" value="Save" />
-                        <input className="profileSettings__cancel" type="reset" value="Cancel" />
-                    </form>
+                    <SettingsAccount />
+                    <SettingsPassword />
+                    <SettingsNotifications />
                 </div>
             </div>
         </div>

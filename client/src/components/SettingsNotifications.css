@@ -1,0 +1,61 @@
+.settingsNotifications__h1{
+    margin-bottom: 50px;
+}
+
+.settingsNotifications__form{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.settingsNotifications__inputs{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.settingsNotifications__label{
+    display: flex;
+    flex-flow: column;
+    margin: 20px 50px 20px 0px;
+    width: 40%;
+}
+
+.settingsNotifications__sms{
+    display: flex;
+    flex-flow: row;
+    margin: 20px 50px 20px 0px;
+    width: 40%;
+    align-items: center;
+}
+
+.settingsNotifications__checkbox{
+    margin: 10px;
+}
+
+.settingsNotifications__input{
+    background-color: #DFDFDF;
+    border: none;
+    margin: 15px 0px;
+    padding: 15px;
+}
+
+.settingsNotifications__submit, .settingsNotifications__cancel{
+    height: 50px;
+    width: 150px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.2s;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: #34498C;
+    color: #DFDFDF;
+    margin-right: 20px;
+}
+
+.settingsNotifications__cancel{
+    background-color: #DFDFDF;
+    color: #000;
+}
