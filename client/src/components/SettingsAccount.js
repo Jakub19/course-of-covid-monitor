@@ -17,7 +17,7 @@ function SettingsAccount() {
                     </label>
                     <label className="settingsAccount__label">
                         <h3>E-mail</h3>
-                        <input className="settingsAccount__input" type="text" name="email" />
+                        <input className="settingsAccount__input" type="email" name="email" />
                     </label>
                     <label className="settingsAccount__label">
                         <h3>Phone number</h3>

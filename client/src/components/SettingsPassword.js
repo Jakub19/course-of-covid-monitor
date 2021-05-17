@@ -1,7 +1,12 @@
 import React from 'react'
+import useFormInput from '../services/useFormInput.js'
 import './SettingsPassword.css'
 
+
 function SettingsPassword() {
+    const currPasswordInput = useFormInput("");
+    const newPasswordInput = useFormInput("");
+
     return (
         <div className="settingsPassword">
             <h1 className="settingsPassword__h1">Password settings</h1>
@@ -9,15 +14,15 @@ function SettingsPassword() {
                 <div className="settingsPassword__inputs">
                     <label className="settingsPassword__label">
                         <h3>Current password</h3>
-                        <input className="settingsPassword__input" type="text" name="PasswordCur" />
+                        <input className="settingsPassword__input" type="password" {...currPasswordInput} />
                     </label>
                     <label className="settingsPassword__label">
                         <h3>New password</h3>
-                        <input className="settingsPassword__input" type="text" name="PasswordNew" />
+                        <input className="settingsPassword__input" type="password" {...newPasswordInput} />
                     </label>
                     <label className="settingsPassword__label">
                         <h3>Confirm new password</h3>
-                        <input className="settingsPassword__input" type="text" name="PasswordConf" />
+                        <input className="settingsPassword__input" type="password"  />
                     </label>
                 </div>
                 <div className="settingsPassword__buttons">

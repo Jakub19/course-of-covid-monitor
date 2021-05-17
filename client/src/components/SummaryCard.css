@@ -14,12 +14,14 @@
 }
 
 .card__arrow{
+    fill: #34498C;
     margin: 0px 10px;
     transition: 0.2s;
 }
 
 .card__arrow:hover{
     transform: rotate(180deg);
+    fill: #FA555F;
 }
 
 .card__info{
