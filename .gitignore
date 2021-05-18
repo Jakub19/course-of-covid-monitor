@@ -1,4 +1,6 @@
 .vs/
+api/covid-monitor-api/obj/
+api/covid-monitor-api/bin/Debug/
 api/.vs/api/v16/.suo
 api/api/obj/api.csproj.nuget.dgspec.json
 api/api/obj/Debug/netcoreapp3.1/api.assets.cache
@@ -6,6 +8,5 @@ api/api/obj/Debug/netcoreapp3.1/api.csprojAssemblyReference.cache
 api/api/obj/project.assets.json
 api/api/obj/project.nuget.cache
 api/.vs/api/config/applicationhost.config
-api/covid-monitor-api/obj/covid-monitor-api.csproj.nuget.dgspec.json
-api/covid-monitor-api/obj/project.nuget.cache
-api/covid-monitor-api/obj/covid-monitor-api.csproj.nuget.g.props
+
+
