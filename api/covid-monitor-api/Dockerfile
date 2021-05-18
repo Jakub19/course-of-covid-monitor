@@ -4,8 +4,9 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+ENV ASPNETCORE_ENVIRONMENT Docker
 WORKDIR /src
-COPY ["covid-monitor-api/covid-monitor-api.csproj", "covid-monitor-api/"]
+COPY ["covid-monitor-api.csproj", "covid-monitor-api/"]
 RUN dotnet restore "covid-monitor-api/covid-monitor-api.csproj"
 COPY . .
 WORKDIR "/src/covid-monitor-api"
