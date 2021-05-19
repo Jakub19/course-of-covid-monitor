@@ -12,15 +12,15 @@ function ProfileTop() {
                     </div>
                 <div className="profileTop__card--container">
                     <div className="profileTop__card--row">
-                        <h4>COVID positive since: </h4><p>2.05.2021</p>
+                        <h4>COVID positive since: </h4><p>3.05.3031</p>
                     </div>
                     <div className="profileTop__card--row">
-                        <h4>End of quarantine: </h4><p>18.05.2021</p>
+                        <h4>End of quarantine: </h4><p>18.05.3031</p>
                     </div>
                 </div>
             </div>
-            <div className="profileTop__card--form">
-                <p className="profileTop__card--formText">Form is awaiting completion</p>
+            <div className="profileTop__card--reminder">
+                <div className="profileTop__card--reminderContainer"><h3 className="profileTop__card--reminderText">Form is awaiting completion</h3></div>
                 <button className="profileTop__card--button">Fill now</button>
             </div>
         </div>
