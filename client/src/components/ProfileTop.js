@@ -17,10 +17,11 @@ function ProfileTop() {
                     <div className="profileTop__card--row">
                         <h4>End of quarantine: </h4><p>18.05.2021</p>
                     </div>
-                    <div className="profileTop__card--row">
-                        <h4>Form submitted: </h4><p>5 times</p>
-                    </div>
                 </div>
+            </div>
+            <div className="profileTop__card--form">
+                <p className="profileTop__card--formText">Form is awaiting completion</p>
+                <button className="profileTop__card--button">Fill now</button>
             </div>
         </div>
     )
