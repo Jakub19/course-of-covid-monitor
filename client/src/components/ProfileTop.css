@@ -56,7 +56,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    margin: 10px;
+    margin: 10px 10px 0px 10px;
 }
 
 .profileTop__card--reminderText{
