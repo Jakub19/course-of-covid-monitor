@@ -9,7 +9,7 @@ function SettingsAccount() {
 
     return (
         <div className="settingsAccount">
-            <h1 className="settingsAccount__h1">Account ettings</h1>
+            <h1 className="settingsAccount__h1">Account settings</h1>
             <form className="settingsAccount__form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="settingsAccount__inputs">
                     <label className="settingsAccount__label">
