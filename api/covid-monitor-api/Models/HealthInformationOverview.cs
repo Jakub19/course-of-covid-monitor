@@ -6,7 +6,7 @@ namespace covid_monitor_api.Models
     {
         public int Id { get; set; }
 
-        public string UserId { get; set; }
+        public string OwnerId { get; set; }
         public DateTime CovidPositiveSince { get; set; }
 
         public DateTime BirthDate { get; set; }
