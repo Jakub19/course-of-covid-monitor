@@ -76,7 +76,8 @@
     width: 150px;
     border: 1px #FA555F solid;
     border-radius: 25px;
-    color: #FA555F;
+    background-color: #FA555F;
+    color: white;
 }
 
 
