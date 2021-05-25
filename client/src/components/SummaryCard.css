@@ -17,6 +17,10 @@
     fill: #34498C;
     margin: 0px 10px;
     transition: 0.2s;
+    height: 34px;
+    width: 60px;
+    min-height: 34px;
+    min-width: 60px;
 }
 
 .card__arrow:hover{
@@ -29,6 +33,7 @@
     flex-flow: column;
     justify-content: center;
     align-items: flex-start;
+    margin-left: 25px;
 }
 
 .card__range--text{
