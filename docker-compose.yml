@@ -1,7 +1,7 @@
 version: "3.4"
 services: 
     db:
-        image: microsoft/mssql-server-linux:latest
+        image: mcr.microsoft.com/mssql/server:2019-CU10-ubuntu-20.04
         environment: 
             - ACCEPT_EULA=Y
             - SA_PASSWORD=DevelopmentTmpPassword22
@@ -22,7 +22,7 @@ services:
             dockerfile: Dockerfile
             context: ./api/covid-monitor-api
         ports: 
-            - '8090'
+            - '50970'
         volumes:
             - ./api:/app
         networks:
