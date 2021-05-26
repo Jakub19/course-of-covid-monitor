@@ -130,25 +130,7 @@ namespace covid_monitor_api.Controllers
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
-        [HttpGet]
-        [Route("change-password")]
-        public async Task<IActionResult> OnGetPasswordAsync()
-        {
-            var user = await userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
-            }
-
-            var hasPassword = await userManager.HasPasswordAsync(user);
-            if (!hasPassword)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Error" });
-            }
-
-            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
-        }
-
+        
     }
 }  
 

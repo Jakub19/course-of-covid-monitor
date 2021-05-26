@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using covid_monitor_api.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,14 +43,26 @@ namespace covid_monitor_api.Controllers
 
 
         // POST: api/HealthInformationOverviews
+
         [HttpPost]
-        public async Task<ActionResult<HealthInformationOverview>> PostHealthInformationOverview(HealthInformationOverview HealthInformationOverview)
+        public async Task<ActionResult<HealthInformationOverview>> PostHealthInformationOverview([FromBody] HealthInformationOverview model)
         {
-            _context.HealthInformationOverview.Add(HealthInformationOverview);
+          
+            HealthInformationOverview form = new HealthInformationOverview()
+            {
+                OwnerId = userManager.GetUserId(User),
+                CovidPositiveSince = model.CovidPositiveSince,
+                BirthDate = model.BirthDate,
+                Gender = model.Gender,
+                Height = model.Height,
+                Weight = model.Weight,
+                BloodType = model.BloodType
+            };
+            _context.HealthInformationOverview.Add(form);
             await _context.SaveChangesAsync();
 
             //return CreatedAtAction("GetHealthInformationOverview", new { id = HealthInformationOverview.Id }, HealthInformationOverview);
-            return CreatedAtAction(nameof(GetHealthInformationOverviews), new { id = HealthInformationOverview.Id }, HealthInformationOverview);
+            return CreatedAtAction(nameof(GetHealthInformationOverviews), new { id = form.Id }, form);
         }
 
 

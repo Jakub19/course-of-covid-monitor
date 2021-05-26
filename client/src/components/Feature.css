@@ -1,0 +1,32 @@
+.feature{
+    display: grid;
+    grid-template-rows:  1fr 1fr 1fr;
+    grid-template-columns:  1fr;
+    background-color: #34498C;
+    height: 100vh;
+    align-items: center;
+    overflow: hidden;
+}
+
+.feature__title{
+    color: white;
+    font-size: 5rem;
+    text-align: center;
+}
+
+.feature__main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.feature__paragraphs{
+    display: flex;
+    flex-flow: column;
+    color: #BBC8F0;
+    font-size: 3rem;
+}
+
+.feature__p{
+    margin: 30px 0px;
+}
