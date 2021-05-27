@@ -10,3 +10,7 @@ Web App project for monitoring course of COVID-19
 3. Make sure that you are in "playmate" directory.
 4. Write `docker-compose up`. Wait for all services to start.
 5. Go to `localhost:8080` to view the website.
+
+
+Docker Desktop instalation guide:
+https://docs.docker.com/docker-for-windows/install/
