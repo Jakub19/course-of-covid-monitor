@@ -1,0 +1,28 @@
+<svg width="250" height="250" fill="current" xmlns="http://www.w3.org/2000/svg"> 
+  <g
+     id="layer1"
+     style="display:inline">
+    <g
+       id="g919"
+       transform="matrix(0.69999519,0,0,0.69999519,13.920291,18.445148)">
+      <path
+         style="fill:none;stroke:current;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M -17.386267,-5.3496209 V 47.143534"
+         id="path905" />
+      <path
+         style="fill:none;stroke:current;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M -16.494664,36.778644 H 71.774079"
+         id="path907" />
+      <path
+         style="fill:none;stroke:current;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 72.10843,47.143534 V 20.729781 c 0,-4.815231 -5.877854,-11.9251968 -11.813744,-11.9251968 -8.148087,0 -40.122158,0.1114504 -40.122158,0.1114504 V 35.441239"
+         id="path909" />
+      <circle
+         style="fill:none;stroke:current;stroke-width:5.14362;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path911"
+         cx="1.337405"
+         cy="18.166422"
+         r="9.4014692" />
+    </g>
+  </g>
+</svg>

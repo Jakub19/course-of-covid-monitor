@@ -1,0 +1,28 @@
+<svg width="250" height="250" fill="current" xmlns="http://www.w3.org/2000/svg"> 
+  <g
+     id="layer1"
+     style="display:inline">
+    <g
+       id="g889"
+       clip-path="none">
+      <path
+         style="fill:none;stroke:current;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 64.917411,144.10342 104.7939,109.5186 144.85937,144.00893"
+         id="path857" />
+      <path
+         style="fill:none;stroke:current;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 74.366815,137.48884 v 42.23884 h 61.326635 v -65.38989 h -13.98511 v 8.29534"
+         id="path859"  />
+      <circle
+         style="fill:none;stroke:current;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path861"
+         cx="105.07738"
+         cy="144.71764"
+         r="9.7524891" />
+      <path
+         style="fill:none;stroke:current;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 86.462053,177.27083 c -0.06155,-8.2426 7.038402,-13.2758 9.876979,-13.2758 h 17.053828 c 2.78225,0 10.58333,5.42356 10.58333,13.2758"
+         id="path865"  />
+    </g>
+  </g>
+</svg>
