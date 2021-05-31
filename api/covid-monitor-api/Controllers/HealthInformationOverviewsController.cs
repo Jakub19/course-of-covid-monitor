@@ -43,7 +43,7 @@ namespace covid_monitor_api.Controllers
 
 
         // POST: api/HealthInformationOverviews
-
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<HealthInformationOverview>> PostHealthInformationOverview([FromBody] HealthInformationOverview model)
         {

@@ -1,4 +1,5 @@
 ﻿using covid_monitor_api.Authentication;
+using covid_monitor_api.Authentication.Manage;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -39,8 +40,11 @@ namespace covid_monitor_api.Controllers
 
                 var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Email),
+                    new Claim(ClaimTypes.Email, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
+                    new Claim(ClaimTypes.Surname, user.Surname),
+                    new Claim(ClaimTypes.Name, user.Name)
                 };
 
                 foreach (var userRole in userRoles)
@@ -130,7 +134,77 @@ namespace covid_monitor_api.Controllers
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
-        
+        [HttpPut]
+        [Route("UpdateUserDetails")]
+        public async Task<ActionResult<UpdateUserDetails>> UpdateUserDetails([FromBody] UpdateUserDetails model)
+        {
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+            var emailChanged = false;
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
+
+            // If we have a first name...
+            if (model.FirstName != null)
+                // Update the profile details
+                userExists.Name = model.FirstName;
+
+            // If we have a last name...
+            if (model.LastName != null)
+                // Update the profile details
+                userExists.Surname = model.LastName;
+
+            // If we have a email...
+            if (model.Email != null &&
+                // And it is not the same...
+                !string.Equals(model.Email.Replace(" ", ""), userExists.NormalizedEmail))
+            {
+                // Update the email
+                userExists.Email = model.Email;
+
+                // Un-verify the email
+                userExists.EmailConfirmed = false;
+
+                // Flag we have changed email
+                emailChanged = true;
+            }
+            if (model.PhoneNumber != null)
+                // Update the profile details
+                userExists.PhoneNumber = model.PhoneNumber;
+
+            if (model.Address != null)
+                // Update the profile details
+                userExists.Address = model.Address;
+
+            if (model.City != null)
+                // Update the profile details
+                userExists.City = model.City;
+           
+
+            // Attempt to commit changes to data store
+            var result = await userManager.UpdateAsync(userExists);
+
+            // If successful, send out email verification
+            if (result.Succeeded && emailChanged)
+            {
+                // Send email verification
+                return Ok(new Response { Status = "Success", Message = "User details updated!" });
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Something went wrong! Check your data." });
+            }
+
+        }
+
+        /* [HttpGet]
+         [Route("Get-user-profile")]
+         public async Task<ActionResult<IEnumerable<SearchUser>>> GetUserProfileAsync()
+         {
+             var user = await userManager.GetUserAsync(HttpContext.User);
+             if (user == null)
+                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User doesn't exsist!" });
+         }
+        */
     }
 }  
 
