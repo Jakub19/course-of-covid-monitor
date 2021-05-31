@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -195,16 +196,127 @@ namespace covid_monitor_api.Controllers
             }
 
         }
+        [HttpPut]
+        [Route("UpdateUserPassword")]
+        public async Task<ActionResult<UpdateUserPassword>> UpdateUserPassword([FromBody] UpdateUserPassword model)
+        {
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+           
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
 
-        /* [HttpGet]
-         [Route("Get-user-profile")]
-         public async Task<ActionResult<IEnumerable<SearchUser>>> GetUserProfileAsync()
-         {
-             var user = await userManager.GetUserAsync(HttpContext.User);
-             if (user == null)
-                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User doesn't exsist!" });
-         }
-        */
+
+            // Attempt to commit changes to data store
+            var result = await userManager.ChangePasswordAsync(userExists, model.CurrentPassword, model.NewPassword);
+
+            // If successful, send out email verification
+            if (result.Succeeded)
+            {
+                // Send email verification
+                return Ok(new Response { Status = "Success", Message = "Password changed!" });
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Something went wrong! Check your data." });
+            }
+
+        }
+        [HttpGet]
+        [Route("SearchUsers")]
+        public async Task<ActionResult<SearchUser>> SearchUsers([FromBody] SearchUser model)
+        {
+
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
+
+            var firstOrLastNameMissing = string.IsNullOrEmpty(model?.FirstName) || string.IsNullOrEmpty(model?.LastName) || string.IsNullOrEmpty(model?.Email);
+            var notEnoughSearchDetails =
+                // First and last name
+                firstOrLastNameMissing &&
+                // Username
+                string.IsNullOrEmpty(model?.Address) &&
+                // Phone number
+                string.IsNullOrEmpty(model?.PhoneNumber) &&
+                // Email
+                string.IsNullOrEmpty(model?.Email);
+
+            if (notEnoughSearchDetails)
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Data not found!" });
+
+            var foundUser = default(ApplicationUser);
+
+
+            // If we have an email...
+            if (foundUser == null && !string.IsNullOrEmpty(model.Email))
+                // Find the user by email
+                foundUser = await userManager.FindByEmailAsync(model.Email);
+
+            // If we have a phone number...
+            if (foundUser == null && !string.IsNullOrEmpty(model.PhoneNumber))
+            {
+                // Find the user by phone number
+                foundUser = userManager.Users.FirstOrDefault(u =>
+                                // Phone number is confirmed
+                                u.PhoneNumberConfirmed &&
+                                // Phone number must match exactly 
+                                // including country code if provided
+                                u.PhoneNumber == model.PhoneNumber);
+            }
+
+            // If we found a user...
+            if (foundUser != null)
+            {
+                // Return that users details
+                return Ok(new 
+                {
+                    FirstName = foundUser.Name,
+                    LastName = foundUser.Surname,
+                    Email = foundUser.Email,
+                    foundUser.Address,
+                    foundUser.City,
+                    foundUser.PhoneNumber,
+                    foundUser.PostalCode
+                  
+                    
+                });
+            }
+
+            var results = new SearchUsersResult();
+
+            // If we have a first and last name...
+            if (!firstOrLastNameMissing)
+            {
+                // Search for users...
+                var foundUsers = userManager.Users.Where(u =>
+                                    // With the same first name
+                                    u.Name == model.FirstName &&
+                                    // And same last name
+                                    u.Surname == model.LastName)
+                                    // And for now, limit to 100 results
+                                    // TODO: Add pagination
+                                    .Take(100);
+
+                // If we found any users...
+                if (foundUsers.Any())
+                {
+                    // Add each users details
+                    results.AddRange((IEnumerable<SearchUsersResult>)foundUsers.Select(u => new SearchUser
+                    {
+                        Email = u.Email,
+                        FirstName = u.Name,
+                        LastName = u.Surname,
+                        PhoneNumber = u.PhoneNumber,
+                        Address = u.Address,
+                        City = u.City,
+                      
+                    }));
+                }
+            }
+
+             return Ok(results);
+        }
+
     }
 }  
 
