@@ -34,6 +34,7 @@ namespace covid_monitor_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpClient();
             // For Entity Framework  
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
             services.AddDbContext<HealthInformationOverviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
