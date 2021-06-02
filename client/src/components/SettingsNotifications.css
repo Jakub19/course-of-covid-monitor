@@ -37,6 +37,13 @@
     border: none;
     margin: 15px 0px;
     padding: 15px;
+    border-radius: 5px;
+}
+
+.registerForm__buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .settingsNotifications__submit, .settingsNotifications__cancel{

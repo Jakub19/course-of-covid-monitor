@@ -14,42 +14,42 @@ function SettingsAccount() {
                 <div className="settingsAccount__inputs">
                     <label className="settingsAccount__label">
                         <h3>First name</h3>
-                        <input className="settingsAccount__input" type="text" name="firstName" {...register("firstName",{ required: "This field is required" , maxLength: 50 })}/>
+                        <input className="settingsAccount__input" type="text" required="required" name="firstName" {...register("firstName",{ maxLength: 20 })}/>
                         {errors.firstName && (
                             <p style={{ color: "red" }}>{errors.firstName.message}</p>
                         )}
                     </label>
                     <label className="settingsAccount__label">
                         <h3>Last name</h3>
-                        <input className="settingsAccount__input" type="text" name="lastName" {...register("lastName",{ required: "This field is required" , maxLength: 50 })}/>
+                        <input className="settingsAccount__input" type="text" required="required" name="lastName" {...register("lastName",{maxLength: 20 })}/>
                         {errors.lastName && (
                             <p style={{ color: "red" }}>{errors.lastName.message}</p>
                         )}
                     </label>
                     <label className="settingsAccount__label">
                         <h3>E-mail</h3>
-                        <input className="settingsAccount__input" type="email" name="email" {...register("email", {required: "This field is required"})}/>
+                        <input className="settingsAccount__input" type="email" required="required" name="email" {...register("email")}/>
                         {errors.email && (
                             <p style={{ color: "red" }}>{errors.email.message}</p>
                         )}
                     </label>
                     <label className="settingsAccount__label">
                         <h3>Phone number</h3>
-                        <input className="settingsAccount__input" type="tel" name="phoneNumber" {...register("phoneNumber",{ required: "This field is required"})}/>
+                        <input className="settingsAccount__input" type="tel" required="required" name="phoneNumber" {...register("phoneNumber")}/>
                         {errors.phoneNumber && (
                             <p style={{ color: "red" }}>{errors.phoneNumber.message}</p>
                         )}
                     </label>
                     <label className="settingsAccount__label">
                         <h3>Address</h3>
-                        <input className="settingsAccount__input" type="text" name="address" {...register("address",{ required: "This field is required" })}/>
+                        <input className="settingsAccount__input" type="text" required="required" name="address" {...register("address")}/>
                         {errors.address && (
                             <p style={{ color: "red" }}>{errors.address.message}</p>
                         )}
                     </label>
                     <label className="settingsAccount__label">
                         <h3>City</h3>
-                        <input className="settingsAccount__input" type="text" name="city" {...register("city",{ required: "This field is required" })}/>
+                        <input className="settingsAccount__input" type="text" required="required" name="city" {...register("city")}/>
                         {errors.city && (
                             <p style={{ color: "red" }}>{errors.city.message}</p>
                         )}

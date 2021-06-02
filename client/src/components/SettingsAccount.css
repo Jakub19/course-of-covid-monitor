@@ -25,6 +25,8 @@
     border: none;
     margin: 15px 0px;
     padding: 15px;
+    flex-flow: column;
+    border-radius: 5px;
 }
 
 .settingsAccount__submit, .settingsAccount__cancel{
@@ -45,5 +47,5 @@
 
 .settingsAccount__cancel{
     background-color: #DFDFDF;
-    color: #0000;
+    color: #000;
 }

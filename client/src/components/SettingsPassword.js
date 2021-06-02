@@ -15,22 +15,22 @@ function SettingsPassword() {
                 <div className="settingsPassword__inputs">
                     <label className="settingsPassword__label">
                         <h3>Current password</h3>
-                        <input className="settingsPassword__input" type="password" name="currPass" {...register("currPass", { required: "Password is required!" })} />
+                        <input className="settingsPassword__input" type="password" required="required" name="currPass" {...register("currPass")} />
                         {errors.currPass && (
                             <p style={{ color: "red" }}>{errors.currPass.message}</p>
                         )}
                     </label>
                     <label className="settingsPassword__label">
                         <h3>New password</h3>
-                        <input className="settingsPassword__input" type="password" name="newPass" {...register("newPass", { required: "New password is required!" })} />
+                        <input className="settingsPassword__input" type="password" required="required" name="newPass" {...register("newPass")} />
                         {errors.newPass && (
                             <p style={{ color: "red" }}>{errors.newPass.message}</p>
                         )}
                     </label>
                     <label className="settingsPassword__label">
                         <h3>Confirm new password</h3>
-                        <input className="settingsPassword__input" type="password" name="newPassConf" {...register("newPassConf", {
-                            required: "Please confirm password!",
+                        <input className="settingsPassword__input" type="password" required="required" name="newPassConf" {...register("newPassConf", 
+                        {
                             validate: {
                                 matchesPreviousPassword: (value) => {
                                     const { newPass } = getValues();
