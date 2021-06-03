@@ -23,9 +23,14 @@ namespace covid_monitor_api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup()
         {
-            Configuration = configuration;
+            var environmentName = Environment.GetEnvironmentVariable(
+            "ASPNETCORE_ENVIRONMENT");
+            var builder = new ConfigurationBuilder()
+              .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+              .AddJsonFile($"appsettings.{environmentName}.json", optional: true);
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }

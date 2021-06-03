@@ -10,3 +10,4 @@ api/api/obj/project.nuget.cache
 api/.vs/api/config/applicationhost.config
 
 
+api/covid-monitor-api/appsettings.json

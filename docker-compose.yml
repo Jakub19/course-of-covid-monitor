@@ -21,6 +21,8 @@ services:
         build:
             dockerfile: Dockerfile
             context: ./api/covid-monitor-api
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Docker
         ports: 
             - '50970'
         volumes:
@@ -28,6 +30,8 @@ services:
         networks:
             - frontend
             - backend
+        depends_on: 
+            - db  
     client:
         stdin_open: true
         build:
