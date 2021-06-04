@@ -18,6 +18,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore;
+using Microsoft.OpenApi.Models;
 
 namespace covid_monitor_api
 {
@@ -43,6 +45,22 @@ namespace covid_monitor_api
             // For Entity Framework  
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
             services.AddDbContext<HealthInformationOverviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
+
+            // Adding swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "CovidTracker API",
+                    Description = "ASP.NET Core Web API for CovidTracker project",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Patryk S., Jakub W.",
+                        Email = string.Empty,
+                    }
+                });
+            });
 
             // For Identity  
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -81,6 +99,13 @@ namespace covid_monitor_api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CovidTracker API V1");
+                c.RoutePrefix = "docs";
+            });
 
             app.UseHttpsRedirection();
 

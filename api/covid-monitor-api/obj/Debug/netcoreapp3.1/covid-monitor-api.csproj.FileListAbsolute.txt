@@ -274,3 +274,10 @@ D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\obj\Debug\netcoreapp3.1\
 D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\obj\Debug\netcoreapp3.1\covid-monitor-api.dll
 D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\obj\Debug\netcoreapp3.1\covid-monitor-api.pdb
 D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\obj\Debug\netcoreapp3.1\covid-monitor-api.genruntimeconfig.cache
+D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\obj\Debug\netcoreapp3.1\covid-monitor-api.MvcApplicationPartsAssemblyInfo.cs
+D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\bin\Debug\netcoreapp3.1\covid-monitor-api.xml
+D:\SZKOLA\course-of-covid-monitor\api\covid-monitor-api\obj\Debug\netcoreapp3.1\covid-monitor-api.xml
