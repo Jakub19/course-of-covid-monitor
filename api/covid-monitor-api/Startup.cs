@@ -95,6 +95,7 @@ namespace covid_monitor_api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // For development only access
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
