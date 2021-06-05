@@ -4,8 +4,16 @@ import SettingsAccount from './SettingsAccount'
 import SettingsPassword from './SettingsPassword'
 import SettingsNotifications from './SettingsNotifications'
 import './ProfileSettings.css'
+import {
+    Switch,
+    Route,
+    Link,
+    useRouteMatch
+} from "react-router-dom";
 
 function ProfileSettings() {
+    const { path, url } = useRouteMatch();
+
     return (
         <div className="profileSettings">
             <div className='profileSettings__card'>
@@ -13,15 +21,29 @@ function ProfileSettings() {
                     <Avatar />
                     <h1 className="profileSettings__username">Jan Kowalski</h1>
                     <ul className="profileSettings__list">
-                        <li className="profileSettings__button profileSettings__button--active">Account</li>
-                        <li className="profileSettings__button ">Password</li>
-                        <li className="profileSettings__button" >Notifications</li>
+                        <Link to={`${url}/account`}>
+                            <li className="profileSettings__button profileSettings__button--active">Account</li>
+                        </Link>
+                        <Link to={`${url}/password`}>
+                            <li className="profileSettings__button ">Password</li>
+                        </Link>
+                        <Link to={`${url}/notifications`}>
+                            <li className="profileSettings__button" >Notifications</li>
+                        </Link>
                     </ul>
                 </div>
                 <div className="profileSettings__content">
-                    <SettingsAccount />
-                    <SettingsPassword/>
-                    <SettingsNotifications />
+                    <Switch>
+                        <Route exact path={`${path}/account`}>
+                            <SettingsAccount />
+                        </Route>
+                        <Route path={`${path}/password`}>
+                            <SettingsPassword />
+                        </Route>
+                        <Route path={`${path}/notifications`}>
+                            <SettingsNotifications />
+                        </Route>
+                    </Switch>
                 </div>
             </div>
         </div>
