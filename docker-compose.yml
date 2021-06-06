@@ -4,6 +4,7 @@ services:
         build:
             dockerfile: Dockerfile
             context: ./db
+        image: jakub19/covid-tracker-db
         environment: 
             - ACCEPT_EULA=Y
             - SA_PASSWORD=DevelopmentTmpPassword22
@@ -16,6 +17,7 @@ services:
         build:
             dockerfile: Dockerfile
             context: ./nginx
+        image: jakub19/covid-tracker-nginx
         ports: 
             - '8080:80'
         networks: 
@@ -25,6 +27,7 @@ services:
         build:
             dockerfile: Dockerfile
             context: ./api/covid-monitor-api
+        image: jakub19/covid-tracker-api
         environment:
             - ASPNETCORE_ENVIRONMENT=Docker
         ports: 
@@ -41,6 +44,7 @@ services:
         build:
             dockerfile: Dockerfile.dev
             context: ./client
+        image: jakub19/covid-tracker-client
         environment:
             - NODE_ENV=development
             - CHOKIDAR_USEPOLLING=true

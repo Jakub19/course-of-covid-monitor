@@ -108,7 +108,7 @@ namespace covid_monitor_api
                 c.RoutePrefix = "docs";
             });
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseAuthentication();
