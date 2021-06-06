@@ -32,8 +32,7 @@ function Login(props) {
                         error.response.data &&
                         error.response.data.message) ||
                     error.message ||
-                    error.toString();
-
+                    error.toString();            
                     setLoading(false);
                     console.log(resMessage);
             }

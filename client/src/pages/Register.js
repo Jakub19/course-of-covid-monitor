@@ -3,10 +3,10 @@ import Navbar from '../components/Navbar'
 import RegisterForm from '../components/RegisterForm'
 import Footer from '../components/Footer'
 
-function Homepage() {
+function Homepage(props) {
     return (
         <div className="homepage">
-            <Navbar />
+            <Navbar history={props.history}/>
             <RegisterForm />
             <Footer />
         </div>
