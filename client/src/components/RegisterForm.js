@@ -3,79 +3,28 @@ import { useForm } from "react-hook-form";
 import AuthService from '../services/authService';
 import './RegisterForm.css'
 
-function RegisterForm() {
+function RegisterForm(props) {
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm();
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [postalCode, setPostalCode] = useState("");
-    const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
 
-    const onChangeName = (e) => {
-        const name = e.target.value;
-        setName(name);
-    };
-
-    const onChangeSurname = (e) => {
-        const surname = e.target.value;
-        setSurname(surname);
-    };
-
-    const onChangePassword = (e) => {
-        const password = e.target.value;
-        setPassword(password);
-    };
-
-    const onChangeEmail = (e) => {
-        const email = e.target.value;
-        setEmail(email);
-    };
-
-    const onChangePhoneNumber = (e) => {
-        const phoneNumber = e.target.value;
-        setPhoneNumber(phoneNumber);
-    };
-
-    const onChangeAddress = (e) => {
-        const address = e.target.value;
-        setAddress(address);
-    };
-
-    const onChangeCity = (e) => {
-        const city = e.target.value;
-        setCity(city);
-    };
-
-    const onChangePostalCode = (e) => {
-        const postalCode = e.target.value;
-        setPostalCode(postalCode);
-    };
 
     const handleRegister = (data) => {
 
-        setSuccessful(false);
-
-        AuthService.register(data.name, data.surname, data.password, data.email, data.phoneNumber, data.address, data.city, data.postalCode).then(
+        AuthService.register(data.fname, data.lname, data.password, data.email, data.phoneNumber, data.address, data.city, data.postalCode).then(
             (response) => {
                 setMessage(response.data.message);
-                setSuccessful(true);
+                props.history.push("/profile");
+                window.location.reload();
             },
             (error) => {
-                const resMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
+                setMessage(error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
                     error.message ||
                     error.toString();
 
-                setMessage(resMessage);
-                setSuccessful(false);
+                console.log(message);
             }
         );
     };
@@ -90,20 +39,20 @@ function RegisterForm() {
                     <div className="registerForm__inputs">
                         <label className="registerForm__label">
                             <h3>Name</h3>
-                            <input className="registerForm__input" type="text" required="required" placeholder="First name" name="name"  {...register("name", { maxLength: 20 })} />
-                            <input className="registerForm__input" type="text" required="required" placeholder="Last name" name="surname"  {...register("surname", { maxLength: 20 })} />
+                            <input className="registerForm__input" type="text" required="required" placeholder="First name" name="fname "   {...register("fname", { maxLength: 20 })} />
+                            <input className="registerForm__input" type="text" required="required" placeholder="Last name" name="lname"  {...register("lname", { maxLength: 20 })} />
                             {errors.firstName && (
                                 <p style={{ color: "red" }}>{errors.firstName.message}</p>
                             )}
                         </label>
                         <label className="registerForm__label">
                             <h3>Password</h3>
-                            <input className="registerForm__input" type="password" required="required" name="password"  {...register("password")} />
+                            <input className="registerForm__input" type="password" required="required" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...register("password")} />
                             {errors.pass && (
                                 <p style={{ color: "red" }}>{errors.pass.message}</p>
                             )}
                             <h3 className="registerForm__h3--center">Confirm password</h3>
-                            <input className="registerForm__input" type="password" required="required" name="passConf" {...register("passConf", {
+                            <input className="registerForm__input" type="password" required="required" name="passConf" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...register("passConf", {
                                 validate: {
                                     matchesPreviousPassword: (value) => {
                                         const { password } = getValues();

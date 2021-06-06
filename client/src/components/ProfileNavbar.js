@@ -13,10 +13,10 @@ function ProfileNavbar() {
             <Link to={'/'}><img className="profileNavbar__logo" src={logo} alt="logo" /></Link>
             <ul className="tab">
                 <span className="tab__indicator"></span>
-                <Link to={`${url}`}>
-                    <li className="tab__button tab__button--active" id="btn1"><p>Overview</p></li>
+                <Link className="tab__link" to={`${url}`}>
+                    <li className="tab__button tab__button--active" id="btn1">Overview</li>
                 </Link>
-                <Link to={`${url}/settings/account`}>
+                <Link className="tab__link" to={`${url}/settings/account`}>
                     <li className="tab__button">Settings</li>
                 </Link>
             </ul>

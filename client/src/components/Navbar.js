@@ -22,9 +22,9 @@ function Navbar(props) {
                     </div>
                     :
                     <>
+                        <Link to={'/profile'}><button className="navbar__button">To profile</button></Link>
                         <Login history={props.history}/>
-                        <Link to={'/profile'}><button className="navbar__button">Sign In</button></Link>
-                        <Link to={'/register'}><button className="navbar__button navbar__button--register">Register now</button></Link>
+                        <Link to={'/register'}><button className="navbar__button navbar__button--register">Register</button></Link>
                     </>
                 }
             </div>

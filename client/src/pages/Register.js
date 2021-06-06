@@ -7,7 +7,7 @@ function Homepage(props) {
     return (
         <div className="homepage">
             <Navbar history={props.history}/>
-            <RegisterForm />
+            <RegisterForm history={props.history}/>
             <Footer />
         </div>
     )

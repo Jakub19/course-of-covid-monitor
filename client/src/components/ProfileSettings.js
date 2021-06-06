@@ -14,6 +14,7 @@ import {
 function ProfileSettings() {
     const { path, url } = useRouteMatch();
 
+
     return (
         <div className="profileSettings">
             <div className='profileSettings__card'>
@@ -21,13 +22,13 @@ function ProfileSettings() {
                     <Avatar />
                     <h1 className="profileSettings__username">Jan Kowalski</h1>
                     <ul className="profileSettings__list">
-                        <Link to={`${url}/account`}>
+                        <Link className="profileSettings__link" to={`${url}/account`}>
                             <li className="profileSettings__button profileSettings__button--active">Account</li>
                         </Link>
-                        <Link to={`${url}/password`}>
+                        <Link className="profileSettings__link" to={`${url}/password`}>
                             <li className="profileSettings__button ">Password</li>
                         </Link>
-                        <Link to={`${url}/notifications`}>
+                        <Link className="profileSettings__link" to={`${url}/notifications`}>
                             <li className="profileSettings__button" >Notifications</li>
                         </Link>
                     </ul>

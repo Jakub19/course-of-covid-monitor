@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import "./Login.css"
 import AuthService from "../services/authService";
 
 function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
 
     const onChangeEmail = (e) => {
         const email = e.target.value;
@@ -20,6 +22,7 @@ function Login(props) {
         e.preventDefault();
 
         setLoading(true);
+        setMessage("");
 
         AuthService.login(email, password).then(
             () => {
@@ -27,23 +30,22 @@ function Login(props) {
                 window.location.reload();
             },
             (error) => {
-                const resMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString();            
-                    setLoading(false);
-                    console.log(resMessage);
+                if (error.response.status === 401) {
+                    setMessage("Invalid email or password!");
+                }
+                if (error.response.status === 500) {
+                    setMessage("Server error, prease try again.");
+                }
             }
         );
     };
     return (
         <div>
             <form onSubmit={handleLogin}>
-                <input type="email" placeholder="username" name="username" value={email} onChange={onChangeEmail}></input>
-                <input type="password" placeholder="password" name="password" value={password} onChange={onChangePassword}></input>
-                <input type="submit" disabled={loading}></input>
+                <input className="login__input" type="email" required="required" placeholder="username" name="username" value={email} onChange={onChangeEmail}></input>
+                <input className="login__input" type="password" required="required" placeholder="password" name="password" value={password} onChange={onChangePassword}></input>
+                <span className="login__error">{message}</span>
+                <button className="login__button" type="submit" disabled={loading}>Sign in</button>              
             </form>
         </div>
     )
