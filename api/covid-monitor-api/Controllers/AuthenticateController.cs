@@ -65,6 +65,8 @@ namespace covid_monitor_api.Controllers
 
                 return Ok(new
                 {
+                    user.Name,
+                    user.Surname,
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo
                 });
@@ -179,7 +181,7 @@ namespace covid_monitor_api.Controllers
             if (model.City != null)
                 // Update the profile details
                 userExists.City = model.City;
-           
+
 
             // Attempt to commit changes to data store
             var result = await userManager.UpdateAsync(userExists);
@@ -201,7 +203,7 @@ namespace covid_monitor_api.Controllers
         public async Task<ActionResult<UpdateUserPassword>> UpdateUserPassword([FromBody] UpdateUserPassword model)
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
-           
+
             if (userExists == null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
 
@@ -268,7 +270,7 @@ namespace covid_monitor_api.Controllers
             if (foundUser != null)
             {
                 // Return that users details
-                return Ok(new 
+                return Ok(new
                 {
                     FirstName = foundUser.Name,
                     LastName = foundUser.Surname,
@@ -277,8 +279,8 @@ namespace covid_monitor_api.Controllers
                     foundUser.City,
                     foundUser.PhoneNumber,
                     foundUser.PostalCode
-                  
-                    
+
+
                 });
             }
 
@@ -309,14 +311,41 @@ namespace covid_monitor_api.Controllers
                         PhoneNumber = u.PhoneNumber,
                         Address = u.Address,
                         City = u.City,
-                      
+
                     }));
                 }
             }
 
-             return Ok(results);
+            return Ok(results);
         }
 
+
+        [HttpGet]
+        [Route("Profile")]
+        public async Task<ActionResult<SearchUser>> ProfileDetails([FromBody] SearchUser model)
+        {
+
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
+
+
+
+
+            return Ok(new
+            {
+                userExists.Name,
+                userExists.Surname,
+                userExists.Email,
+                userExists.Address,
+                userExists.City,
+                userExists.PostalCode,
+                userExists.PhoneNumber
+                
+            });
+
+        }
     }
-}  
+}
+
 

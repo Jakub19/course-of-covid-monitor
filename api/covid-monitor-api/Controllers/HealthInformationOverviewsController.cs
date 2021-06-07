@@ -56,7 +56,8 @@ namespace covid_monitor_api.Controllers
                 Gender = model.Gender,
                 Height = model.Height,
                 Weight = model.Weight,
-                BloodType = model.BloodType
+                BloodType = model.BloodType,
+                IsNotifOn = model.IsNotifOn
             };
             _context.HealthInformationOverview.Add(form);
             await _context.SaveChangesAsync();

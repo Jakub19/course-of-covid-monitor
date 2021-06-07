@@ -17,6 +17,7 @@ namespace covid_monitor_api.Models
         public float Weight { get; set; }
 
         public string BloodType { get; set; }
+        public Boolean IsNotifOn { get; set; }
 
 
     }
