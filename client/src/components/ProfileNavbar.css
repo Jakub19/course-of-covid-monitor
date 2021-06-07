@@ -20,13 +20,25 @@
     align-items: center;
 }
 
-.profileNavbar__profile--icon{
-    content: "";
-    min-width: 50px;
-    min-height: 50px;
-    border: 1px #34498C solid;
+.profileNavbar__logout{
+    height: 50px;
+    margin: 0px 30px;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 150px;
+    border: 1px #FA555F solid;
     border-radius: 25px;
-    margin: 0px 10px;
+    margin-right: 0;
+    color: #FA555F;
+}
+
+.profileNavbar__logout:hover{
+    color: white;
+    background-color: #FA555F;
 }
 
 .tab{

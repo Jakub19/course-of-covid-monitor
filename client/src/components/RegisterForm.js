@@ -10,12 +10,15 @@ function RegisterForm(props) {
 
 
     const handleRegister = (data) => {
-
         AuthService.register(data.fname, data.lname, data.password, data.email, data.phoneNumber, data.address, data.city, data.postalCode).then(
             (response) => {
                 setMessage(response.data.message);
-                props.history.push("/profile");
-                window.location.reload();
+                AuthService.login(data.email, data.password).then(
+                    () => {
+                        props.history.push("/profile");
+                        window.location.reload();
+                    }
+                )
             },
             (error) => {
                 setMessage(error.response &&

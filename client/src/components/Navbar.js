@@ -5,21 +5,18 @@ import './Navbar.css'
 import Login from './Login';
 
 function Navbar(props) {
-    const isLoggedIn = props.isLoggedIn;
+    const user = props.user;
 
     return (
-
-
-
         <nav className="navbar">
             <Link to={'/'}><img className="navbar__logo" src={logo} alt="logo" /></Link>
             <div className="navbar__buttons">
-                {isLoggedIn
+                {user
                     ?
-                    <div className="navbar__profile--container">
+                    <Link className="navbar__link" to={'/profile'}><div className="navbar__profile--container">
                         <div className="navbar__profile--icon"></div>
                         <div className="navbar__profile--username">Jan Kowalski</div>
-                    </div>
+                    </div></Link>
                     :
                     <>
                         <Link to={'/profile'}><button className="navbar__button">To profile</button></Link>

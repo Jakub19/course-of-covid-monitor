@@ -1,13 +1,21 @@
 import React from 'react'
 import logo from '../images/logos/logo.svg'
 import './ProfileNavbar.css'
+import AuthService from "../services/authService";
 import {
     Link,
+    useHistory,
     useRouteMatch
 } from "react-router-dom";
 
-function ProfileNavbar() {
+
+function ProfileNavbar(props){
+    const history = useHistory();
     const { url } = useRouteMatch();
+    const handleLogout = () => {
+        AuthService.logout();
+        history.push("/");
+    }
     return (
         <nav className="profileNavbar">
             <Link to={'/'}><img className="profileNavbar__logo" src={logo} alt="logo" /></Link>
@@ -21,8 +29,7 @@ function ProfileNavbar() {
                 </Link>
             </ul>
             <div className="profileNavbar__profile--container">
-                <div className="profileNavbar__profile--icon"></div>
-                <div className="profileNavbar__profile--username">Jan Kowalski</div>
+                <button className="profileNavbar__logout" onClick={() => handleLogout()}>Logout</button>
             </div>
         </nav>
     )

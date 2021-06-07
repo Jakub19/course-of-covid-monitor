@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import ProfileOverview from '../components/ProfileOverview'
 import ProfileNavbar from '../components/ProfileNavbar'
 import ProfileSettings from '../components/ProfileSettings'
+import UserService from "../services/userService";
 import {
     Switch,
     Route,
@@ -12,14 +13,31 @@ import {
 import "./UserPage.css"
 
 
-
-function UserPage() {
-
+function UserPage(props) {
     const { path } = useRouteMatch();
+    const [content, setContent] = useState("");
+
+  useEffect(() => {
+    UserService.getUserBoard().then(
+      (response) => {
+        setContent(response.data);
+      },
+      (error) => {
+        const _content =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setContent(_content);
+      }
+    );
+  }, []);
 
     return (
         <div className='userpage'>
-            <ProfileNavbar />
+            <ProfileNavbar history={props.history}/>
             <Switch>
                 <Route exact path={path}>
                 <ProfileOverview />
