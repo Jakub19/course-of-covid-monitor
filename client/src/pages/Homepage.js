@@ -5,10 +5,10 @@ import Footer from '../components/Footer'
 import Feature from '../components/Feature'
 import Recommendations from '../components/Recommendations'
 
-function Homepage() {
+function Homepage(props) {
     return (
         <div className="homepage">
-            <Navbar />
+            <Navbar history={props.history}/>
             <Hero />
             <Recommendations />
             <Feature />
