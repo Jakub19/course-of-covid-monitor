@@ -321,13 +321,12 @@ namespace covid_monitor_api.Controllers
 
 
         [HttpGet]
-        [Route("Profile")]
-        public async Task<ActionResult<SearchUser>> ProfileDetails([FromBody] SearchUser model)
+        [Route("Profile/ProfileDetails")]
+        public async Task<IActionResult> GetProfileDetails()
         {
-
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             if (userExists == null)
-                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "You need to be sign in to access this data!" });
 
 
 
@@ -341,7 +340,7 @@ namespace covid_monitor_api.Controllers
                 userExists.City,
                 userExists.PostalCode,
                 userExists.PhoneNumber
-                
+
             });
 
         }
