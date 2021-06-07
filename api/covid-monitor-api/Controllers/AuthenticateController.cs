@@ -80,7 +80,7 @@ namespace covid_monitor_api.Controllers
         {
             var userExists = await userManager.FindByNameAsync(model.Email);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status409Conflict, new Response { Status = "Error", Message = "User already exists!" });
 
             ApplicationUser user = new ApplicationUser()
             {
@@ -96,7 +96,7 @@ namespace covid_monitor_api.Controllers
             };
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
@@ -144,7 +144,7 @@ namespace covid_monitor_api.Controllers
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             var emailChanged = false;
             if (userExists == null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
 
             // If we have a first name...
             if (model.FirstName != null)
@@ -194,7 +194,7 @@ namespace covid_monitor_api.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Something went wrong! Check your data." });
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Something went wrong! Check your data." });
             }
 
         }
@@ -205,7 +205,7 @@ namespace covid_monitor_api.Controllers
             var userExists = await userManager.GetUserAsync(HttpContext.User);
 
             if (userExists == null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
 
 
             // Attempt to commit changes to data store
@@ -219,7 +219,7 @@ namespace covid_monitor_api.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Something went wrong! Check your data." });
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Something went wrong! Check your data." });
             }
 
         }
@@ -230,7 +230,7 @@ namespace covid_monitor_api.Controllers
 
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             if (userExists == null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
 
             var firstOrLastNameMissing = string.IsNullOrEmpty(model?.FirstName) || string.IsNullOrEmpty(model?.LastName) || string.IsNullOrEmpty(model?.Email);
             var notEnoughSearchDetails =
@@ -244,7 +244,7 @@ namespace covid_monitor_api.Controllers
                 string.IsNullOrEmpty(model?.Email);
 
             if (notEnoughSearchDetails)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Data not found!" });
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data not found!" });
 
             var foundUser = default(ApplicationUser);
 
@@ -327,7 +327,7 @@ namespace covid_monitor_api.Controllers
 
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             if (userExists == null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User does not exsist!" });
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
 
 
 
