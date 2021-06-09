@@ -6,7 +6,7 @@ import './SettingsPassword.css'
 function SettingsPassword() {
 
     const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => alert(JSON.stringify(data));
 
     return (
         <div className="settingsPassword">

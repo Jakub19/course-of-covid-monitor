@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../images/logos/logo.svg'
 import { Link } from 'react-router-dom';
 import './Navbar.css'
 import Login from './Login';
+import { UserContext } from '../services/UserContext';
 
 function Navbar(props) {
-    const user = props.user;
-
+    const { user } = useContext(UserContext);
     return (
         <nav className="navbar">
             <Link to={'/'}><img className="navbar__logo" src={logo} alt="logo" /></Link>

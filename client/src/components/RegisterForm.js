@@ -1,36 +1,28 @@
-import React, { useState } from 'react'
-import { useForm } from "react-hook-form";
-import AuthService from '../services/authService';
+import React from 'react'
+import useForm from "../services/useForm";
+import useAuth from '../services/useAuth';
 import './RegisterForm.css'
 
 function RegisterForm(props) {
+    const { values, handleChange } = useForm({
+        initialValues: {
+            name: '',
+            surname: '',
+            password: '',
+            email: '',
+            phoneNumber: '',
+            address: '',
+            city: '',
+            postalCode: ''
+        }
+    });
 
-    const { register, handleSubmit, getValues, formState: { errors } } = useForm();
-    const [message, setMessage] = useState("");
+    const { registerUser, error } = useAuth();
 
-
-    const handleRegister = (data) => {
-        AuthService.register(data.fname, data.lname, data.password, data.email, data.phoneNumber, data.address, data.city, data.postalCode).then(
-            (response) => {
-                setMessage(response.data.message);
-                AuthService.login(data.email, data.password).then(
-                    () => {
-                        props.history.push("/profile");
-                        window.location.reload();
-                    }
-                )
-            },
-            (error) => {
-                setMessage(error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                    error.message ||
-                    error.toString();
-
-                console.log(message);
-            }
-        );
-    };
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        await registerUser(values);
+    }
 
     return (
         <div className="registerForm">
@@ -38,69 +30,38 @@ function RegisterForm(props) {
                 <div className="registerForm__header">
                     Registration form
                 </div>
-                <form className="registerForm__form" onSubmit={handleSubmit(handleRegister)}>
+                <form className="registerForm__form" onSubmit={handleRegister}>
                     <div className="registerForm__inputs">
                         <label className="registerForm__label">
                             <h3>Name</h3>
-                            <input className="registerForm__input" type="text" required="required" placeholder="First name" name="fname "   {...register("fname", { maxLength: 20 })} />
-                            <input className="registerForm__input" type="text" required="required" placeholder="Last name" name="lname"  {...register("lname", { maxLength: 20 })} />
-                            {errors.firstName && (
-                                <p style={{ color: "red" }}>{errors.firstName.message}</p>
-                            )}
+                            <input className="registerForm__input" type="text" required="required" placeholder="First name" name="name" value={values.name} onChange={handleChange} />
+                            <input className="registerForm__input" type="text" required="required" placeholder="Last name" name="surname" value={values.surname} onChange={handleChange} />
                         </label>
                         <label className="registerForm__label">
                             <h3>Password</h3>
-                            <input className="registerForm__input" type="password" required="required" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...register("password")} />
-                            {errors.pass && (
-                                <p style={{ color: "red" }}>{errors.pass.message}</p>
-                            )}
+                            <input className="registerForm__input" type="password" required="required" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" value={values.password} onChange={handleChange} />
                             <h3 className="registerForm__h3--center">Confirm password</h3>
-                            <input className="registerForm__input" type="password" required="required" name="passConf" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" {...register("passConf", {
-                                validate: {
-                                    matchesPreviousPassword: (value) => {
-                                        const { password } = getValues();
-                                        return password === value || "Passwords should match!";
-                                    }
-                                }
-                            })}
-                            />
-                            {errors.passConf && (
-                                <p style={{ color: "red" }}>
-                                    {errors.passConf.message}
-                                </p>
-                            )}
+                            <input className="registerForm__input" type="password" required="required" name="passConf" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
                         </label>
                         <label className="registerForm__label">
                             <h3>E-mail</h3>
-                            <input className="registerForm__input" type="email" required="required" name="email" {...register("email")} />
-                            {errors.email && (
-                                <p style={{ color: "red" }}>{errors.email.message}</p>
-                            )}
+                            <input className="registerForm__input" type="email" required="required" name="email" value={values.email} onChange={handleChange} />
                             <h3 className="registerForm__h3--center">Phone number</h3>
-                            <input className="registerForm__input" type="tel" required="required" name="phoneNumber" {...register("phoneNumber")} />
-                            {errors.phoneNumber && (
-                                <p style={{ color: "red" }}>{errors.phoneNumber.message}</p>
-                            )}
+                            <input className="registerForm__input" type="tel" required="required" name="phoneNumber" value={values.phoneNumber} onChange={handleChange} />
                         </label>
                         <label className="registerForm__label">
                             <h3>Address</h3>
-                            <input className="registerForm__input" type="text" required="required" name="address" {...register("address")} />
-                            {errors.address && (
-                                <p style={{ color: "red" }}>{errors.address.message}</p>
-                            )}
+                            <input className="registerForm__input" type="text" required="required" name="address" value={values.address} onChange={handleChange} />
                         </label>
                         <label className="registerForm__label">
                             <h3>City</h3>
-                            <input className="registerForm__input" type="text" required="required" name="city"{...register("city")} />
-                            {errors.city && (
-                                <p style={{ color: "red" }}>{errors.city.message}</p>
-                            )}
+                            <input className="registerForm__input" type="text" required="required" name="city" value={values.city} onChange={handleChange} />
                             <h3 className="registerForm__h3--center">Postal code</h3>
-                            <input className="registerForm__input" type="text" required="required" name="postalCode" {...register("postalCode")} />
-                            {errors.zip && (
-                                <p style={{ color: "red" }}>{errors.zip.message}</p>
-                            )}
+                            <input className="registerForm__input" type="text" required="required" name="postalCode" value={values.postalCode} onChange={handleChange} />
                         </label>
+                    </div>
+                    <div className="inlineForm__notif">
+                        {error}
                     </div>
                     <div className="registerForm__buttons">
                         <input className="registerForm__submit" type="submit" value="Register" />

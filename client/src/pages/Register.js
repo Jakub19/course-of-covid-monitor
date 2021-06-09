@@ -3,14 +3,14 @@ import Navbar from '../components/Navbar'
 import RegisterForm from '../components/RegisterForm'
 import Footer from '../components/Footer'
 
-function Homepage(props) {
+function Register(props) {
     return (
         <div className="homepage">
-            <Navbar history={props.history}/>
-            <RegisterForm history={props.history}/>
+            <Navbar history={props.history} />
+            <RegisterForm history={props.history} />
             <Footer />
         </div>
     )
 }
 
-export default Homepage
+export default Register

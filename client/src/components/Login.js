@@ -1,51 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
+import useForm from "../services/useForm";
+import useAuth from '../services/useAuth';
 import "./Login.css"
-import AuthService from "../services/authService";
+
 
 function Login(props) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
+    const { values, handleChange} = useForm({
+        initialValues: {
+          email: '',
+          password: ''
+        }
+      });
+const { loginUser, error } = useAuth();
 
-    const onChangeEmail = (e) => {
-        const email = e.target.value;
-        setEmail(email);
-    };
+const handleLogin = async (e) => {
+   e.preventDefault();
+   await loginUser(values);
+}
 
-    const onChangePassword = (e) => {
-        const password = e.target.value;
-        setPassword(password);
-    };
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-
-        setLoading(true);
-        setMessage("");
-
-        AuthService.login(email, password).then(
-            () => {
-                props.history.push("/profile");
-                window.location.reload();
-            },
-            (error) => {
-                if (error.response.status === 401) {
-                    setMessage("Invalid email or password!");
-                }
-                if (error.response.status === 500) {
-                    setMessage("Server error, prease try again.");
-                }
-            }
-        );
-    };
+   
     return (
         <div>
             <form onSubmit={handleLogin}>
-                <input className="login__input" type="email" required="required" placeholder="username" name="username" value={email} onChange={onChangeEmail}></input>
-                <input className="login__input" type="password" required="required" placeholder="password" name="password" value={password} onChange={onChangePassword}></input>
-                <span className="login__error">{message}</span>
-                <button className="login__button" type="submit" disabled={loading}>Sign in</button>              
+                <input className="login__input" type="email" required="required" placeholder="email" name="email" value={values.email} onChange={handleChange}></input>
+                <input className="login__input" type="password" required="required" placeholder="password" name="password" value={values.password} onChange={handleChange}></input>
+                <span className="login__error">{error}</span>
+                <button className="login__button" type="submit" >Sign in</button>              
             </form>
         </div>
     )
