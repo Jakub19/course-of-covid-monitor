@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../services/UserContext';
 import Avatar from './Avatar'
 import './ProfileTop.css'
 
-function ProfileTop() {
+function ProfileTop(props) {
+    const { user } = useContext(UserContext);
     return (
         <div className="profileTop">
             <Avatar />
             <div className="profileTop__card">
                 <div className="profileTop__card--headline">
-                    Jan Kowalski
-                    </div>
+                    {user.name + ' ' + user.surname}
+                </div>
                 <div className="profileTop__card--container">
                     <div className="profileTop__card--row">
-                        <h4>COVID positive since: </h4><p>3.05.3031</p>
+                        <h4>COVID positive since: </h4><p>{props.positiveSince}</p>
                     </div>
                     <div className="profileTop__card--row">
                         <h4>End of quarantine: </h4><p>18.05.3031</p>

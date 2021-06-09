@@ -13,7 +13,7 @@ export default function useAuth() {
         const { name, surname, password, email, phoneNumber, address, city, postalCode } = data;
         return axios.post(API_URL + "register", {
             name, surname, password, email, phoneNumber, address, city, postalCode
-        }).then(
+        }).sleep(500).then(
             loginUser(data)
         );
     };

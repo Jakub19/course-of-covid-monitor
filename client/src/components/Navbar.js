@@ -15,7 +15,7 @@ function Navbar(props) {
                     ?
                     <Link className="navbar__link" to={'/profile'}><div className="navbar__profile--container">
                         <div className="navbar__profile--icon"></div>
-                        <div className="navbar__profile--username">Jan Kowalski</div>
+                        <div className="navbar__profile--username">{user.name + ' ' + user.surname}</div>
                     </div></Link>
                     :
                     <>

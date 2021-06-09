@@ -5,10 +5,10 @@ import ProfileHistory from '../components/ProfileHistory'
 
 import './ProfileOverview.css'
 
-function ProfileOverview() {
+function ProfileOverview(props) {
     return (
         <div className='profileOverview'>
-            <ProfileTop />
+            <ProfileTop positiveSince={props.positiveSince}/>
             <ProfileSummary />
             <ProfileHistory /> 
         </div>           
