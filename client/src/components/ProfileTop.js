@@ -1,10 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import axios from 'axios';
 import { UserContext } from '../services/UserContext';
+import authHeader from '../services/authHeader'
 import Avatar from './Avatar'
 import './ProfileTop.css'
 
 function ProfileTop(props) {
     const { user } = useContext(UserContext);
+    const API_URL = "http://localhost:8080";
+
+    const [positiveSince, setPositiveSince] = useState('') 
+    const [endOfquarantine, setEndOfquarantine] = useState('') 
+
+    
+    const getUserDetails = () => {
+        axios.get(API_URL + "/api/HealthInformationOverviews", { headers: authHeader() })
+        .then((response) => {
+            response.data ? 
+            setPositiveSince(response.data)
+            :
+            setPositiveSince('No data')
+        }).catch((err) =>{
+            setPositiveSince('No data')
+            setEndOfquarantine('No data')
+        })
+    };
+
+    useEffect(() => {
+        getUserDetails();
+    }, [])
+
     return (
         <div className="profileTop">
             <Avatar />
@@ -14,10 +39,10 @@ function ProfileTop(props) {
                 </div>
                 <div className="profileTop__card--container">
                     <div className="profileTop__card--row">
-                        <h4>COVID positive since: </h4><p>{props.positiveSince}</p>
+                        <h4>COVID positive since: </h4><p>{positiveSince}</p>
                     </div>
                     <div className="profileTop__card--row">
-                        <h4>End of quarantine: </h4><p>18.05.3031</p>
+                        <h4>End of quarantine: </h4><p>{endOfquarantine}</p>
                     </div>
                 </div>
             </div>

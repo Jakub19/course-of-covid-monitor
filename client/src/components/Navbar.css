@@ -52,21 +52,34 @@
     background-color: #FA555F;
 }
 
-.navbar__profile--container{
+.navbar__container{
     display: flex;
     flex-flow: row;
     align-items: center;
 }
 
-.navbar__profile--icon{
+.navbar__avatar{
     content: "";
     width: 50px;
     height: 50px;
-    border: 1px #34498C solid;
-    border-radius: 25px;
+    border: 2px #34498C solid;
     margin: 0px 10px;
+    overflow: hidden;
+    border-radius: 50%;
+    min-width: 50px;
+    min-height: 50px;
+
 }
 
-.navbar__profile--username{
+.navbar__img{
+    position: relative;
+    text-align: center;
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+}
+
+.navbar__username{
     color: #3F3F3F;
 }
