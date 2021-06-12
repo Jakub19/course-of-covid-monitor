@@ -326,7 +326,8 @@ namespace covid_monitor_api.Controllers
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             if (userExists == null)
-                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "You need to be sign in to access this data!" });
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User not found!" });
+
 
 
 
