@@ -196,20 +196,18 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210516185040_wersja1605v2')
-BEGIN
-    CREATE TABLE [HealthInformationOverview] (
-        [Id] int NOT NULL IDENTITY,
-        [OwnerId] nvarchar(max) NULL,
-        [CovidPositiveSince] datetime2 NOT NULL,
-        [BirthDate] datetime2 NOT NULL,
-        [Gender] nvarchar(max) NULL,
-        [Height] real NOT NULL,
-        [Weight] real NOT NULL,
-        [BloodType] nvarchar(max) NULL,
-        CONSTRAINT [PK_HealthInformationOverview] PRIMARY KEY ([Id])
-    );
-END;
+
+CREATE TABLE [HealthInformationOverview] (
+    [Id] int NOT NULL IDENTITY,
+    [OwnerId] nvarchar(max) NULL,
+    [CovidPositiveSince] datetime2 NOT NULL,
+    [BirthDate] datetime2 NOT NULL,
+    [Gender] nvarchar(max) NULL,
+    [Height] real NOT NULL,
+    [Weight] real NOT NULL,
+    [BloodType] nvarchar(max) NULL,
+    CONSTRAINT [PK_HealthInformationOverview] PRIMARY KEY ([Id])
+);
 
 GO
 
