@@ -211,6 +211,15 @@ CREATE TABLE [HealthInformationOverview] (
 
 GO
 
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20210520010111_test2', N'3.1.10');
+
+GO
+
+ALTER TABLE [HealthInformationOverview] ADD [IsNotifOn] bit NOT NULL DEFAULT CAST(0 AS bit);
+
+GO
+
 IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210520010111_test2')
 BEGIN
     INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
