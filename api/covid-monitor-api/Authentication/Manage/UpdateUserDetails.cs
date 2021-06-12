@@ -14,5 +14,6 @@ namespace covid_monitor_api.Authentication.Manage
 
         public string Address { get; set; }
         public string City { get; set; }
+        public string PostalCode { get; set; }
     }
 }

@@ -8,8 +8,8 @@ import {
     Route,
     useRouteMatch
 } from "react-router-dom";
-    
 import "./UserPage.css"
+
 
 
 function UserPage(props) {
@@ -17,11 +17,11 @@ function UserPage(props) {
 
     return (
         <div className='userpage'>
-            <ProfileNavbar history={props.history}/>
+            <ProfileNavbar history={props.history} />
             <Switch>
                 <Route exact path={path}>
-                <ProfileOverview />
-                    </Route>
+                    <ProfileOverview/>
+                </Route>
                 <Route path={`${path}/settings`}>
                     <ProfileSettings />
                 </Route>

@@ -182,6 +182,10 @@ namespace covid_monitor_api.Controllers
                 // Update the profile details
                 userExists.City = model.City;
 
+            if (model.PostalCode != null)
+                // Update the profile details
+                userExists.PostalCode = model.PostalCode;
+
 
             // Attempt to commit changes to data store
             var result = await userManager.UpdateAsync(userExists);
@@ -223,7 +227,7 @@ namespace covid_monitor_api.Controllers
             }
 
         }
-        [HttpGet]
+        [HttpPost]
         [Route("SearchUsers")]
         public async Task<ActionResult<SearchUser>> SearchUsers([FromBody] SearchUser model)
         {
@@ -311,6 +315,7 @@ namespace covid_monitor_api.Controllers
                         PhoneNumber = u.PhoneNumber,
                         Address = u.Address,
                         City = u.City,
+                        PostalCode = u.PostalCode,
 
                     }));
                 }

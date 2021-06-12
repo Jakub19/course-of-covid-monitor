@@ -1,13 +1,18 @@
 import React from 'react'
 import './SummaryCard.css'
 import {ReactComponent as Arrow} from '../images/arrow.svg';
+import {ReactComponent as Line} from '../images/line.svg';
 
 function SummaryCard(props) {
+    let cardClass = '';
+
+    props.value ? cardClass = 'card__info' : cardClass = 'card__info card__info--inactive';
+
     return (
         <div className="card">
             <div className="card__container">
-                <Arrow className="card__arrow" />
-                <div className="card__info">
+            {props.value ? <Arrow className="card__arrow" /> : <Line className="card__line" />}
+                <div className={cardClass}>
                     <div className="card__info--name">
                         <h3>{props.name}</h3>
                     </div>

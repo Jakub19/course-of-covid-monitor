@@ -8,7 +8,7 @@ import './ProfileOverview.css'
 function ProfileOverview() {
     return (
         <div className='profileOverview'>
-            <ProfileTop />
+            <ProfileTop/>
             <ProfileSummary />
             <ProfileHistory /> 
         </div>           
