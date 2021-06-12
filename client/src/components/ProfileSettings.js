@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../services/UserContext';
 import Avatar from './Avatar'
 import SettingsAccount from './SettingsAccount'
@@ -11,10 +11,27 @@ import {
     Link,
     useRouteMatch
 } from "react-router-dom";
+import axios from 'axios';
+import authHeader from '../services/authHeader';
 
 function ProfileSettings() {
+    const API_URL = "http://localhost:8080";
     const { path, url } = useRouteMatch();
     const { user } = useContext(UserContext);
+
+    const [data, setData] = useState('');
+
+    const getProfileDetails = () => {
+        axios.get(API_URL + "/api/Authenticate/Profile/ProfileDetails", { headers: authHeader() })
+            .then((response) => {
+                setData(response.data)
+            }).catch((err) => {
+            })
+    };
+
+    useEffect(() => {
+        getProfileDetails();
+    }, [])
 
     return (
         <div className="profileSettings">
@@ -37,7 +54,7 @@ function ProfileSettings() {
                 <div className="profileSettings__content">
                     <Switch>
                         <Route exact path={`${path}/account`}>
-                            <SettingsAccount />
+                            <SettingsAccount data={data} />
                         </Route>
                         <Route path={`${path}/password`}>
                             <SettingsPassword />

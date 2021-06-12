@@ -8,7 +8,7 @@ function Avatar() {
     const API_URL = "http://localhost:8080";
 
     const getAvatar = () => {
-        axios.get(API_URL + "/api/HealthInformationOverviews", { headers: authHeader() })
+        axios.get(API_URL + "", { headers: authHeader() })
         .then((response) => {
 
         }).catch((err) =>{

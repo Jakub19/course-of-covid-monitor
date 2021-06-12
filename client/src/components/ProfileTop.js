@@ -13,7 +13,7 @@ function ProfileTop(props) {
     const [endOfquarantine, setEndOfquarantine] = useState('') 
 
     
-    const getUserDetails = () => {
+    const getHealthInformation = () => {
         axios.get(API_URL + "/api/HealthInformationOverviews", { headers: authHeader() })
         .then((response) => {
             response.data ? 
@@ -21,13 +21,13 @@ function ProfileTop(props) {
             :
             setPositiveSince('No data')
         }).catch((err) =>{
-            setPositiveSince('No data')
-            setEndOfquarantine('No data')
+            setPositiveSince('Error')
+            setEndOfquarantine('Error')
         })
     };
 
     useEffect(() => {
-        getUserDetails();
+        getHealthInformation();
     }, [])
 
     return (

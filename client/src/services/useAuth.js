@@ -11,11 +11,8 @@ export default function useAuth() {
     //register user
     const registerUser = async (data) => {
         const { name, surname, password, email, phoneNumber, address, city, postalCode } = data;
-        return axios.post(API_URL + "register", {
-            name, surname, password, email, phoneNumber, address, city, postalCode
-        }).sleep(500).then(
-            loginUser(data)
-        );
+        await axios.post(API_URL + "register", {name, surname, password, email, phoneNumber, address, city, postalCode});
+        loginUser(data)
     };
 
     //login user
@@ -32,6 +29,7 @@ export default function useAuth() {
             return response.data;
         });
     };
+
 
     //Logout user
     const logoutUser = () => {
