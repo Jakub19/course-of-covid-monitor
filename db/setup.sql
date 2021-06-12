@@ -196,27 +196,22 @@ END;
 
 GO
 
+IF NOT EXISTS (SELECT * FROM sys.tables t JOIN sys.schemas s ON (t.schema_id = s.schema_id) WHERE s.name = 'myschema' and t.name = 'HealthInformationOverview')
+BEGIN
+    CREATE TABLE [HealthInformationOverview] (
+        [Id] int NOT NULL IDENTITY,
+        [OwnerId] nvarchar(max) NULL,
+        [CovidPositiveSince] datetime2 NOT NULL,
+        [BirthDate] datetime2 NOT NULL,
+        [Gender] nvarchar(max) NULL,
+        [Height] real NOT NULL,
+        [Weight] real NOT NULL,
+        [BloodType] nvarchar(max) NULL,
+        CONSTRAINT [PK_HealthInformationOverview] PRIMARY KEY ([Id])
+    );
 
-CREATE TABLE [HealthInformationOverview] (
-    [Id] int NOT NULL IDENTITY,
-    [OwnerId] nvarchar(max) NULL,
-    [CovidPositiveSince] datetime2 NOT NULL,
-    [BirthDate] datetime2 NOT NULL,
-    [Gender] nvarchar(max) NULL,
-    [Height] real NOT NULL,
-    [Weight] real NOT NULL,
-    [BloodType] nvarchar(max) NULL,
-    CONSTRAINT [PK_HealthInformationOverview] PRIMARY KEY ([Id])
-);
-
-GO
-
-INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20210520010111_test2', N'3.1.10');
-
-GO
-
-ALTER TABLE [HealthInformationOverview] ADD [IsNotifOn] bit NOT NULL DEFAULT CAST(0 AS bit);
+    ALTER TABLE [HealthInformationOverview] ADD [IsNotifOn] bit NOT NULL DEFAULT CAST(0 AS bit);
+END;
 
 GO
 
