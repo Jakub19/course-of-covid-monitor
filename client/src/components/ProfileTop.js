@@ -5,29 +5,50 @@ import authHeader from '../services/authHeader'
 import Avatar from './Avatar'
 import './ProfileTop.css'
 
-function ProfileTop(props) {
+function ProfileTop() {
     const { user } = useContext(UserContext);
     const API_URL = "http://localhost:8080";
 
-    const [positiveSince, setPositiveSince] = useState('') 
-    const [endOfquarantine, setEndOfquarantine] = useState('') 
+    const [positiveSince, setPositiveSince] = useState('')
+    const [endOfquarantine, setEndOfquarantine] = useState('')
+    const quarantineLength = 14;
 
-    
-    const getHealthInformation = () => {
+    const getDates = () => {
+        //Fetch user health information
         axios.get(API_URL + "/api/HealthInformationOverviews", { headers: authHeader() })
-        .then((response) => {
-            response.data ? 
-            setPositiveSince(response.data)
-            :
-            setPositiveSince('No data')
-        }).catch((err) =>{
-            setPositiveSince('Error')
-            setEndOfquarantine('Error')
-        })
+            .then((response) => {
+                //If date is fetched, convert and display, if else return 'no data'
+                if (response.data) {
+                    let since = new Date(response.data[0].covidPositiveSince);
+                    let end = new Date(response.data[0].covidPositiveSince);
+                    end.setDate(end.getDate() + quarantineLength);
+                    function formatDate(date) {
+                        var d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = '' + d.getDate(),
+                            year = d.getFullYear();
+                    
+                        if (month.length < 2) 
+                            month = '0' + month;
+                        if (day.length < 2) 
+                            day = '0' + day;
+                    
+                        return [day, month, year].join('-');
+                    }
+                    setPositiveSince(formatDate(since))
+                    setEndOfquarantine(formatDate(end))
+                } else {
+                    setPositiveSince('No data')
+                    setEndOfquarantine('No data')
+                }
+            }).catch((err) => {
+                setPositiveSince('Error')
+                setEndOfquarantine('Error')
+            })
     };
 
     useEffect(() => {
-        getHealthInformation();
+        getDates();
     }, [])
 
     return (
