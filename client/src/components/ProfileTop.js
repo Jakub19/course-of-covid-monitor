@@ -11,6 +11,7 @@ function ProfileTop() {
 
     const [positiveSince, setPositiveSince] = useState('')
     const [endOfquarantine, setEndOfquarantine] = useState('')
+    
     const quarantineLength = 14;
 
     const getDates = () => {

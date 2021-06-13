@@ -1,10 +1,36 @@
 import React from 'react'
+import { Chart } from 'react-charts'
 import './HistoryCard.css'
 
-function HistoryCard() {
+function HistoryCard(props) {
+    const data = React.useMemo(
+        () => [
+            {
+                label: 'Series 1',
+                data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
+            },
+            {
+                label: 'Series 2',
+                data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
+            }
+        ],
+        []
+    )
+
+    const axes = React.useMemo(
+        () => [
+            { primary: true, type: 'linear', position: 'bottom' },
+            { type: 'linear', position: 'left' }
+        ],
+        []
+    )
+
     return (
-        <div className="historyCard">
-            
+        <div className="historyCard" >
+            <h1 className="historyCard__name">{props.name}</h1>
+            <div className="chartContainer" style={{ height: '300px' }}>
+                <Chart data={data} axes={axes} />
+            </div>
         </div>
     )
 }

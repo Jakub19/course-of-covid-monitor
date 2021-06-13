@@ -9,10 +9,10 @@ function ProfileHistory() {
                 Your health history
             </h1>
             <div className="profileHistory__container">
-                <HistoryCard />
-                <HistoryCard />
-                <HistoryCard />
-                <HistoryCard />
+                <HistoryCard name='Temperature'/>
+                <HistoryCard name='Blood saturation'/>
+                <HistoryCard name='Blood pressure'/>
+                <HistoryCard name='Pulse'/>
             </div>
         </div>
     )
