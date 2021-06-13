@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using covid_monitor_api.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,7 +37,7 @@ namespace covid_monitor_api.Controllers
 
         // GET: api/HealthInformationOverviews
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<HealthInformationOverview>>> GetHealthInformationOverviews()
+        public async Task<ActionResult<IEnumerable<HealthInformationOverview>>> GetAllHealthInformationOverviews()
         {
             return await _context.HealthInformationOverview.ToListAsync();
         }
@@ -63,11 +64,26 @@ namespace covid_monitor_api.Controllers
             await _context.SaveChangesAsync();
 
             //return CreatedAtAction("GetHealthInformationOverview", new { id = HealthInformationOverview.Id }, HealthInformationOverview);
-            return CreatedAtAction(nameof(GetHealthInformationOverviews), new { id = form.Id }, form);
+            return CreatedAtAction(nameof(GetAllHealthInformationOverviews), new { id = form.Id }, form);
         }
 
 
-        
+        [HttpGet]
+        [Route("GetCurrentUserHio")]
+        public async Task<ActionResult<HealthInformationOverview>> GetHio()
+        {
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+            var OwnerId = userExists.Id;
+            var hio = _context.HealthInformationOverview.Where (p => p.OwnerId == OwnerId);
+
+            if (hio == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(hio);
+        }
+
 
         private bool HealthInformationOverviewExists(long id)
         {
