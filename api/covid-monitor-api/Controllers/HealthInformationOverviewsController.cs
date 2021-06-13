@@ -60,8 +60,18 @@ namespace covid_monitor_api.Controllers
                 BloodType = model.BloodType,
                 IsNotifOn = model.IsNotifOn
             };
-            _context.HealthInformationOverview.Add(form);
-            await _context.SaveChangesAsync();
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+            var OwnerId = userExists.Id;
+            var hio = _context.HealthInformationOverview.Where(p => p.OwnerId == OwnerId);
+            if(hio == null)
+            {
+                _context.HealthInformationOverview.Add(form);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status406NotAcceptable, new Response { Status = "Error", Message = "User already filled this form!" });
+            }
 
             //return CreatedAtAction("GetHealthInformationOverview", new { id = HealthInformationOverview.Id }, HealthInformationOverview);
             return CreatedAtAction(nameof(GetAllHealthInformationOverviews), new { id = form.Id }, form);
