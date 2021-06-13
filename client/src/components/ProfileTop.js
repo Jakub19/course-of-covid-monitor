@@ -19,9 +19,9 @@ function ProfileTop() {
         axios.get(API_URL + "/api/HealthInformationOverviews", { headers: authHeader() })
             .then((response) => {
                 //If date is fetched, convert and display, if else return 'no data'
-                if (response.data) {
-                    let since = new Date(response.data[0].covidPositiveSince);
-                    let end = new Date(response.data[0].covidPositiveSince);
+                if (response.data.covidPositiveSince) {
+                    let since = new Date(response.data.covidPositiveSince);
+                    let end = new Date(response.data.covidPositiveSince);
                     end.setDate(end.getDate() + quarantineLength);
                     function formatDate(date) {
                         var d = new Date(date),
