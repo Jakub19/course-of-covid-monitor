@@ -34,8 +34,8 @@ function RegisterForm(props) {
                     <div className="registerForm__inputs">
                         <label className="registerForm__label">
                             <h3>Name</h3>
-                            <input className="registerForm__input" type="text" required="required" placeholder="First name" name="name" value={values.name} onChange={handleChange} />
-                            <input className="registerForm__input" type="text" required="required" placeholder="Last name" name="surname" value={values.surname} onChange={handleChange} />
+                            <input className="registerForm__input" type="text" required="required" placeholder="First name" name="name" autocomplete="given-name" value={values.name} onChange={handleChange} />
+                            <input className="registerForm__input" type="text" required="required" placeholder="Last name" name="surname" autocomplete="family-name" value={values.surname} onChange={handleChange} />
                         </label>
                         <label className="registerForm__label">
                             <h3>Password</h3>
