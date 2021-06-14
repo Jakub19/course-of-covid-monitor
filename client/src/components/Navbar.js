@@ -22,7 +22,6 @@ function Navbar(props) {
                     </Link>
                     :
                     <>
-                        <Link to={'/profile'}><button className="navbar__button">To profile</button></Link>
                         <Login history={props.history} />
                         <Link to={'/register'}><button className="navbar__button navbar__button--register">Register</button></Link>
                     </>
