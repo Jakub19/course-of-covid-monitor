@@ -18,8 +18,8 @@ function SetupForm(props) {
         return axios.post(API_URL + "HealthInformationOverviews", {
             covidPositiveSince, birthDate, height, weight, gender, bloodType, isNotifOn},{headers: authHeader()
         }).then(async (response) => {
-            console.log(response)
-            history.push('/profile');
+            console.log(response);
+            history.go(0);
         });
     };
     
