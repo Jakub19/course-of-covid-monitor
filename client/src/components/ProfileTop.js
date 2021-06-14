@@ -8,6 +8,7 @@ function ProfileTop(props) {
 
     const [positiveSince, setPositiveSince] = useState('')
     const [endOfquarantine, setEndOfquarantine] = useState('')
+    const [daysLeft, setdaysLeft] = useState('')
 
     const quarantineLength = 14;
 
@@ -15,8 +16,11 @@ function ProfileTop(props) {
 
         if (props.userHealthInf) {
             let userHealthInf = props.userHealthInf;
+            const oneDay = 24 * 60 * 60 * 1000;
             let since = new Date(userHealthInf.covidPositiveSince);
             let end = new Date(userHealthInf.covidPositiveSince);
+            let today = new Date();
+
             end.setDate(end.getDate() + quarantineLength);
             function formatDate(date) {
                 var d = new Date(date),
@@ -31,6 +35,10 @@ function ProfileTop(props) {
 
                 return [day, month, year].join('-');
             }
+
+            const diffDays = Math.round(Math.abs((today - end) / oneDay));
+
+            setdaysLeft(diffDays)
             setPositiveSince(formatDate(since))
             setEndOfquarantine(formatDate(end))
         } else {
@@ -56,6 +64,9 @@ function ProfileTop(props) {
                     </div>
                     <div className="profileTop__card--row">
                         <h4>End of quarantine: </h4><p>{endOfquarantine}</p>
+                    </div>
+                    <div className="profileTop__card--row">
+                        <h4>Days left: </h4><p>{daysLeft}</p>
                     </div>
                 </div>
             </div>
