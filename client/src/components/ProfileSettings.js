@@ -18,6 +18,7 @@ function ProfileSettings(props) {
     const API_URL = "http://localhost:8080";
     const { path, url } = useRouteMatch();
     const { user } = useContext(UserContext);
+    const [activeTab, setActiveTab] = useState();
 
     const [data, setData] = useState('');
 
@@ -30,9 +31,24 @@ function ProfileSettings(props) {
         })
     };
 
-    useEffect(() => {
+    function SetActiveTab() {
+        const location = window.location.pathname
+        if(location === url + '/account'){
+            setActiveTab(0)
+        }else if(location === url + '/password'){
+            setActiveTab(1)
+        }else if(location === url + '/notifications'){
+            setActiveTab(2)
+        }
+      }
+
+      useEffect(() => {
         getProfileDetails();
     }, [])
+
+    useEffect(() =>{
+        SetActiveTab();
+    })
 
     return (
         <div className="profileSettings">
@@ -42,13 +58,13 @@ function ProfileSettings(props) {
                     <h1 className="profileSettings__username">{user.name + ' ' + user.surname}</h1>
                     <ul className="profileSettings__list">
                         <Link className="profileSettings__link" to={`${url}/account`}>
-                            <li className="profileSettings__button profileSettings__button--active">Account</li>
+                            <li className={`profileSettings__button ${activeTab===0?"profileSettings__button--active":' ' }`} >Account</li>
                         </Link>
                         <Link className="profileSettings__link" to={`${url}/password`}>
-                            <li className="profileSettings__button ">Password</li>
+                            <li className={`profileSettings__button ${activeTab===1?"profileSettings__button--active":' ' }`} >Password</li>
                         </Link>
                         <Link className="profileSettings__link" to={`${url}/notifications`}>
-                            <li className="profileSettings__button" >Notifications</li>
+                            <li className={`profileSettings__button ${activeTab===2?"profileSettings__button--active":' ' }`} >Notifications</li>
                         </Link>
                     </ul>
                 </div>
