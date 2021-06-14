@@ -21,5 +21,7 @@ namespace covid_monitor_api.Authentication
 
         public DbSet<DailyInformationForm> DailyInformationForm { get; set; }
 
+        public DbSet<HealthInformationOverview> HealthInformationOverview { get; set; }
+
     }
 }

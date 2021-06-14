@@ -215,10 +215,41 @@ END;
 
 GO
 
+IF NOT EXISTS (SELECT * FROM sys.tables t JOIN sys.schemas s ON (t.schema_id = s.schema_id) WHERE s.name = 'myschema' and t.name = 'DailyInformations')
+BEGIN
+    CREATE TABLE [DailyInformations] (
+        [Id] int NOT NULL IDENTITY,
+        [OwnerId] nvarchar(max) NULL,
+        [Temperature] int NOT NULL,
+        [BloodPressure] nvarchar(max) NOT NULL,
+        [Saturation] int NOT NULL,
+        [Pulse] int NOT NULL,
+        [Headache] int NOT NULL,
+        [RunningNose] bit NOT NULL,
+        [MusclePain] int NOT NULL,
+        [DryCough] bit NOT NULL,
+        [Fatigue] int NOT NULL,
+        [LossOfTaste] bit NOT NULL,
+        [DiffBreathing] int NOT NULL,
+        [ChestPain] int NOT NULL,
+        CONSTRAINT [PK_DailyInformations] PRIMARY KEY ([Id])
+    );
+END;
+
+GO
+
 IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210520010111_test2')
 BEGIN
     INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
     VALUES (N'20210520010111_test2', N'3.1.10');
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20210614094143_InitialCreate')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20210614094143_InitialCreate', N'3.1.10');
 END;
 
 GO
