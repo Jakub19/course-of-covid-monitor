@@ -40,12 +40,6 @@
     border-radius: 5px;
 }
 
-.registerForm__buttons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .settingsNotifications__submit, .settingsNotifications__cancel{
     height: 50px;
     width: 150px;

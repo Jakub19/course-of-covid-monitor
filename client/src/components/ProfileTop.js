@@ -1,56 +1,47 @@
 import React, { useContext, useEffect, useState } from 'react'
-import axios from 'axios';
 import { UserContext } from '../services/UserContext';
-import authHeader from '../services/authHeader'
 import Avatar from './Avatar'
 import './ProfileTop.css'
 
-function ProfileTop() {
+function ProfileTop(props) {
     const { user } = useContext(UserContext);
-    const API_URL = "http://localhost:8080";
 
     const [positiveSince, setPositiveSince] = useState('')
     const [endOfquarantine, setEndOfquarantine] = useState('')
-    
+
     const quarantineLength = 14;
 
-    const getDates = () => {
-        //Fetch user health information
-        axios.get(API_URL + "/api/HealthInformationOverviews", { headers: authHeader() })
-            .then((response) => {
-                //If date is fetched, convert and display, if else return 'no data'
-                if (response.data.covidPositiveSince) {
-                    let since = new Date(response.data.covidPositiveSince);
-                    let end = new Date(response.data.covidPositiveSince);
-                    end.setDate(end.getDate() + quarantineLength);
-                    function formatDate(date) {
-                        var d = new Date(date),
-                            month = '' + (d.getMonth() + 1),
-                            day = '' + d.getDate(),
-                            year = d.getFullYear();
-                    
-                        if (month.length < 2) 
-                            month = '0' + month;
-                        if (day.length < 2) 
-                            day = '0' + day;
-                    
-                        return [day, month, year].join('-');
-                    }
-                    setPositiveSince(formatDate(since))
-                    setEndOfquarantine(formatDate(end))
-                } else {
-                    setPositiveSince('No data')
-                    setEndOfquarantine('No data')
-                }
-            }).catch((err) => {
-                setPositiveSince('Error')
-                setEndOfquarantine('Error')
-            })
+    const setDates = () => {
+
+        if (props.userHealthInf) {
+            let userHealthInf = props.userHealthInf;
+            let since = new Date(userHealthInf.covidPositiveSince);
+            let end = new Date(userHealthInf.covidPositiveSince);
+            end.setDate(end.getDate() + quarantineLength);
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+
+                return [day, month, year].join('-');
+            }
+            setPositiveSince(formatDate(since))
+            setEndOfquarantine(formatDate(end))
+        } else {
+            setPositiveSince('No data')
+            setEndOfquarantine('No data')
+        }
     };
 
     useEffect(() => {
-        getDates();
-    }, [])
+        setDates();
+    })
 
     return (
         <div className="profileTop">
