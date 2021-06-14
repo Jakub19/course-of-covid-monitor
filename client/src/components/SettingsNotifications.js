@@ -1,25 +1,42 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
+import authHeader from '../services/authHeader';
 import './SettingsNotifications.css'
 
-function SettingsNotifications() {
 
-    const { register, handleSubmit, reset } = useForm();
-    const onSubmit = data => alert(JSON.stringify(data));
+function SettingsNotifications(props) {
+    const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
+    const API_URL = "http://localhost:8080/api/";
+
+    const onSubmit = async (data) => {
+        const { secEmail, isNotifOn } = data;
+
+        return axios.put(API_URL + "Authenticate/UpdateUserDetails", {
+            secEmail, isNotifOn
+        }, {
+            headers: authHeader()
+        }).then(async (response) => {
+            console.log(response);
+        });
+    };
+
+    useEffect(() => {
+        setValue('isNotifOn', props.userHealthInf.isNotifOn);
+    })
 
     return (
         <div className="settingsNotifications">
             <h1 className="settingsNotifications__h1">Notifications settings</h1>
             <form className="settingsNotifications__form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="settingsNotifications__inputs">
-                    <label className="settingsNotifications__label">
-                        <h3>Send notifications to secondary email</h3>
-                        <input className="settingsNotifications__input" type="email"{...register("secEmail")} />
-                    </label>
                     <label className="settingsNotifications__sms">
-                        <input className="settingsNotifications__checkbox" type="checkbox" {...register("sendSms")} />
+                        <input className="settingsNotifications__checkbox" type="checkbox" name="isNotifOn"{...register("isNotifOn")} />
                         <h3>Enable SMS notifications </h3>
                     </label>
+                    {errors.isNotifOn && (
+                            <p style={{ color: "red" }}>{errors.name.isNotifOn}</p>
+                        )}
                 </div>
                 <div className="settingsNotifications__buttons">
                     <input className="settingsNotifications__submit" type="submit" value="Save" />

@@ -5,14 +5,20 @@ import { UserContext } from './UserContext';
 export default function useAuth() {
     let history = useHistory();
     const { setUser } = useContext(UserContext);
-    const [error] = useState(null);
+    const [error, setError] = useState(null);
     const API_URL = "http://localhost:8080/api/authenticate/";
 
     //register user
     const registerUser = async (data) => {
         const { name, surname, password, email, phoneNumber, address, city, postalCode } = data;
-        await axios.post(API_URL + "register", {name, surname, password, email, phoneNumber, address, city, postalCode});
-        loginUser(data)
+        await axios.post(API_URL + "register", {
+            name, surname, password, email, phoneNumber, address, city, postalCode
+        }).then((response) => {
+            loginUser(data)
+        }).catch((err) => {
+            setError(err.response.data.message);
+        });
+
     };
 
     //login user
@@ -27,6 +33,8 @@ export default function useAuth() {
                 history.push('/profile');
             }
             return response.data;
+        }).catch((err) => {
+            setError(err.response.data.message);
         });
     };
 

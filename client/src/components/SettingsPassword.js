@@ -1,12 +1,25 @@
+import axios from 'axios';
 import React from 'react'
 import { useForm } from "react-hook-form";
+import authHeader from '../services/authHeader';
 import './SettingsPassword.css'
 
 
 function SettingsPassword() {
-
     const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm();
-    const onSubmit = data => alert(JSON.stringify(data));
+    const API_URL = "http://localhost:8080/api/";
+
+    const onSubmit = async (data) => {
+        const {currentPassword, newPassword} = data;
+
+        return axios.put(API_URL + "Authenticate/UpdateUserPassword", {
+            currentPassword, newPassword
+        }, {
+            headers: authHeader()
+        }).then(async (response) => {
+            console.log(response);
+        });
+    };
 
     return (
         <div className="settingsPassword">
@@ -15,26 +28,26 @@ function SettingsPassword() {
                 <div className="settingsPassword__inputs">
                     <label className="settingsPassword__label">
                         <h3>Current password</h3>
-                        <input className="settingsPassword__input" type="password" required="required" name="currPass" {...register("currPass")} />
-                        {errors.currPass && (
-                            <p style={{ color: "red" }}>{errors.currPass.message}</p>
+                        <input className="settingsPassword__input" type="password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="currentPassword" {...register("currentPassword")} />
+                        {errors.currentPassword && (
+                            <p style={{ color: "red" }}>{errors.currentPassword.message}</p>
                         )}
                     </label>
                     <label className="settingsPassword__label">
                         <h3>New password</h3>
-                        <input className="settingsPassword__input" type="password" required="required" name="newPass" {...register("newPass")} />
-                        {errors.newPass && (
-                            <p style={{ color: "red" }}>{errors.newPass.message}</p>
+                        <input className="settingsPassword__input" type="password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="newPassword" {...register("newPassword")} />
+                        {errors.newPassword && (
+                            <p style={{ color: "red" }}>{errors.newPassword.message}</p>
                         )}
                     </label>
                     <label className="settingsPassword__label">
                         <h3>Confirm new password</h3>
-                        <input className="settingsPassword__input" type="password" required="required" name="newPassConf" {...register("newPassConf", 
+                        <input className="settingsPassword__input" type="password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="newPassConf" {...register("newPassConf", 
                         {
                             validate: {
                                 matchesPreviousPassword: (value) => {
-                                    const { newPass } = getValues();
-                                    return newPass === value || "Passwords should match!";
+                                    const { newPassword } = getValues();
+                                    return newPassword === value || "Passwords should match!";
                                 }
                             }
                         })}

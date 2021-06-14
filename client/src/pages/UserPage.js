@@ -15,11 +15,12 @@ import axios from 'axios'
 
 //Check if it's first user login, if yes show form and lock scrolling
 function isFirstLogin(isFirstLogin) {
-    if (!isFirstLogin) {
+    if (isFirstLogin) {
+        document.body.style.overflow = ''
+        
+    } else {
         document.body.style.overflow = 'hidden'
         return <SetupForm />
-    } else {
-        document.body.style.overflow = ''
     }
 }
 
@@ -53,7 +54,7 @@ function UserPage(props) {
                     {isFirstLogin(userHealthInf)}
                 </Route>
                 <Route path={`${path}/settings`}>
-                    <ProfileSettings />
+                    <ProfileSettings userHealthInf={userHealthInf}/>
                     <Footer />
                 </Route>
             </Switch>

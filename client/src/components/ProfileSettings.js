@@ -14,7 +14,7 @@ import {
 import axios from 'axios';
 import authHeader from '../services/authHeader';
 
-function ProfileSettings() {
+function ProfileSettings(props) {
     const API_URL = "http://localhost:8080";
     const { path, url } = useRouteMatch();
     const { user } = useContext(UserContext);
@@ -22,11 +22,12 @@ function ProfileSettings() {
     const [data, setData] = useState('');
 
     const getProfileDetails = () => {
-        axios.get(API_URL + "/api/Authenticate/Profile/ProfileDetails", { headers: authHeader() })
-            .then((response) => {
-                setData(response.data)
-            }).catch((err) => {
-            })
+        axios.get(API_URL + "/api/Authenticate/Profile/ProfileDetails", {
+            headers: authHeader()
+        }).then((response) => {
+            setData(response.data)
+        }).catch((err) => {
+        })
     };
 
     useEffect(() => {
@@ -60,7 +61,7 @@ function ProfileSettings() {
                             <SettingsPassword />
                         </Route>
                         <Route path={`${path}/notifications`}>
-                            <SettingsNotifications />
+                            <SettingsNotifications userHealthInf={props.userHealthInf}/>
                         </Route>
                     </Switch>
                 </div>
