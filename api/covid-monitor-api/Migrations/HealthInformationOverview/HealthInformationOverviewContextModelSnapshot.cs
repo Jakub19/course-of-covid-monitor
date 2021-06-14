@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using covid_monitor_api.Models;
+using covid_monitor_api.Authentication;
 
 namespace covid_monitor_api.Migrations.HealthInformationOverview
 {
-    [DbContext(typeof(HealthInformationOverviewContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class HealthInformationOverviewContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
