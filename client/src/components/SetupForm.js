@@ -11,11 +11,9 @@ function SetupForm(props) {
     const API_URL = "http://localhost:8080/api/";
 
     const onSubmit = async (data) => {
-        const {covidPositiveSince, birthDate, gender, height, weight, bloodType, isNotifOn} = data;
-        console.log(data)
-        data.height = parseInt(data.height,10);
-        data.weight = parseInt(data.weight,10);
-        console.log(data)
+        const {covidPositiveSince, birthDate, gender, heightstr, weightstr, bloodType, isNotifOn} = data;
+        let height = parseInt(data.heightstr,10);
+        let weight = parseInt(data.weightstr,10);
         return axios.post(API_URL + "HealthInformationOverviews", {
             covidPositiveSince, birthDate, height, weight, gender, bloodType, isNotifOn},{headers: authHeader()
         }).then(async (response) => {
@@ -44,11 +42,11 @@ function SetupForm(props) {
                         </label>
                         <label className="setupForm__label">
                             <h3>Height</h3>
-                            <input className="setupForm__input" type="number" required="required" name="height" placeholder="cm" min="1" max="300" {...register("height", { minLength: 3, maxLength: 3 })} />
+                            <input className="setupForm__input" type="number" required="required" name="heightstr" placeholder="cm" min="10" max="300" {...register("heightstr", { minLength: 2, maxLength: 3 })} />
                         </label>
                         <label className="setupForm__label">
                             <h3>Weight</h3>
-                            <input className="setupForm__input" type="number" required="required" name="weight" placeholder="kg" min="1" max="500" step="1" {...register("weight", { minLength: 2, maxLength: 3 })} />
+                            <input className="setupForm__input" type="number" required="required" name="weightstr" placeholder="kg" min="10" max="500" step="1" {...register("weightstr", { minLength: 2, maxLength: 3 })} />
                         </label>
                         <label className="setupForm__label">
                             <h3>Gender</h3>
