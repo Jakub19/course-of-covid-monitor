@@ -45,6 +45,7 @@ namespace covid_monitor_api
             // For Entity Framework  
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
             services.AddDbContext<HealthInformationOverviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
+            services.AddDbContext<DailyInformationFormContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
 
             // Adding swagger
             services.AddSwaggerGen(c =>
