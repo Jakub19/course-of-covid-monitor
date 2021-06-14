@@ -19,14 +19,14 @@ namespace covid_monitor_api.Controllers
     [ApiController]
     public class HealthInformationOverviewsController : ControllerBase
     {
-        private readonly HealthInformationOverviewContext _context;
+        private readonly ApplicationDbContext _context;
 
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration _configuration;
 
 
-        public HealthInformationOverviewsController(HealthInformationOverviewContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public HealthInformationOverviewsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             _context = context;
             this.userManager = userManager;

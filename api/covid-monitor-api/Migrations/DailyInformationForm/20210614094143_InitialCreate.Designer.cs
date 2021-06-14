@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using covid_monitor_api.Models;
+using covid_monitor_api.Authentication;
 
 namespace covid_monitor_api.Migrations.DailyInformationForm
 {
-    [DbContext(typeof(DailyInformationFormContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210614094143_InitialCreate")]
     partial class InitialCreate
     {

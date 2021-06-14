@@ -12,8 +12,9 @@ function SetupForm(props) {
 
     const onSubmit = async (data) => {
         const {covidPositiveSince, birthDate, gender, heightstr, weightstr, bloodType, isNotifOn} = data;
-        let height = parseInt(data.heightstr,10);
-        let weight = parseInt(data.weightstr,10);
+        let height = parseInt(heightstr,10);
+        let weight = parseInt(weightstr,10);
+
         return axios.post(API_URL + "HealthInformationOverviews", {
             covidPositiveSince, birthDate, height, weight, gender, bloodType, isNotifOn},{headers: authHeader()
         }).then(async (response) => {
@@ -73,8 +74,8 @@ function SetupForm(props) {
                     <div className="setupForm__agreements">
                         <label><input className="setupForm__checkbox" type="checkbox" required="required" name="terms" id="terms" />I accept CovidMonitor Terms & Condition</label>
                         <label><input className="setupForm__checkbox" type="checkbox" name="isNotifOn" id="isNotifOn" {...register("isNotifOn")} />I want to receive email reminders to fill forms</label>
-                        <span>{errors.height && "Invalid height!"}</span>
-                        <span>{errors.weight && "Invalid weight!"}</span>
+                        <span>{errors.heightstr && "Invalid height!"}</span>
+                        <span>{errors.weightstr && "Invalid weight!"}</span>
                     </div>
                     <div className="setupForm__buttons">
                         <input className="setupForm__submit" type="submit" value="Register" />
