@@ -62,11 +62,12 @@ namespace covid_monitor_api.Controllers
             };
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             var OwnerId = userExists.Id;
-            var hio = _context.HealthInformationOverview.Where(p => p.OwnerId == OwnerId);
-            if(hio == null)
+            var hio = _context.HealthInformationOverview.Any(p => p.OwnerId == OwnerId);
+            if(!hio)
             {
                 _context.HealthInformationOverview.Add(form);
                 await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetAllHealthInformationOverviews), new { id = form.Id }, form);
             }
             else
             {
@@ -74,7 +75,7 @@ namespace covid_monitor_api.Controllers
             }
 
             //return CreatedAtAction("GetHealthInformationOverview", new { id = HealthInformationOverview.Id }, HealthInformationOverview);
-            return CreatedAtAction(nameof(GetAllHealthInformationOverviews), new { id = form.Id }, form);
+           
         }
 
 
