@@ -204,8 +204,8 @@ BEGIN
         [CovidPositiveSince] datetime2 NOT NULL,
         [BirthDate] datetime2 NOT NULL,
         [Gender] nvarchar(max) NULL,
-        [Height] real NOT NULL,
-        [Weight] real NOT NULL,
+        [Height] int NOT NULL,
+        [Weight] int NOT NULL,
         [BloodType] nvarchar(max) NULL,
         CONSTRAINT [PK_HealthInformationOverview] PRIMARY KEY ([Id])
     );
