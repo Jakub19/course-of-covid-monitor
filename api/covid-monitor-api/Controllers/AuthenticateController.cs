@@ -164,12 +164,9 @@ namespace covid_monitor_api.Controllers
                 userExists.Surname = model.LastName;
             }
 
-
             if (model.Email != null && !string.Equals(model.Email.Replace(" ", ""), userExists.NormalizedEmail))
             {
-
-                userExists.Email = model.Email;
-                
+                userExists.Email = model.Email;   
             }
             else
             {
@@ -349,7 +346,6 @@ namespace covid_monitor_api.Controllers
             return Ok(results);
         }
 
-
         [HttpGet]
         [Route("Profile/ProfileDetails")]
         public async Task<IActionResult> GetProfileDetails()
@@ -357,10 +353,6 @@ namespace covid_monitor_api.Controllers
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             if (userExists == null)
                 return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User not found!" });
-
-
-
-
 
             return Ok(new
             {
