@@ -1,0 +1,105 @@
+.profileNavbar{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    height: 70px;
+    width: 100%;
+}
+
+.profileNavbar_logo{
+    height: 50px;
+}
+
+.profileNavbar__profile--container{
+    display: flex;
+    justify-content: center;
+    flex-flow: row;
+    align-items: center;
+}
+
+.profileNavbar__logout{
+    height: 50px;
+    margin: 0px 30px;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 150px;
+    border: 1px #FA555F solid;
+    border-radius: 25px;
+    margin-right: 0;
+    color: #FA555F;
+}
+
+.profileNavbar__logout:hover{
+    color: white;
+    background-color: #FA555F;
+}
+
+.tab{
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    width: 320px;
+    min-width: 320px;
+    height: 70px;
+}
+
+#btn1 { border-right: 0; }
+
+.tab__link{
+    position: absolute;
+    text-decoration: none;
+}
+
+.tab__link--left{
+    left: 0;;
+}
+
+.tab__link--right{
+    right: 0;
+}
+
+.tab__button{
+    display: flex;
+    height: 70px;
+    width: 160px;
+    border: none;
+    border-left: 1px #e7e7e7 solid;
+    border-right: 1px #e7e7e7 solid;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #3F3F3F;
+    
+}
+
+.tab__indicator{
+    position:absolute;
+    width:calc(100% / 2);
+    height: 3px; 
+    background-color: #34498C;
+    transition:all 500ms ease-in-out;
+    bottom: 0;
+}
+
+.tab__button--active{
+    color: #34498C;
+    transition: 0.2s;
+}
+
+.tab__button:hover {
+    color: #34498C;
+    transition: 0.2s;
+}

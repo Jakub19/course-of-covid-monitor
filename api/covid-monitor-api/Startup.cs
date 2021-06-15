@@ -18,14 +18,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore;
+using Microsoft.OpenApi.Models;
 
 namespace covid_monitor_api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup()
         {
-            Configuration = configuration;
+            var environmentName = Environment.GetEnvironmentVariable(
+            "ASPNETCORE_ENVIRONMENT");
+            var builder = new ConfigurationBuilder()
+              .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+              .AddJsonFile($"appsettings.{environmentName}.json", optional: true);
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -34,9 +41,25 @@ namespace covid_monitor_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpClient();
             // For Entity Framework  
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
-            services.AddDbContext<HealthInformationOverviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
+
+            // Adding swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "CovidTracker API",
+                    Description = "ASP.NET Core Web API for CovidTracker project",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Patryk S., Jakub W.",
+                        Email = string.Empty,
+                    }
+                });
+            });
 
             // For Identity  
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -71,12 +94,20 @@ namespace covid_monitor_api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // For development only access
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CovidTracker API V1");
+                c.RoutePrefix = "docs";
+            });
+
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseAuthentication();

@@ -1,0 +1,14 @@
+.profileSummary{
+    width: 100%;
+    padding-top: 100px;
+}
+
+
+.profileSummary__container{
+    display: grid;
+    gap: 50px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+    padding: 25px;
+}

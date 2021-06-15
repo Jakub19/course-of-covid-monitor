@@ -1,0 +1,61 @@
+version: "3.4"
+services: 
+    db:
+        build:
+            dockerfile: Dockerfile
+            context: ./db
+        image: jakub19/covid-tracker-db
+        environment: 
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=DevelopmentTmpPassword22
+        networks: 
+            - backend
+        volumes:
+            - mssqldata:/var/opt/mssql
+    nginx:
+        restart: always
+        build:
+            dockerfile: Dockerfile
+            context: ./nginx
+        image: jakub19/covid-tracker-nginx
+        ports: 
+            - '8080:80'
+        networks: 
+            - frontend
+            - backend
+    api:
+        build:
+            dockerfile: Dockerfile
+            context: ./api/covid-monitor-api
+        image: jakub19/covid-tracker-api
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Docker
+        ports: 
+            - '50970'
+        volumes:
+            - ./api:/app
+        networks:
+            - frontend
+            - backend
+        depends_on: 
+            - db  
+    client:
+        stdin_open: true
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./client
+        image: jakub19/covid-tracker-client
+        environment:
+            - NODE_ENV=development
+            - CHOKIDAR_USEPOLLING=true
+        volumes:
+            - /app/node_modules
+            - ./client:/app
+        networks:
+            - frontend
+networks:
+    frontend:
+    backend:
+volumes: 
+    mssqldata:
+    

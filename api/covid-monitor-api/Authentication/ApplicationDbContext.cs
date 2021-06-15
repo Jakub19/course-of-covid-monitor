@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using covid_monitor_api.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,10 @@ namespace covid_monitor_api.Authentication
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<DailyInformationForm> DailyInformationForm { get; set; }
+
+        public DbSet<HealthInformationOverview> HealthInformationOverview { get; set; }
+
     }
 }

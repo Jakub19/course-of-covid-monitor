@@ -1,13 +1,13 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\patry\\source\\repos\\covid-monitor-api\\covid-monitor-api\\covid-monitor-api.csproj": {}
+    "D:\\SZKOLA\\course-of-covid-monitor\\api\\covid-monitor-api\\covid-monitor-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\patry\\source\\repos\\covid-monitor-api\\covid-monitor-api\\covid-monitor-api.csproj": {
+    "D:\\SZKOLA\\course-of-covid-monitor\\api\\covid-monitor-api\\covid-monitor-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\patry\\source\\repos\\covid-monitor-api\\covid-monitor-api\\covid-monitor-api.csproj",
+        "projectUniqueName": "D:\\SZKOLA\\course-of-covid-monitor\\api\\covid-monitor-api\\covid-monitor-api.csproj",
         "projectName": "covid-monitor-api",
         "projectPath": "D:\\SZKOLA\\course-of-covid-monitor\\api\\covid-monitor-api\\covid-monitor-api.csproj",
         "packagesPath": "C:\\Users\\Jakub\\.nuget\\packages\\",
@@ -46,7 +46,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[3.1.14, )"
+              "version": "[3.1.10, )"
             },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
@@ -54,21 +54,33 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.13, )"
+              "version": "[3.1.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.13, )"
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.10.13, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.4, )"
             }
           },
           "imports": [

@@ -1,9 +1,12 @@
 .footer{
+    position: relative;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
     background-color: #3F3F3F;
+    height: 40px;
+    width: 100%;
 }
 
 .footer__link, .footer__copyright, .footer__conditions{
