@@ -142,56 +142,78 @@ namespace covid_monitor_api.Controllers
         public async Task<ActionResult<UpdateUserDetails>> UpdateUserDetails([FromBody] UpdateUserDetails model)
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
-            var emailChanged = false;
             if (userExists == null)
                 return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
 
             // If we have a first name...
-            if (model.FirstName != null)
-                // Update the profile details
-                userExists.Name = model.FirstName;
-
-            // If we have a last name...
-            if (model.LastName != null)
-                // Update the profile details
-                userExists.Surname = model.LastName;
-
-            // If we have a email...
-            if (model.Email != null &&
-                // And it is not the same...
-                !string.Equals(model.Email.Replace(" ", ""), userExists.NormalizedEmail))
+            if (model.FirstName == null)
             {
-                // Update the email
-                userExists.Email = model.Email;
-
-                // Un-verify the email
-                userExists.EmailConfirmed = false;
-
-                // Flag we have changed email
-                emailChanged = true;
+                model.FirstName = userExists.Name;
             }
-            if (model.PhoneNumber != null)
-                // Update the profile details
+            else
+            {
+                userExists.Name = model.FirstName;
+            }
+
+            if (model.LastName == null)
+            {
+                model.LastName = userExists.Surname;
+            }
+            else
+            {
+                userExists.Surname = model.LastName;
+            }
+
+            if (model.Email != null && !string.Equals(model.Email.Replace(" ", ""), userExists.NormalizedEmail))
+            {
+                userExists.Email = model.Email;   
+            }
+            else
+            {
+                model.Email = userExists.Email;
+            }
+
+            if (model.PhoneNumber == null)
+            {
+                model.PhoneNumber = userExists.PhoneNumber;
+            }
+            else
+            {
                 userExists.PhoneNumber = model.PhoneNumber;
+            }
 
-            if (model.Address != null)
-                // Update the profile details
+            if (model.Address == null)
+            {
+                model.Address = userExists.Address;
+            }
+            else
+            {
                 userExists.Address = model.Address;
-
-            if (model.City != null)
-                // Update the profile details
+            }
+            if (model.City == null)
+            {
+                model.City = userExists.City;
+            }
+            else
+            {
                 userExists.City = model.City;
+            }
 
-            if (model.PostalCode != null)
-                // Update the profile details
+            if (model.PostalCode == null)
+            {
+                model.PostalCode = userExists.PostalCode;
+            }
+            else
+            {
                 userExists.PostalCode = model.PostalCode;
+            }
 
 
             // Attempt to commit changes to data store
             var result = await userManager.UpdateAsync(userExists);
 
             // If successful, send out email verification
-            if (result.Succeeded && emailChanged)
+            if (result.Succeeded)
             {
                 // Send email verification
                 return Ok(new Response { Status = "Success", Message = "User details updated!" });
@@ -324,7 +346,6 @@ namespace covid_monitor_api.Controllers
             return Ok(results);
         }
 
-
         [HttpGet]
         [Route("Profile/ProfileDetails")]
         public async Task<IActionResult> GetProfileDetails()
@@ -332,10 +353,6 @@ namespace covid_monitor_api.Controllers
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             if (userExists == null)
                 return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User not found!" });
-
-
-
-
 
             return Ok(new
             {
