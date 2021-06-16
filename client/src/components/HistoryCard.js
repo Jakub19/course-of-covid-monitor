@@ -7,7 +7,7 @@ function HistoryCard(props) {
         () => [
             {
                 label: props.name,
-                data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
+                data: [[0, 0], [1, 0], [2, 4], [3, 2], [4, 7]]
             }
         ],
         [props.name]

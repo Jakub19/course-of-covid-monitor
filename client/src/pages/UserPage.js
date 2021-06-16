@@ -5,6 +5,7 @@ import ProfileNavbar from '../components/ProfileNavbar'
 import ProfileSettings from '../components/ProfileSettings'
 import SetupForm from '../components/SetupForm'
 import authHeader from '../services/authHeader'
+import EverydayForm from '../components/EverydayForm'
 import {
     Switch,
     Route,
@@ -13,21 +14,15 @@ import {
 import "./UserPage.css"
 import axios from 'axios'
 
-//Check if it's first user login, if yes show form and lock scrolling
-function isFirstLogin(isFirstLogin) {
-    if (isFirstLogin) {
-        document.body.style.overflow = ''
-        
-    } else {
-        document.body.style.overflow = 'hidden'
-        return <SetupForm />
-    }
-}
+
 
 function UserPage(props) {
     const { path } = useRouteMatch();
     const API_URL = "http://localhost:8080";
     const [userHealthInf, setUserHealthInf] = useState();
+
+    //set default value to true to show everyday form
+    const [showForm, setShowForm] = useState(false);
 
     //Fetch user health information
     const getHealthInformation = () => {
@@ -38,6 +33,26 @@ function UserPage(props) {
 
             })
     };
+
+    //Check if it's first user login, if yes show form and lock scrolling
+    const isFirstLogin = (isFirstLogin) => {
+        if (isFirstLogin) {
+            document.body.style.overflow = ''
+
+        } else {
+            document.body.style.overflow = 'hidden'
+            return <SetupForm />
+        }
+    }
+
+    const showEverydayForm = (showForm) => {
+        if (showForm) {
+            document.body.style.overflow = 'hidden'
+            return <EverydayForm />    
+        } else {
+            document.body.style.overflow = ''
+        }
+    }
 
     useEffect(() => {
         getHealthInformation();
@@ -52,9 +67,10 @@ function UserPage(props) {
                     <ProfileOverview userHealthInf={userHealthInf} />
                     <Footer />
                     {isFirstLogin(userHealthInf)}
+                    {showEverydayForm(showForm)}
                 </Route>
                 <Route path={`${path}/settings`}>
-                    <ProfileSettings userHealthInf={userHealthInf}/>
+                    <ProfileSettings userHealthInf={userHealthInf} />
                     <Footer />
                 </Route>
             </Switch>

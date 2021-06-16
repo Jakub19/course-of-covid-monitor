@@ -53,7 +53,7 @@
 
 .profileSettings__button--active{
     background-color: #34498C;
-    color: #DFDFDF;
+    color: white;
     transition: 0.2s;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .profileSettings__button--active:hover{
-    color: #DFDFDF;
+    color: white;
 }
 
 .profileSettings__content{
