@@ -63,7 +63,7 @@ function SettingsAccount(props) {
                     </label>
                     <label className="settingsAccount__label">
                         <h3>Phone number</h3>
-                        <input className="settingsAccount__input" type="tel" required="required" name="phoneNumber" {...register("phoneNumber")} defaultValue={props.data.phoneNumber} />
+                        <input className="settingsAccount__input" type="tel" required="required" name="phoneNumber" pattern="[0-9]{9}" {...register("phoneNumber")} defaultValue={props.data.phoneNumber} />
                         {errors.phoneNumber && (
                             <p style={{ color: "red" }}>{errors.phoneNumber.message}</p>
                         )}
