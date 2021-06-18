@@ -146,22 +146,22 @@ namespace covid_monitor_api.Controllers
                 return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
 
             // If we have a first name...
-            if (model.FirstName == null)
+            if (model.Name == null)
             {
-                model.FirstName = userExists.Name;
+                model.Name = userExists.Name;
             }
             else
             {
-                userExists.Name = model.FirstName;
+                userExists.Name = model.Name;
             }
 
-            if (model.LastName == null)
+            if (model.Surname == null)
             {
-                model.LastName = userExists.Surname;
+                model.Surname = userExists.Surname;
             }
             else
             {
-                userExists.Surname = model.LastName;
+                userExists.Surname = model.Surname;
             }
 
             if (model.Email != null && !string.Equals(model.Email.Replace(" ", ""), userExists.NormalizedEmail))
