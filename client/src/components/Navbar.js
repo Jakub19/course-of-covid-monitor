@@ -13,6 +13,7 @@ function Navbar(props) {
 
     useEffect(() => {
         setData(getProfileDetails());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return (

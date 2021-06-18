@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import profileDetails from '../services/profileDetails'
 import Avatar from './Avatar'
 import SettingsAccount from './SettingsAccount'
@@ -32,6 +32,7 @@ function ProfileSettings(props) {
 
     useEffect(() => {
         setData(getProfileDetails());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
