@@ -7,12 +7,12 @@ import './SettingsPassword.css'
 
 function SettingsPassword() {
     const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm();
-    const API_URL = "http://localhost:8080/api/";
+    const API_URL = "http://localhost:8080";
 
     const onSubmit = async (data) => {
         const {currentPassword, newPassword} = data;
 
-        return axios.put(API_URL + "Authenticate/UpdateUserPassword", {
+        return axios.put(API_URL + "/api/Authenticate/UpdateUserPassword", {
             currentPassword, newPassword
         }, {
             headers: authHeader()

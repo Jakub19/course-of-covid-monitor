@@ -17,12 +17,13 @@ import axios from 'axios'
 
 
 function UserPage(props) {
-    const { path } = useRouteMatch();
-    const API_URL = "http://localhost:8080";
-    const [userHealthInf, setUserHealthInf] = useState();
+    const { path } = useRouteMatch()
+    
+    const API_URL = "http://localhost:8080"
+    const [userHealthInf, setUserHealthInf] = useState()
 
     //set default value to true to show everyday form
-    const [showForm, setShowForm] = useState(false);
+    const [showForm, setShowForm] = useState(false)
 
     //Fetch user health information
     const getHealthInformation = () => {
@@ -35,7 +36,7 @@ function UserPage(props) {
     };
 
     //Check if it's first user login, if yes show form and lock scrolling
-    const isFirstLogin = (isFirstLogin) => {
+    const showInitialForm = (isFirstLogin) => {
         if (isFirstLogin) {
             document.body.style.overflow = ''
 
@@ -66,11 +67,11 @@ function UserPage(props) {
                 <Route exact path={path}>
                     <ProfileOverview userHealthInf={userHealthInf} />
                     <Footer />
-                    {isFirstLogin(userHealthInf)}
+                    {showInitialForm(userHealthInf)}
                     {showEverydayForm(showForm)}
                 </Route>
                 <Route path={`${path}/settings`}>
-                    <ProfileSettings userHealthInf={userHealthInf} />
+                    <ProfileSettings userHealthInf={userHealthInf}/>
                     <Footer />
                 </Route>
             </Switch>

@@ -1,23 +1,27 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
 import authHeader from '../services/authHeader';
 import './SettingsAccount.css'
 
 
 function SettingsAccount(props) {
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const API_URL = "http://localhost:8080/api/";
+    const API_URL = "http://localhost:8080";
+    const history = useHistory()
 
     const onSubmit = async (data) => {
         const { name, surname, email, phoneNumber, address, city } = data;
 
-        return axios.put(API_URL + "Authenticate/UpdateUserDetails", {
+        return axios.put(API_URL + "/api/Authenticate/UpdateUserDetails", {
             name, surname, email, phoneNumber, address, city
         }, {
             headers: authHeader()
         }).then(async (response) => {
-            console.log(response);
+            history.go(0)
+            await props.getProfileDetails() 
+            console.log(response)
         });
     };
 

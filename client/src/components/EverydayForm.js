@@ -8,14 +8,14 @@ import './EverydayForm.css'
 function EverydayForm(props) {
     const { register, handleSubmit } = useForm();
     let history = useHistory();
-    const API_URL = "http://localhost:8080/api/";
+    const API_URL = "http://localhost:8080";
 
     const onSubmit = async (data) => {
         const { covidPositiveSince, birthDate, gender, heightstr, weightstr, bloodType, isNotifOn } = data;
         let height = parseInt(heightstr, 10);
         let weight = parseInt(weightstr, 10);
 
-        return axios.post(API_URL + "HealthInformationOverviews", {
+        return axios.post(API_URL + "/api/HealthInformationOverviews", {
             covidPositiveSince, birthDate, height, weight, gender, bloodType, isNotifOn
         }, {
             headers: authHeader()

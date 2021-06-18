@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../services/UserContext';
+import React, { useEffect, useState } from 'react'
+import profileDetails from '../services/profileDetails'
 import Avatar from './Avatar'
 import './ProfileTop.css'
 
 function ProfileTop(props) {
-    const { user } = useContext(UserContext);
 
     const [positiveSince, setPositiveSince] = useState('')
     const [endOfquarantine, setEndOfquarantine] = useState('')
     const [daysLeft, setdaysLeft] = useState('')
+    const {data, setData, getProfileDetails} = profileDetails()
 
     const quarantineLength = 14;
 
@@ -48,6 +48,11 @@ function ProfileTop(props) {
     };
 
     useEffect(() => {
+        setData(getProfileDetails());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+
+    useEffect(() => {
         setDates();
     })
 
@@ -56,7 +61,7 @@ function ProfileTop(props) {
             <Avatar />
             <div className="profileTop__card">
                 <div className="profileTop__card--headline">
-                    {user.name + ' ' + user.surname}
+                    {data.name + ' ' + data.surname}
                 </div>
                 <div className="profileTop__card--container">
                     <div className="profileTop__card--row">

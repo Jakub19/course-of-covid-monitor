@@ -7,12 +7,12 @@ import './SettingsNotifications.css'
 
 function SettingsNotifications(props) {
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const API_URL = "http://localhost:8080/api/";
+    const API_URL = "http://localhost:8080";
 
     const onSubmit = async (data) => {
         const { secEmail, isNotifOn } = data;
 
-        return axios.put(API_URL + "Authenticate/UpdateUserDetails", {
+        return axios.put(API_URL + "/api/Authenticate/UpdateUserDetails", {
             secEmail, isNotifOn
         }, {
             headers: authHeader()
