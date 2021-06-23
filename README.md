@@ -15,6 +15,8 @@ A web-based application for people currently suffering from COVID-19 and people 
 It enables analysis of the course of the disease on the basis of data collected from users.
 Provides health recommendations. It will also contain other functions which are useful nowadays.
 
+[Screenshot gallery](https://www.behance.net/gallery/122117791/CovidTracker?fbclid=IwAR1ri5fXR8XswZHDOOpJy2jMxXNyP4xZ71zk_-dQiwIe4YV21PWZDA7kOiQ)
+
 ### Built with
 React.js, ASP.NET Core, Microsoft SQL Server, nginx, Docker
 
