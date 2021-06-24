@@ -215,9 +215,9 @@ END;
 
 GO
 
-IF NOT EXISTS (SELECT * FROM sys.tables t JOIN sys.schemas s ON (t.schema_id = s.schema_id) WHERE s.name = 'myschema' and t.name = 'DailyInformations')
+IF NOT EXISTS (SELECT * FROM sys.tables t JOIN sys.schemas s ON (t.schema_id = s.schema_id) WHERE s.name = 'myschema' and t.name = 'DailyInformationForm')
 BEGIN
-    CREATE TABLE [DailyInformations] (
+    CREATE TABLE [DailyInformationForm] (
         [Id] int NOT NULL IDENTITY,
         [OwnerId] nvarchar(max) NULL,
         [Temperature] int NOT NULL,
@@ -232,7 +232,7 @@ BEGIN
         [LossOfTaste] int NOT NULL,
         [DiffBreathing] int NOT NULL,
         [ChestPain] int NOT NULL,
-        CONSTRAINT [PK_DailyInformations] PRIMARY KEY ([Id])
+        CONSTRAINT [PK_DailyInformationForm] PRIMARY KEY ([Id])
     );
 END;
 

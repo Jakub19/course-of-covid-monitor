@@ -37,7 +37,7 @@ namespace covid_monitor_api.Migrations.DailyInformationForm
                         .HasColumnType("int");
 
                     b.Property<bool>("DryCough")
-                        .HasColumnType("bit");
+                        .HasColumnType("int");
 
                     b.Property<int>("Fatigue")
                         .HasColumnType("int");
@@ -46,7 +46,7 @@ namespace covid_monitor_api.Migrations.DailyInformationForm
                         .HasColumnType("int");
 
                     b.Property<bool>("LossOfTaste")
-                        .HasColumnType("bit");
+                        .HasColumnType("int");
 
                     b.Property<int>("MusclePain")
                         .HasColumnType("int");
@@ -58,7 +58,7 @@ namespace covid_monitor_api.Migrations.DailyInformationForm
                         .HasColumnType("int");
 
                     b.Property<bool>("RunningNose")
-                        .HasColumnType("bit");
+                        .HasColumnType("int");
 
                     b.Property<int>("Saturation")
                         .HasColumnType("int");
