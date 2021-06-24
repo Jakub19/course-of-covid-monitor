@@ -11,18 +11,16 @@ function EverydayForm(props) {
     const API_URL = "http://localhost:8080";
 
     const onSubmit = async (data) => {
-        const { covidPositiveSince, birthDate, gender, heightstr, weightstr, bloodType, isNotifOn } = data;
-        let height = parseInt(heightstr, 10);
-        let weight = parseInt(weightstr, 10);
+        const { id, ownerId, temperature, bloodPressure, saturation, pulse, headache, runningNose, musclePain, dryCough, fatigue, lossOfTaste, diffBreathing, chestPain } = data;
 
-        return axios.post(API_URL + "/api/HealthInformationOverviews", {
-            covidPositiveSince, birthDate, height, weight, gender, bloodType, isNotifOn
-        }, {
-            headers: authHeader()
-        }).then(async (response) => {
-            console.log(response);
-            history.go(0);
-        });
+
+        return axios.post(API_URL + "/api/DailyInformationForm", {
+            id, ownerId, temperature, bloodPressure, saturation, pulse, headache, runningNose, musclePain, dryCough, fatigue, lossOfTaste, diffBreathing, chestPain
+        }, { headers: authHeader() })
+            .then(async (response) => {
+                console.log(response);
+                history.go(0);
+            });
     };
 
 
@@ -46,7 +44,7 @@ function EverydayForm(props) {
                         </label>
                         <label className="everydayForm__label">
                             <h3>Blood saturation</h3>
-                            <input className="everydayForm__input" type="number" required="required" name="bloodSaturation" placeholder="%" min="0" max="100" {...register("bloodSaturation")} />
+                            <input className="everydayForm__input" type="number" required="required" name="saturation" placeholder="%" min="0" max="100" {...register("saturation")} />
                         </label>
                         <label className="everydayForm__label">
                             <h3>Pulse</h3>

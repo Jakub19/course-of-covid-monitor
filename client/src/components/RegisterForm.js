@@ -47,7 +47,7 @@ function RegisterForm(props) {
                             <h3>E-mail</h3>
                             <input className="registerForm__input" type="email" required="required" name="email" value={values.email} onChange={handleChange} />
                             <h3 className="registerForm__h3--center">Phone number</h3>
-                            <input className="registerForm__input" type="tel" required="required" name="phoneNumber" value={values.phoneNumber} onChange={handleChange} />
+                            <input className="registerForm__input" type="tel" required="required" name="phoneNumber" pattern="[0-9]{9}" value={values.phoneNumber} onChange={handleChange} />
                         </label>
                         <label className="registerForm__label">
                             <h3>Address</h3>
