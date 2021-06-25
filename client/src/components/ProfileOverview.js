@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ProfileTop from '../components/ProfileTop'
 import ProfileSummary from '../components/ProfileSummary'
 import ProfileHistory from '../components/ProfileHistory'
 import './ProfileOverview.css'
 import axios from 'axios'
 import authHeader from '../services/authHeader'
+import { UserContext } from '../services/UserContext'
 
 function ProfileOverview(props) {
     const [formData, setFormData] = useState()
-
-    const API_URL = "http://localhost:8080"
+    const { API_URL} = useContext(UserContext);
 
     //Fetch user's daily forms
     const getFormsData = () => {
@@ -23,6 +23,7 @@ function ProfileOverview(props) {
 
     useEffect(() => {
         getFormsData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

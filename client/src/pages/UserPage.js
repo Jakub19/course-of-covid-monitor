@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import ProfileOverview from '../components/ProfileOverview'
 import ProfileNavbar from '../components/ProfileNavbar'
@@ -13,13 +13,13 @@ import {
 } from "react-router-dom";
 import "./UserPage.css"
 import axios from 'axios'
+import { UserContext } from '../services/UserContext'
 
 
 
 function UserPage(props) {
     const { path } = useRouteMatch()
-    
-    const API_URL = "http://localhost:8080"
+    const { API_URL} = useContext(UserContext);
     const [userHealthInf, setUserHealthInf] = useState()
 
     //set default value to true to show everyday form
@@ -37,10 +37,9 @@ function UserPage(props) {
     };
 
     //Check if it's first user login, if yes show form and lock scrolling
-    const showInitialForm = (isFirstLogin) => {
-        if (isFirstLogin) {
+    const showInitialForm = (userHealthInf) => {
+        if (userHealthInf) {
             document.body.style.overflow = ''
-
         } else {
             document.body.style.overflow = 'hidden'
             return <SetupForm />
@@ -58,6 +57,7 @@ function UserPage(props) {
 
     useEffect(() => {
         getHealthInformation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

@@ -1,14 +1,15 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import authHeader from '../services/authHeader';
+import { UserContext } from '../services/UserContext';
 import './SettingsAccount.css'
 
 
 function SettingsAccount(props) {
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const API_URL = "http://localhost:8080";
+    const { API_URL} = useContext(UserContext);;
     const history = useHistory()
 
     const onSubmit = async (data) => {

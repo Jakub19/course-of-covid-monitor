@@ -1,14 +1,15 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import authHeader from '../services/authHeader';
+import { UserContext } from '../services/UserContext';
 import './EverydayForm.css'
 
 function EverydayForm(props) {
     const { register, handleSubmit } = useForm();
     let history = useHistory();
-    const API_URL = "http://localhost:8080";
+    const { API_URL} = useContext(UserContext);;
 
     const onSubmit = async (data) => {
         const { id, ownerId, temperature, bloodPressure, saturation, pulse, headache, runningNose, musclePain, dryCough, fatigue, lossOfTaste, diffBreathing, chestPain } = data;

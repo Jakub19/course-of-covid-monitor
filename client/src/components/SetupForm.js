@@ -1,14 +1,15 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import authHeader from '../services/authHeader';
+import { UserContext } from '../services/UserContext';
 import './SetupForm.css'
 
 function SetupForm(props) {
     const { register, formState: { errors }, handleSubmit } = useForm();
     let history = useHistory();
-    const API_URL = "http://localhost:8080";
+    const { API_URL} = useContext(UserContext);;
 
     const onSubmit = async (data) => {
         const {covidPositiveSince, birthDate, gender, heightstr, weightstr, bloodType, isNotifOn} = data;

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
 import authHeader from './authHeader';
+import { UserContext } from './UserContext';
 export default function useAuth() {
     const [error, setError] = useState(null);
-    const API_URL = "http://localhost:8080";
+    const { API_URL} = useContext(UserContext);;
     const [data, setData] = useState('');
 
     //register user

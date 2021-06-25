@@ -10,10 +10,11 @@ import PrivateRoute from './services/PrivateRoute';
 
 function App() {
   const { user, setUser, isLoading } = useFindUser();
+  const API_URL = "http://localhost:8080"
   return (
     <div className="App">
       <BrowserRouter>
-        <UserContext.Provider value={{ user, setUser, isLoading }}>
+        <UserContext.Provider value={{ user, setUser, isLoading, API_URL }}>
           <Switch>
             <Route exact path="/" component={Homepage} />
             <PrivateRoute path="/profile" component={UserPage} />

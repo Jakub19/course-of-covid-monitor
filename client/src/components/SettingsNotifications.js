@@ -1,13 +1,14 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import authHeader from '../services/authHeader';
+import { UserContext } from '../services/UserContext';
 import './SettingsNotifications.css'
 
 
 function SettingsNotifications(props) {
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const API_URL = "http://localhost:8080";
+    const { API_URL} = useContext(UserContext);;
 
     const onSubmit = async (data) => {
         const { secEmail, isNotifOn } = data;
