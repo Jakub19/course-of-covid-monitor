@@ -220,7 +220,7 @@ BEGIN
     CREATE TABLE [DailyInformationForm] (
         [Id] int NOT NULL IDENTITY,
         [OwnerId] nvarchar(max) NULL,
-        [Temperature] int NOT NULL,
+        [Temperature] real NOT NULL,
         [BloodPressure] nvarchar(max) NOT NULL,
         [Saturation] int NOT NULL,
         [Pulse] int NOT NULL,
@@ -232,6 +232,7 @@ BEGIN
         [LossOfTaste] int NOT NULL,
         [DiffBreathing] int NOT NULL,
         [ChestPain] int NOT NULL,
+        [FilledDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000'
         CONSTRAINT [PK_DailyInformationForm] PRIMARY KEY ([Id])
     );
 END;

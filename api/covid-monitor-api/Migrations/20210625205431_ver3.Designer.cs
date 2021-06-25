@@ -10,8 +10,8 @@ using covid_monitor_api.Authentication;
 namespace covid_monitor_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210603112207_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210625205431_ver3")]
+    partial class ver3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -235,6 +235,99 @@ namespace covid_monitor_api.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("covid_monitor_api.Models.DailyInformationForm", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BloodPressure")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ChestPain")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DiffBreathing")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DryCough")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fatigue")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FilledDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Headache")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LossOfTaste")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MusclePain")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Pulse")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RunningNose")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Saturation")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Temperature")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DailyInformationForm");
+                });
+
+            modelBuilder.Entity("covid_monitor_api.Models.HealthInformationOverview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("BloodType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CovidPositiveSince")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Height")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsNotifOn")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HealthInformationOverview");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

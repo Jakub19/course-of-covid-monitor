@@ -258,6 +258,9 @@ namespace covid_monitor_api.Migrations
                     b.Property<int>("Fatigue")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("FilledDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Headache")
                         .HasColumnType("int");
 
@@ -279,8 +282,8 @@ namespace covid_monitor_api.Migrations
                     b.Property<int>("Saturation")
                         .HasColumnType("int");
 
-                    b.Property<int>("Temperature")
-                        .HasColumnType("int");
+                    b.Property<float>("Temperature")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 

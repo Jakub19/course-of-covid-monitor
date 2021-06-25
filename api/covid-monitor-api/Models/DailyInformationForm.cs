@@ -11,7 +11,7 @@ namespace covid_monitor_api.Models
         public int Id { get; set; }
         public string OwnerId { get; set; }
         [Required]
-        public int Temperature { get; set; }
+        public float Temperature { get; set; }
         [Required]
         public string BloodPressure { get; set; }
         [Required]
@@ -43,6 +43,7 @@ namespace covid_monitor_api.Models
         [Required]
         [Range(1, 3, ErrorMessage = "Chest Pain level invalid (1-3).")]
         public int ChestPain { get; set; }
+        public DateTime FilledDate { get; set; }
 
     }
 }

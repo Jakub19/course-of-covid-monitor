@@ -63,7 +63,8 @@ namespace covid_monitor_api.Controllers
                 Fatigue = model.Fatigue,
                 LossOfTaste = model.LossOfTaste,
                 DiffBreathing = model.DiffBreathing,
-                ChestPain = model.ChestPain
+                ChestPain = model.ChestPain,
+                FilledDate = DateTime.Now
             };
             _context.DailyInformationForm.Add(form);
             await _context.SaveChangesAsync();
