@@ -23,7 +23,8 @@ function UserPage(props) {
     const [userHealthInf, setUserHealthInf] = useState()
 
     //set default value to true to show everyday form
-    const [showForm, setShowForm] = useState(false)
+    const [showForm] = useState(false)
+
 
     //Fetch user health information
     const getHealthInformation = () => {

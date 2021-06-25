@@ -6,7 +6,7 @@ import {ReactComponent as Line} from '../images/line.svg';
 function SummaryCard(props) {
     let cardClass = '';
 
-    props.value ? cardClass = 'card__info' : cardClass = 'card__info card__info--inactive';
+    props.value!==undefined ? cardClass = 'card__info' : cardClass = 'card__info card__info--inactive';
 
     return (
         <div className="card">
@@ -17,7 +17,7 @@ function SummaryCard(props) {
                         <h3>{props.name}</h3>
                     </div>
                     <div className="card__info--value">
-                        <h1>{props.value}</h1>
+                        {props.value ?<h1>{props.value}{props.unit? props.unit : ''}</h1>: <h1>No data</h1>}
                     </div>
                 </div>
             </div>

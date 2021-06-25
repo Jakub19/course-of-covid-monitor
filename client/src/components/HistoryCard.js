@@ -7,10 +7,10 @@ function HistoryCard(props) {
         () => [
             {
                 label: props.name,
-                data: [[0, 0], [1, 0], [2, 4], [3, 2], [4, 7]]
+                data: props.data
             }
         ],
-        [props.name]
+        [props.name, props.data]
     )
 
     const axes = React.useMemo(
@@ -25,6 +25,7 @@ function HistoryCard(props) {
         <div className="historyCard" >
             <h1 className="historyCard__name">{props.name}</h1>
             <div className="chartContainer" style={{ height: '300px' }}>
+            {console.log(props.data)}
                 <Chart data={data} axes={axes} tooltip/>
             </div>
         </div>
