@@ -75,7 +75,7 @@ namespace covid_monitor_api.Controllers
 
         [HttpGet]
         [Route("GetCurrentUserDailyForm")]
-        public async Task<ActionResult<HealthInformationOverview>> GetHio()
+        public async Task<ActionResult<DailyInformationForm>> GetHio()
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             var OwnerId = userExists.Id;
@@ -90,7 +90,7 @@ namespace covid_monitor_api.Controllers
         }
 
 
-        private bool HealthInformationOverviewExists(long id)
+        private bool DailyInformationFormExists(long id)
         {
             return _context.DailyInformationForm.Any(e => e.Id == id);
         }
