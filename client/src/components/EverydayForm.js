@@ -6,14 +6,13 @@ import authHeader from '../services/authHeader';
 import { UserContext } from '../services/UserContext';
 import './EverydayForm.css'
 
-function EverydayForm(props) {
-    const { register, handleSubmit } = useForm();
+function EverydayForm() {
+    const { register, handleSubmit, watch} = useForm();
     let history = useHistory();
-    const { API_URL} = useContext(UserContext);;
+    const { API_URL} = useContext(UserContext);
 
     const onSubmit = async (data) => {
         const { id, ownerId, temperature, bloodPressure, saturation, pulse, headache, runningNose, musclePain, dryCough, fatigue, lossOfTaste, diffBreathing, chestPain } = data;
-
 
         return axios.post(API_URL + "/api/DailyInformationForm", {
             id, ownerId, temperature, bloodPressure, saturation, pulse, headache, runningNose, musclePain, dryCough, fatigue, lossOfTaste, diffBreathing, chestPain
@@ -23,7 +22,6 @@ function EverydayForm(props) {
                 history.go(0);
             });
     };
-
 
     return (
         <div className="everydayForm">
@@ -68,8 +66,8 @@ function EverydayForm(props) {
                                 <span class="everydayForm__slider"></span>
                             </div>
                             <h3>Headache</h3>
-                            <input className="everydayForm__symptom--input" type="range" name="headache" min="1" max="5" {...register("headache")} />
-                            <span>5</span>
+                            <input className="everydayForm__symptom--input" type="range" name="headache" min="1" max="3" {...register("headache")} />
+                            <span>{watch('headache')}</span>
                         </label>
                         <label className="everydayForm__symptom">
                             <div className="everydayForm__switch">
@@ -77,8 +75,8 @@ function EverydayForm(props) {
                                 <span class="everydayForm__slider"></span>
                             </div>
                             <h3>Running nose</h3>
-                            <input className="everydayForm__symptom--input" type="range" name="runningNose" min="1" max="5" {...register("runningNose")} />
-                            <span>5</span>
+                            <input className="everydayForm__symptom--input" type="range"  name="runningNose" min="1" max="3" {...register("runningNose")} />
+                            <span>{watch('runningNose')}</span>
                         </label>
                         <label className="everydayForm__symptom">
                             <div className="everydayForm__switch">
@@ -86,8 +84,8 @@ function EverydayForm(props) {
                                 <span class="everydayForm__slider"></span>
                             </div>
                             <h3>Muscle pain</h3>
-                            <input className="everydayForm__symptom--input" type="range" name="musclePain" min="1" max="5" {...register("musclePain")} />
-                            <span>5</span>
+                            <input className="everydayForm__symptom--input" type="range" name="musclePain" min="1" max="3" {...register("musclePain")} />
+                            <span>{watch('musclePain')}</span>
                         </label>
                         <label className="everydayForm__symptom">
                             <div className="everydayForm__switch">
@@ -95,8 +93,8 @@ function EverydayForm(props) {
                                 <span class="everydayForm__slider"></span>
                             </div>
                             <h3>Dry Cough</h3>
-                            <input className="everydayForm__symptom--input" type="range" name="dryCough" min="1" max="5" {...register("dryCough")} />
-                            <span>5</span>
+                            <input className="everydayForm__symptom--input" type="range" name="dryCough" min="1" max="3" {...register("dryCough")} />
+                            <span>{watch('dryCough')}</span>
                         </label>
                         <label className="everydayForm__symptom">
                             <div className="everydayForm__switch">
@@ -104,8 +102,8 @@ function EverydayForm(props) {
                                 <span class="everydayForm__slider"></span>
                             </div>
                             <h3>Fatigue</h3>
-                            <input className="everydayForm__symptom--input" type="range" name="fatigue" min="1" max="5" {...register("fatigue")} />
-                            <span>5</span>
+                            <input className="everydayForm__symptom--input" type="range" name="fatigue" min="1" max="3" {...register("fatigue")} />
+                            <span>{watch('fatigue')}</span>
                         </label>
                         <label className="everydayForm__symptom">
                             <div className="everydayForm__switch">
@@ -113,8 +111,8 @@ function EverydayForm(props) {
                                 <span class="everydayForm__slider"></span>
                             </div>
                             <h3>Breathing difficulties</h3>
-                            <input className="everydayForm__symptom--input" type="range" name="diffBreathing" min="1" max="5" {...register("diffBreathing")} />
-                            <span>5</span>
+                            <input className="everydayForm__symptom--input" type="range" name="diffBreathing" min="1" max="3" {...register("diffBreathing")} />
+                            <span>{watch('diffBreathing')}</span>
                         </label>
                         <label className="everydayForm__symptom">
                             <div className="everydayForm__switch">
@@ -122,8 +120,8 @@ function EverydayForm(props) {
                                 <span class="everydayForm__slider"></span>
                             </div>
                             <h3>Chest pain</h3>
-                            <input className="everydayForm__symptom--input" type="range" name="chestPain" min="1" max="5" {...register("chestPain")} />
-                            <span>5</span>
+                            <input className="everydayForm__symptom--input" type="range" name="chestPain" min="1" max="3" {...register("chestPain")} />
+                            <span>{watch('chestPain')}</span>
                         </label>
                     </div>
                     <div className="everydayForm__buttons">
