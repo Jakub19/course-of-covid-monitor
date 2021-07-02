@@ -35,17 +35,46 @@ namespace covid_monitor_api.Controllers
         }
 
 
-        
+        /// <summary>
+        /// Gets forms of all users.
+        /// </summary>
+        /// <returns>Returns all forms from database</returns>
         [HttpGet]
+        [Produces("application/json")]
         public async Task<ActionResult<IEnumerable<DailyInformationForm>>> GetAllDailyForms()
         {
             return await _context.DailyInformationForm.ToListAsync();
         }
 
-
-        
+        /// <summary>
+        /// Adds new form to database.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     POST /api/DailyInformationForm
+        ///     {
+        ///         "temperature": 36.6,
+        ///         "bloodPressure": "130",
+        ///         "saturation": 100,
+        ///         "pulse": 75,
+        ///         "headache": 2,
+        ///         "runningNose": 0,
+        ///         "musclePain": 2,
+        ///         "dryCough": 1,
+        ///         "fatigue": 3,
+        ///         "lossOfTaste": 1,
+        ///         "diffBreathing": 2,
+        ///         "chestPain": 0
+        ///     }
+        /// </remarks>
+        /// <param name="model"></param>
+        /// <returns>Returns the newly created form.</returns>
+        /// <response code="200">Created. Returns the newly created form.</response>
         [Authorize]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces("application/json")]
         public async Task<ActionResult<DailyInformationForm>> PostDailyForm([FromBody] DailyInformationForm model)
         {
 
@@ -69,13 +98,20 @@ namespace covid_monitor_api.Controllers
             _context.DailyInformationForm.Add(form);
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetHealthInformationOverview", new { id = HealthInformationOverview.Id }, HealthInformationOverview);
             return CreatedAtAction(nameof(GetAllDailyForms), new { id = form.Id }, form);
         }
 
-
+        /// <summary>
+        /// Gets forms for specific user.
+        /// </summary>
+        /// <returns>Returns specific user forms</returns>
+        /// <response code="200">Returns specific user forms</response>
+        /// <response code="404">If user forms are not found</response>
         [HttpGet]
         [Route("GetCurrentUserDailyForm")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Produces("application/json")]
         public async Task<ActionResult<DailyInformationForm>> GetHio()
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);

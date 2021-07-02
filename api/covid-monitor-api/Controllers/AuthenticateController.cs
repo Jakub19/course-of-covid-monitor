@@ -30,6 +30,11 @@ namespace covid_monitor_api.Controllers
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Signs in.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Returns user name, surname and JWT token with expiration time</returns>
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
@@ -74,8 +79,19 @@ namespace covid_monitor_api.Controllers
             return Unauthorized();
         }
 
+        /// <summary>
+        /// Creates new user.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Returns status code and message</returns>
+        /// <response code="200">New user added</response>
+        /// <response code="409">User already exists!</response>
+        /// <response code="400">User creation failed!</response>
         [HttpPost]
         [Route("register")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var userExists = await userManager.FindByNameAsync(model.Email);
@@ -137,8 +153,17 @@ namespace covid_monitor_api.Controllers
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
+
+        /// <summary>
+        /// Updates user deatils.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("UpdateUserDetails")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UpdateUserDetails>> UpdateUserDetails([FromBody] UpdateUserDetails model)
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
@@ -224,8 +249,17 @@ namespace covid_monitor_api.Controllers
             }
 
         }
+
+        /// <summary>
+        /// Updates user password.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("UpdateUserPassword")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UpdateUserPassword>> UpdateUserPassword([FromBody] UpdateUserPassword model)
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
@@ -346,8 +380,14 @@ namespace covid_monitor_api.Controllers
             return Ok(results);
         }
 
+        /// <summary>
+        /// Gets user details.
+        /// </summary>
+        /// <returns>Returns user details</returns>
         [HttpGet]
         [Route("Profile/ProfileDetails")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetProfileDetails()
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);

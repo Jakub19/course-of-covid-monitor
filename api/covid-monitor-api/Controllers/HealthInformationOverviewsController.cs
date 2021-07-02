@@ -35,17 +35,42 @@ namespace covid_monitor_api.Controllers
         }
 
 
-        // GET: api/HealthInformationOverviews
+        /// <summary>
+        /// Gets all initial forms.
+        /// </summary>
+        /// <returns>All initial forms.</returns>
+        [Authorize]
         [HttpGet]
+        [Produces("application/json")]
         public async Task<ActionResult<IEnumerable<HealthInformationOverview>>> GetAllHealthInformationOverviews()
         {
             return await _context.HealthInformationOverview.ToListAsync();
         }
 
 
-        // POST: api/HealthInformationOverviews
+        /// <summary>
+        /// Adds initial form.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     POST /api/HealthInformationOverviews
+        ///     {
+        ///         "covidPositiveSince":"2021-06-30T21:00:06.817Z",
+        ///         "birthDate":"1998-06-15T21:00:06.817Z",
+        ///         "gender":"male",
+        ///         "height":186,
+        ///         "weight":85,
+        ///         "bloodType":"A+",
+        ///         "isNotifOn":true
+        ///     }
+        /// </remarks>
+        /// <param name="model"></param>
+        /// <returns>Returns newly added form</returns>
         [Authorize]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
         public async Task<ActionResult<HealthInformationOverview>> PostHealthInformationOverview([FromBody] HealthInformationOverview model)
         {
           
@@ -72,15 +97,16 @@ namespace covid_monitor_api.Controllers
             else
             {
                 return StatusCode(StatusCodes.Status406NotAcceptable, new Response { Status = "Error", Message = "User already filled this form!" });
-            }
-
-            //return CreatedAtAction("GetHealthInformationOverview", new { id = HealthInformationOverview.Id }, HealthInformationOverview);
-           
+            }      
         }
 
-
+        /// <summary>
+        /// Gets current user initial form data.
+        /// </summary>
+        /// <returns>Returns user initial form data.</returns>
         [HttpGet]
         [Route("GetCurrentUserHio")]
+        [Produces("application/json")]
         public async Task<ActionResult<HealthInformationOverview>> GetHio()
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
@@ -94,7 +120,6 @@ namespace covid_monitor_api.Controllers
 
             return Ok(hio);
         }
-
 
         private bool HealthInformationOverviewExists(long id)
         {
