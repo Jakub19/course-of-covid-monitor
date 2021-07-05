@@ -8,7 +8,7 @@ import './SettingsNotifications.css'
 
 function SettingsNotifications(props) {
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const { API_URL} = useContext(UserContext);;
+    const { API_URL } = useContext(UserContext);;
 
     const onSubmit = async (data) => {
         const { secEmail, isNotifOn } = data;
@@ -17,13 +17,15 @@ function SettingsNotifications(props) {
             secEmail, isNotifOn
         }, {
             headers: authHeader()
-        }).then(async (response) => {
+        }).then((response) => {
             console.log(response);
         });
     };
 
     useEffect(() => {
-        setValue('isNotifOn', props.userHealthInf.isNotifOn);
+        if (props.userHealthInf) {
+            setValue('isNotifOn', props.userHealthInf.isNotifOn)
+        }
     })
 
     return (
@@ -36,8 +38,8 @@ function SettingsNotifications(props) {
                         <h3>Enable SMS notifications </h3>
                     </label>
                     {errors.isNotifOn && (
-                            <p style={{ color: "red" }}>{errors.name.isNotifOn}</p>
-                        )}
+                        <p style={{ color: "red" }}>{errors.name.isNotifOn}</p>
+                    )}
                 </div>
                 <div className="settingsNotifications__buttons">
                     <input className="settingsNotifications__submit" type="submit" value="Save" />

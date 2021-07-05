@@ -3,7 +3,7 @@ import useForm from "../services/useForm";
 import useAuth from '../services/useAuth';
 import './RegisterForm.css'
 
-function RegisterForm(props) {
+function RegisterForm() {
     const { values, handleChange } = useForm({
         initialValues: {
             name: '',
