@@ -115,15 +115,18 @@ namespace covid_monitor_api.Controllers
         public async Task<ActionResult<DailyInformationForm>> GetHio()
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
-            var OwnerId = userExists.Id;
-            var hio = _context.DailyInformationForm.Where (p => p.OwnerId == OwnerId);
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User not exists!" });
 
-            if (hio == null)
+            var OwnerId = userExists.Id;
+            var dif = _context.DailyInformationForm.Where (p => p.OwnerId == OwnerId);
+
+            if (dif == null)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Daily information form not found for this user" });
             }
 
-            return Ok(hio);
+            return Ok(dif);
         }
 
 
