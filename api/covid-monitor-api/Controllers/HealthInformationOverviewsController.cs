@@ -71,9 +71,12 @@ namespace covid_monitor_api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<HealthInformationOverview>> PostHealthInformationOverview([FromBody] HealthInformationOverview model)
         {
-          
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
             HealthInformationOverview form = new HealthInformationOverview()
             {
                 OwnerId = userManager.GetUserId(User),
@@ -98,6 +101,50 @@ namespace covid_monitor_api.Controllers
             {
                 return StatusCode(StatusCodes.Status406NotAcceptable, new Response { Status = "Error", Message = "User already filled this form!" });
             }      
+        }
+
+        /// <summary>
+        /// Updates notifications (true/false)
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     PUT /api/HealthInformationOverviews/UpdateNotifications
+        ///     {
+        ///         isNotIfOn = true
+        ///     }
+        /// </remarks>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPut]
+        [Route("UpdateNotifications")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<HealthInformationOverview>> UpdateNotifications([FromBody] NotificationUpdate model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
+
+            var OwnerId = userExists.Id;
+            HealthInformationOverview hio = _context.HealthInformationOverview.Where(p => p.OwnerId == OwnerId).FirstOrDefault<HealthInformationOverview>();
+            if (hio == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                hio.IsNotifOn = model.isNotIfOn;
+
+                _context.HealthInformationOverview.Update(hio);
+                await _context.SaveChangesAsync();
+                return Ok(new Response { Status = "Success", Message = "Notifications updated!" });
+            }
         }
 
         /// <summary>

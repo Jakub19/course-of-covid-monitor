@@ -109,6 +109,21 @@
             <param name="model"></param>
             <returns>Returns newly added form</returns>
         </member>
+        <member name="M:covid_monitor_api.Controllers.HealthInformationOverviewsController.UpdateNotifications(covid_monitor_api.Models.NotificationUpdate)">
+            <summary>
+            Updates notifications (true/false)
+            </summary>
+            <remarks>
+            Sample request:
+            
+                PUT /api/HealthInformationOverviews/UpdateNotifications
+                {
+                    isNotIfOn = true
+                }
+            </remarks>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:covid_monitor_api.Controllers.HealthInformationOverviewsController.GetHio">
             <summary>
             Gets current user initial form data.
