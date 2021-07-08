@@ -1,4 +1,4 @@
-.everydayForm{
+.dailyForm{
     position: fixed;
     scroll-behavior: unset;
     display: flex;
@@ -11,7 +11,7 @@
     height: 100vh;
 }
 
-.everydayForm__background{
+.dailyForm__background{
     backdrop-filter: blur(10px);
     position: fixed;
     width: 100vw;
@@ -19,7 +19,7 @@
     background-color: rgba(0, 0, 0, 25%);
 }
 
-.everydayForm__card{
+.dailyForm__card{
     z-index: 99;
     display: flex;
     flex-flow: column;
@@ -30,7 +30,7 @@
     width: 800px;
 }
 
-.everydayForm__header{
+.dailyForm__header{
     width: inherit;
     display: flex;
     align-items: center;
@@ -43,7 +43,7 @@
     height: 100px;
 }
 
-.everydayForm__form{
+.dailyForm__form{
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -51,7 +51,7 @@
     align-items: center;
 }
 
-.everydayForm__inputs{
+.dailyForm__inputs{
     display: flex;
     flex-flow: column;
     justify-content: space-around;
@@ -60,26 +60,26 @@
     flex-wrap: wrap;
 }
 
-.everydayForm h3{
+.dailyForm h3{
     min-width: 100px;
 }
 
-.everydayForm__symptom h3{
+.dailyForm__symptom h3{
     width: 100px;
 }
 
-.everydayForm__h3--center{
+.dailyForm__h3--center{
     text-align: center;
 }
 
-.everydayForm__label{
+.dailyForm__label{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 40%;
 }
 
-.everydayForm__symptom{
+.dailyForm__symptom{
     display: grid;
     grid-template-columns: 1fr 2fr auto 4fr auto;
     grid-gap: 20px;
@@ -88,7 +88,7 @@
     margin: 20px 10px;
 }
 
-.everydayForm__input{
+.dailyForm__input{
     background-color: #DFDFDF;
     border: none;
     padding: 15px;
@@ -97,7 +97,7 @@
     border-radius: 5px;
 }
 
-.everydayForm__symptom--input{
+.dailyForm__symptom--input{
     background-color: #DFDFDF;
     border: none;
     padding: 15px;
@@ -105,7 +105,7 @@
     border-radius: 5px;
 }
 
-.everydayForm__symptoms {
+.dailyForm__symptoms {
     display: flex;
     align-items: stretch;
     flex-flow: column;
@@ -115,17 +115,17 @@
     height: 400px;
 }
 
-.everydayForm__checkbox{
+.dailyForm__checkbox{
     margin: 10px;
 }
 
-.everydayForm__buttons{
+.dailyForm__buttons{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.everydayForm__submit, .everydayForm__cancel {
+.dailyForm__submit, .dailyForm__cancel {
     height: 50px;
     width: 200px;
     border: none;
@@ -140,26 +140,26 @@
     margin: 40px 10px 0px 10px
 }
 
-.everydayForm__cancel{
+.dailyForm__cancel{
     background-color: #DFDFDF;
     color: #000;
 }
 
 
-.everydayForm__switch {
+.dailyForm__switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
   }
   
-  .everydayForm__switch .everydayForm__checkbox {
+  .dailyForm__switch .dailyForm__checkbox {
     opacity: 0;
     width: 0;
     height: 0;
   }
   
-  .everydayForm__slider {
+  .dailyForm__slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -172,7 +172,7 @@
     border-radius: 34px;
   }
   
-  .everydayForm__slider:before {
+  .dailyForm__slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -185,15 +185,15 @@
     border-radius: 50%
   }
   
-  .everydayForm__checkbox:checked + .everydayForm__slider {
+  .dailyForm__checkbox:checked + .dailyForm__slider {
     background-color: #34498C;
   }
   
-  .everydayForm__checkbox:focus + .everydayForm__slider {
+  .dailyForm__checkbox:focus + .dailyForm__slider {
     box-shadow: 0 0 1px #34498C;
   }
   
-  .everydayForm__checkbox:checked + .everydayForm__slider:before {
+  .dailyForm__checkbox:checked + .dailyForm__slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);

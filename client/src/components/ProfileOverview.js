@@ -28,7 +28,7 @@ function ProfileOverview(props) {
 
     return (
         <div className='profileOverview'>
-            <ProfileTop userHealthInf={props.userHealthInf}/>
+            <ProfileTop userHealthInf={props.userHealthInf} setShowForm={props.setShowForm}/>
             <ProfileSummary data={formData}/>
             <ProfileHistory data={formData}/> 
         </div>           

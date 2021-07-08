@@ -5,7 +5,7 @@ import ProfileNavbar from '../components/ProfileNavbar'
 import ProfileSettings from '../components/ProfileSettings'
 import SetupForm from '../components/SetupForm'
 import authHeader from '../services/authHeader'
-import EverydayForm from '../components/EverydayForm'
+import DailyForm from '../components/DailyForm'
 import {
     Switch,
     Route,
@@ -23,7 +23,7 @@ function UserPage(props) {
     const [userHealthInf, setUserHealthInf] = useState()
 
     //set default value to true to show everyday form
-    const [showForm] = useState(false)
+    const [showForm, setShowForm] = useState(false)
 
 
     //Fetch user health information
@@ -46,10 +46,10 @@ function UserPage(props) {
         }
     }
 
-    const showEverydayForm = (showForm) => {
+    const showDailyForm = (showForm) => {
         if (showForm) {
             document.body.style.overflow = 'hidden'
-            return <EverydayForm />    
+            return <DailyForm setShowForm={setShowForm}/>    
         } else {
             document.body.style.overflow = ''
         }
@@ -66,13 +66,13 @@ function UserPage(props) {
             <ProfileNavbar history={props.history} />
             <Switch>
                 <Route exact path={path}>
-                    <ProfileOverview userHealthInf={userHealthInf} />
+                    <ProfileOverview userHealthInf={userHealthInf} setShowForm={setShowForm}/>
                     <Footer />
                     {showInitialForm(userHealthInf)}
-                    {showEverydayForm(showForm)}
+                    {showDailyForm(showForm)}
                 </Route>
                 <Route path={`${path}/settings`}>
-                    <ProfileSettings userHealthInf={userHealthInf}/>
+                    <ProfileSettings userHealthInf={userHealthInf} getHealthInformation={getHealthInformation}/>
                     <Footer />
                 </Route>
             </Switch>

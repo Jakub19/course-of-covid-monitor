@@ -66,7 +66,7 @@ function ProfileSettings(props) {
                             <SettingsPassword />
                         </Route>
                         <Route path={`${path}/notifications`}>
-                            <SettingsNotifications userHealthInf={props.userHealthInf}/>
+                            <SettingsNotifications userHealthInf={props.userHealthInf} getHealthInformation={props.getHealthInformation}/>
                         </Route>
                     </Switch>
                 </div>

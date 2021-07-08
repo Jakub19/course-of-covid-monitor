@@ -8,18 +8,18 @@ import './SettingsNotifications.css'
 
 function SettingsNotifications(props) {
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const { API_URL } = useContext(UserContext);;
+    const { API_URL } = useContext(UserContext);
 
     const onSubmit = async (data) => {
-        const { secEmail, isNotifOn } = data;
+        const { isNotifOn } = data;
 
-        return axios.put(API_URL + "/api/Authenticate/UpdateUserDetails", {
-            secEmail, isNotifOn
+        return axios.put(API_URL + "/api/HealthInformationOverviews/UpdateNotifications", {
+            isNotifOn
         }, {
             headers: authHeader()
-        }).then((response) => {
-            console.log(response);
-        });
+        }).then(() => {
+            props.getHealthInformation()
+        })
     };
 
     useEffect(() => {
