@@ -10,7 +10,18 @@ function DailyForm(props) {
     let history = useHistory();
     const { API_URL } = useContext(UserContext);
 
-    const { values, handleChange } = useForm({});
+    let initialValues = {
+        headache: "0",
+        runningNose: "0",
+        musclePain: "0",
+        dryCough: "0",
+        fatigue: "0",
+        lossOfTaste: "0",
+        diffBreathing: "0",
+        chestPain: "0",
+    }
+
+    const { values, handleChange } = useForm(initialValues);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,7 +67,6 @@ function DailyForm(props) {
                 <div className="dailyForm__header">
                     How are You feeling today?
                 </div>
-
                 <form className="dailyForm__form" onSubmit={handleSubmit}>
                     <div className="dailyForm__inputs">
                         <label className="dailyForm__label">
@@ -76,17 +86,16 @@ function DailyForm(props) {
                             <input className="dailyForm__input" type="number" required="required" name="pulse" placeholder="bpm" min="0" max="300" step="1" value={values.pulse} onChange={handleChange} />
                         </label>
                     </div>
-
                     <h3>Symptoms</h3>
                     <div className="dailyForm__symptoms">
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="lossOfTasteChkbx" value={values.lossOfTasteChkbx} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="lossOfTasteChkbx" defaultChecked={false} onChange={handleChange} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Loss of taste</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" defaultValue="1" name="lossOfTaste" min="1" max="3" disabled={isChckd("lossOfTaste")} value={values.lossOfTaste} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="lossOfTaste" min="1" max="3" disabled={isChckd("lossOfTaste")} value={values.lossOfTaste} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
@@ -96,7 +105,7 @@ function DailyForm(props) {
                             </div>
                             <h3>Headache</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" defaultValue="1" name="headache" min="1" max="3" disabled={isChckd("headache")} value={values.headache} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="headache" min="1" max="3" disabled={isChckd("headache")} value={values.headache} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
@@ -106,7 +115,7 @@ function DailyForm(props) {
                             </div>
                             <h3>Running nose</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" defaultValue="1" name="runningNose" min="1" max="3" disabled={isChckd("runningNose")} value={values.runningNose} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="runningNose" min="1" max="3" disabled={isChckd("runningNose")} value={values.runningNose} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
@@ -116,7 +125,7 @@ function DailyForm(props) {
                             </div>
                             <h3>Muscle pain</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" defaultValue="1" name="musclePain" min="1" max="3" disabled={isChckd("musclePain")} value={values.musclePain} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="musclePain" min="1" max="3" disabled={isChckd("musclePain")} value={values.musclePain} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
@@ -126,7 +135,7 @@ function DailyForm(props) {
                             </div>
                             <h3>Dry Cough</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" defaultValue="1" name="dryCough" min="1" max="3" disabled={isChckd("dryCough")} value={values.dryCough} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="dryCough" min="1" max="3" disabled={isChckd("dryCough")} value={values.dryCough} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
@@ -136,7 +145,7 @@ function DailyForm(props) {
                             </div>
                             <h3>Fatigue</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" defaultValue="1" name="fatigue" min="1" max="3" disabled={isChckd("fatigue")} value={values.fatigue} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="fatigue" min="1" max="3" disabled={isChckd("fatigue")} value={values.fatigue} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
@@ -146,7 +155,7 @@ function DailyForm(props) {
                             </div>
                             <h3>Breathing difficulties</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" defaultValue="1" name="diffBreathing" min="1" max="3" disabled={isChckd("diffBreathing")} value={values.diffBreathing} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="diffBreathing" min="1" max="3" disabled={isChckd("diffBreathing")} value={values.diffBreathing} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
@@ -156,7 +165,7 @@ function DailyForm(props) {
                             </div>
                             <h3>Chest pain</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" defaultValue="1" name="chestPain" min="1" max="3" disabled={isChckd("chestPain")} value={values.chestPain} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="chestPain" min="1" max="3" disabled={isChckd("chestPain")} value={values.chestPain} onChange={handleChange} />
                             <span>3</span>
                         </label>
                     </div>
