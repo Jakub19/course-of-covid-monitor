@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import useForm from "../services/useForm";
 import { useHistory } from 'react-router-dom';
 import authHeader from '../services/authHeader';
@@ -9,16 +9,25 @@ import './DailyForm.css'
 function DailyForm(props) {
     let history = useHistory();
     const { API_URL } = useContext(UserContext);
+    
+    const [lossOfTasteChkbx, setLossOfTasteChkbx] = useState(false)
+    const [headacheChkbx, setHeadacheChkbx] = useState(false)
+    const [runningNoseChkbx, setRunningNoseChkbx] = useState(false)
+    const [musclePainChkbx, setMusclePainChkbx] = useState(false)
+    const [dryCoughChkbx, setDryCoughChkbx] = useState(false)
+    const [fatigueChkbx, setFatigueChkbx] = useState(false)
+    const [diffBreathingChkbx, setDiffBreathingChkbx] = useState(false)
+    const [chestPainChkbx, setChestPainChkbx] = useState(false)
 
     let initialValues = {
-        headache: "0",
-        runningNose: "0",
-        musclePain: "0",
-        dryCough: "0",
-        fatigue: "0",
-        lossOfTaste: "0",
-        diffBreathing: "0",
-        chestPain: "0",
+        headache: "1",
+        runningNose: "1",
+        musclePain: "1",
+        dryCough: "1",
+        fatigue: "1",
+        lossOfTaste: "1",
+        diffBreathing: "1",
+        chestPain: "1",
     }
 
     const { values, handleChange } = useForm(initialValues);
@@ -34,14 +43,14 @@ function DailyForm(props) {
         temperature = parseFloat(temperature);
         saturation = parseInt(saturation);
         pulse = parseInt(pulse);
-        headache = parseInt(headache);
-        runningNose = parseInt(runningNose);
-        musclePain = parseInt(musclePain);
-        dryCough = parseInt(dryCough);
-        fatigue = parseInt(fatigue);
-        lossOfTaste = parseInt(lossOfTaste);
-        diffBreathing = parseInt(diffBreathing);
-        chestPain = parseInt(chestPain);
+        headache = headacheChkbx ? parseInt(headache): 0;
+        runningNose = runningNoseChkbx ? parseInt(runningNose): 0;
+        musclePain = musclePainChkbx ? parseInt(musclePain): 0;
+        dryCough = dryCoughChkbx ? parseInt(dryCough): 0;
+        fatigue = fatigueChkbx ? parseInt(fatigue): 0;
+        lossOfTaste = lossOfTasteChkbx ? parseInt(lossOfTaste): 0;
+        diffBreathing = diffBreathingChkbx ? parseInt(diffBreathing): 0;
+        chestPain = chestPainChkbx ? parseInt(chestPain): 0;
 
         return axios.post(API_URL + "/api/DailyInformationForm", {
             id, ownerId, temperature, bloodPressure, saturation, pulse, headache, runningNose, musclePain, dryCough, fatigue, lossOfTaste, diffBreathing, chestPain
@@ -53,12 +62,6 @@ function DailyForm(props) {
                 console.log(err)
             });
     };
-
-    const isChckd = (id) => {
-        if (document.getElementsByName(id + "Chkbx")[0]) {
-            return !document.getElementsByName(id + "Chkbx")[0].checked
-        } else return
-    }
 
     return (
         <div className="dailyForm">
@@ -90,82 +93,82 @@ function DailyForm(props) {
                     <div className="dailyForm__symptoms">
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="lossOfTasteChkbx" defaultChecked={false} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="lossOfTasteChkbx" checked={lossOfTasteChkbx} onChange={() =>setLossOfTasteChkbx(!lossOfTasteChkbx)} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Loss of taste</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" name="lossOfTaste" min="1" max="3" disabled={isChckd("lossOfTaste")} value={values.lossOfTaste} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="lossOfTaste" min="1" max="3" disabled={!lossOfTasteChkbx} value={values.lossOfTaste} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="headacheChkbx" value={values.headacheChkbx} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="headacheChkbx" checked={headacheChkbx} onChange={() =>setHeadacheChkbx(!headacheChkbx)} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Headache</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" name="headache" min="1" max="3" disabled={isChckd("headache")} value={values.headache} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="headache" min="1" max="3" disabled={!headacheChkbx} value={values.headache} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="runningNoseChkbx" value={values.runningNoseChkbx} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="runningNoseChkbx" checked={runningNoseChkbx} onChange={() =>setRunningNoseChkbx(!runningNoseChkbx)} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Running nose</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" name="runningNose" min="1" max="3" disabled={isChckd("runningNose")} value={values.runningNose} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="runningNose" min="1" max="3" disabled={!runningNoseChkbx} value={values.runningNose} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="musclePainChkbx" value={values.musclePainChkbx} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="musclePainChkbx" checked={musclePainChkbx} onChange={() =>setMusclePainChkbx(!musclePainChkbx)} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Muscle pain</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" name="musclePain" min="1" max="3" disabled={isChckd("musclePain")} value={values.musclePain} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="musclePain" min="1" max="3" disabled={!musclePainChkbx} value={values.musclePain} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="dryCoughChkbx" value={values.dryCoughChkbx} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="dryCoughChkbx" checked={dryCoughChkbx} onChange={() =>setDryCoughChkbx(!dryCoughChkbx)} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Dry Cough</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" name="dryCough" min="1" max="3" disabled={isChckd("dryCough")} value={values.dryCough} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="dryCough" min="1" max="3" disabled={!dryCoughChkbx} value={values.dryCough} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="fatigueChkbx" value={values.fatigueChkbx} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="fatigueChkbx" checked={fatigueChkbx} onChange={() =>setFatigueChkbx(!fatigueChkbx)} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Fatigue</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" name="fatigue" min="1" max="3" disabled={isChckd("fatigue")} value={values.fatigue} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="fatigue" min="1" max="3" disabled={!fatigueChkbx} value={values.fatigue} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="diffBreathingChkbx" value={values.diffBreathingChkbx} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="diffBreathingChkbx" checked={diffBreathingChkbx} onChange={() =>setDiffBreathingChkbx(!diffBreathingChkbx)} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Breathing difficulties</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" name="diffBreathing" min="1" max="3" disabled={isChckd("diffBreathing")} value={values.diffBreathing} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="diffBreathing" min="1" max="3" disabled={!diffBreathingChkbx} value={values.diffBreathing} onChange={handleChange} />
                             <span>3</span>
                         </label>
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">
-                                <input className="dailyForm__checkbox" type="checkbox" name="chestPainChkbx" value={values.chestPainChkbx} onChange={handleChange} />
+                                <input className="dailyForm__checkbox" type="checkbox" name="chestPainChkbx" checked={chestPainChkbx} onChange={() =>setChestPainChkbx(!chestPainChkbx)} />
                                 <span className="dailyForm__slider"></span>
                             </div>
                             <h3>Chest pain</h3>
                             <span>1</span>
-                            <input className="dailyForm__symptom--input" type="range" name="chestPain" min="1" max="3" disabled={isChckd("chestPain")} value={values.chestPain} onChange={handleChange} />
+                            <input className="dailyForm__symptom--input" type="range" name="chestPain" min="1" max="3" disabled={!chestPainChkbx} value={values.chestPain} onChange={handleChange} />
                             <span>3</span>
                         </label>
                     </div>
