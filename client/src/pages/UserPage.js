@@ -23,7 +23,10 @@ function UserPage(props) {
     const [userHealthInf, setUserHealthInf] = useState()
 
     //set default value to true to show everyday form
-    const [showForm, setShowForm] = useState(false)
+    const [handleShowForm, setHandleShowForm] = useState(false)
+
+    //set default value to true to show everyday form
+    const [handleShowDailyForm, setHandleShowDailyForm] = useState(false)
 
 
     //Fetch user health information
@@ -31,25 +34,26 @@ function UserPage(props) {
         axios.get(API_URL + "/api/HealthInformationOverviews/GetCurrentUserHio", { headers: authHeader() })
             .then((response) => {
                 setUserHealthInf(response.data[0])
+                showInitialForm(response.data[0])
             }).catch((err) => {
 
             })
     };
 
     //Check if it's first user login, if yes show form and lock scrolling
-    const showInitialForm = (userHealthInf) => {
-        if (userHealthInf) {
-            document.body.style.overflow = ''
+    const showInitialForm = (response) => {
+        if (response) {
+            return
         } else {
             document.body.style.overflow = 'hidden'
-            return <SetupForm />
+            setHandleShowDailyForm(true)
         }
     }
 
     const showDailyForm = (showForm) => {
         if (showForm) {
             document.body.style.overflow = 'hidden'
-            return <DailyForm setShowForm={setShowForm}/>    
+            return <DailyForm setShowForm={setHandleShowForm}/>    
         } else {
             document.body.style.overflow = ''
         }
@@ -66,10 +70,10 @@ function UserPage(props) {
             <ProfileNavbar history={props.history} />
             <Switch>
                 <Route exact path={path}>
-                    <ProfileOverview userHealthInf={userHealthInf} setShowForm={setShowForm}/>
+                    <ProfileOverview userHealthInf={userHealthInf} setHandleShowForm={setHandleShowForm}/>
                     <Footer />
-                    {showInitialForm(userHealthInf)}
-                    {showDailyForm(showForm)}
+                    {handleShowDailyForm ? <SetupForm setShowForm={setHandleShowForm}/> : ''}
+                    {showDailyForm(handleShowForm)}
                 </Route>
                 <Route path={`${path}/settings`}>
                     <ProfileSettings userHealthInf={userHealthInf} getHealthInformation={getHealthInformation}/>

@@ -77,7 +77,7 @@ function ProfileTop(props) {
             </div>
             <div className="profileTop__card--reminder">
                 <div className="profileTop__card--reminderContainer"><h3 className="profileTop__card--reminderText">Form is awaiting completion</h3></div>
-                <button className="profileTop__card--button" onClick={() => props.setShowForm(true)}>Fill now</button>
+                <button className="profileTop__card--button" onClick={() => props.setHandleShowForm(true)}>Fill now</button>
             </div>
         </div>
     )
