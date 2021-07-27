@@ -71,6 +71,7 @@ namespace covid_monitor_api.Controllers
         /// <param name="model"></param>
         /// <returns>Returns the newly created form.</returns>
         /// <response code="200">Created. Returns the newly created form.</response>
+        /// <response code="403">Only 3 forms per day are allowed!</response>
         [Authorize]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -78,27 +79,38 @@ namespace covid_monitor_api.Controllers
         public async Task<ActionResult<DailyInformationForm>> PostDailyForm([FromBody] DailyInformationForm model)
         {
 
-            DailyInformationForm form = new DailyInformationForm()
-            {
-                OwnerId = userManager.GetUserId(User),
-                Temperature = model.Temperature,
-                BloodPressure = model.BloodPressure,
-                Saturation = model.Saturation,
-                Pulse = model.Pulse,
-                Headache = model.Headache,
-                RunningNose = model.RunningNose,
-                MusclePain = model.MusclePain,
-                DryCough = model.DryCough,
-                Fatigue = model.Fatigue,
-                LossOfTaste = model.LossOfTaste,
-                DiffBreathing = model.DiffBreathing,
-                ChestPain = model.ChestPain,
-                FilledDate = DateTime.Now
-            };
-            _context.DailyInformationForm.Add(form);
-            await _context.SaveChangesAsync();
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User not exists!" });
 
-            return CreatedAtAction(nameof(GetAllDailyForms), new { id = form.Id }, form);
+            var OwnerId = userExists.Id;
+
+            if (GetTodaySubmittedCount(OwnerId) < 3)
+            {
+                DailyInformationForm form = new DailyInformationForm()
+                {
+                    OwnerId = userManager.GetUserId(User),
+                    Temperature = model.Temperature,
+                    BloodPressure = model.BloodPressure,
+                    Saturation = model.Saturation,
+                    Pulse = model.Pulse,
+                    Headache = model.Headache,
+                    RunningNose = model.RunningNose,
+                    MusclePain = model.MusclePain,
+                    DryCough = model.DryCough,
+                    Fatigue = model.Fatigue,
+                    LossOfTaste = model.LossOfTaste,
+                    DiffBreathing = model.DiffBreathing,
+                    ChestPain = model.ChestPain,
+                    FilledDate = DateTime.Now
+                };
+                _context.DailyInformationForm.Add(form);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetAllDailyForms), new { id = form.Id }, form);
+            }
+            return StatusCode(StatusCodes.Status403Forbidden, new Response { Status = "Error", Message = "Only 3 forms per day are allowed!" });
+            
         }
 
         /// <summary>
@@ -133,6 +145,14 @@ namespace covid_monitor_api.Controllers
         private bool DailyInformationFormExists(long id)
         {
             return _context.DailyInformationForm.Any(e => e.Id == id);
+        }
+
+        // Returns count of today submitted forms
+        private int GetTodaySubmittedCount(string OwnerId)
+        {
+            var dif = _context.DailyInformationForm.Where(p => p.OwnerId == OwnerId).Where(d => d.FilledDate.Date == DateTime.Today);
+
+            return dif.Count();
         }
     }
 }

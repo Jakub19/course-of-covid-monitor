@@ -73,6 +73,7 @@
             <param name="model"></param>
             <returns>Returns the newly created form.</returns>
             <response code="200">Created. Returns the newly created form.</response>
+            <response code="403">Only 3 forms per day are allowed!</response>
         </member>
         <member name="M:covid_monitor_api.Controllers.DailyInformationFormController.GetHio">
             <summary>
