@@ -89,7 +89,7 @@ function DailyForm(props) {
                             <input className="dailyForm__input" type="number" required="required" name="pulse" placeholder="bpm" min="0" max="300" step="1" value={values.pulse} onChange={handleChange} />
                         </label>
                     </div>
-                    <h3>Symptoms</h3>
+                    <h2>Symptoms</h2>
                     <div className="dailyForm__symptoms">
                         <label className="dailyForm__symptom">
                             <div className="dailyForm__switch">

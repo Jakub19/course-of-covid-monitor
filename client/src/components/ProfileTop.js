@@ -8,12 +8,11 @@ function ProfileTop(props) {
     const [positiveSince, setPositiveSince] = useState('')
     const [endOfquarantine, setEndOfquarantine] = useState('')
     const [daysLeft, setdaysLeft] = useState('')
-    const {data, setData, getProfileDetails} = profileDetails()
+    const { data, setData, getProfileDetails } = profileDetails()
 
     const quarantineLength = 14;
 
     const setDates = () => {
-
         if (props.userHealthInf) {
             let userHealthInf = props.userHealthInf;
             const oneDay = 24 * 60 * 60 * 1000;
@@ -49,8 +48,8 @@ function ProfileTop(props) {
 
     useEffect(() => {
         setData(getProfileDetails());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     useEffect(() => {
         setDates();
