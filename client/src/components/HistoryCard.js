@@ -30,6 +30,7 @@ function HistoryCard(props) {
     )
 
     const renderChart = () => {
+        console.log(data)
         return <Chart data={data} series={series} axes={axes} tooltip/>
     }
 

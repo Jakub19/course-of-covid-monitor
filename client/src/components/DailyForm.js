@@ -74,7 +74,7 @@ function DailyForm(props) {
                     <div className="dailyForm__inputs">
                         <label className="dailyForm__label">
                             <h3>Body temperature</h3>
-                            <input className="dailyForm__input" type="number" required="required" name="temperature" placeholder="°C" step="1" min="30" max="45" value={values.temperature} onChange={handleChange} />
+                            <input className="dailyForm__input" type="number" required="required" name="temperature" placeholder="°C" step="0.1" min="30" max="45" value={values.temperature} onChange={handleChange} />
                         </label>
                         <label className="dailyForm__label">
                             <h3>Blood pressure</h3>
