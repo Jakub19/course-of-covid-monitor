@@ -2,21 +2,27 @@ import React from 'react'
 import { Chart } from 'react-charts'
 import './HistoryCard.css'
 
-function HistoryCard(props) {
+function HistoryCardArea(props) {
     const data = React.useMemo(
         () => [
             {
-                label: props.name,
-                data: props.data,
+                label: props.valueName2,
+                data: props.data ? props.data.map((data) => data[1]) : [],
+                color: "rgba(1,1,1,0)"
+            },
+            {
+                label: props.valueName1,
+                data: props.data ? props.data.map((data) => data[0]) : [],
                 color: "#34498C"
             }
         ],
-        [props.name, props.data]
+        [props.valueName1, props.valueName2, props.data]
     )
 
     const series = React.useMemo(
         () => ({
-          showPoints: false
+          showPoints: false,
+          type: 'area'
         }),
         []
       )
@@ -24,13 +30,12 @@ function HistoryCard(props) {
     const axes = React.useMemo(
         () => [
             { primary: true, type: 'time', position: 'bottom'},
-            { type: 'linear', position: 'left' }
+            { type: 'linear', position: 'left', stacked: true }
         ],
         []
     )
 
     const renderChart = () => {
-        console.log(data)
         return <Chart data={data} series={series} axes={axes} tooltip/>
     }
 
@@ -44,4 +49,4 @@ function HistoryCard(props) {
     )
 }
 
-export default HistoryCard
+export default HistoryCardArea

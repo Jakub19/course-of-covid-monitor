@@ -1,18 +1,19 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
 import authHeader from '../services/authHeader';
+import { UserContext } from '../services/UserContext';
 import './SettingsPassword.css'
 
 
 function SettingsPassword() {
     const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm();
-    const API_URL = "http://localhost:8080/api/";
+    const { API_URL} = useContext(UserContext);;
 
     const onSubmit = async (data) => {
         const {currentPassword, newPassword} = data;
 
-        return axios.put(API_URL + "Authenticate/UpdateUserPassword", {
+        return axios.put(API_URL + "/api/Authenticate/UpdateUserPassword", {
             currentPassword, newPassword
         }, {
             headers: authHeader()

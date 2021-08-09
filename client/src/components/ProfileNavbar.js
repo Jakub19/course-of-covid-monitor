@@ -18,7 +18,7 @@ function ProfileNavbar(props){
         if(location === url){
             setActiveTab(0);
             tabIndicator.style.left = `calc(calc(100% / 2) * ${0})`;
-        }else if(location === url + '/settings/account'){
+        }else if(location === url + '/settings/account' || location === url + '/settings/password' || location === url + '/settings/notifications'){
             setActiveTab(1)
             tabIndicator.style.left = `calc(calc(100% / 2) * ${1})`;
         }

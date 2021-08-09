@@ -4,5 +4,132 @@
         <name>covid-monitor-api</name>
     </assembly>
     <members>
+        <member name="M:covid_monitor_api.Controllers.AuthenticateController.Login(covid_monitor_api.Authentication.LoginModel)">
+            <summary>
+            Signs in.
+            </summary>
+            <param name="model"></param>
+            <returns>Returns user name, surname and JWT token with expiration time</returns>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.AuthenticateController.Register(covid_monitor_api.Authentication.RegisterModel)">
+            <summary>
+            Creates new user.
+            </summary>
+            <param name="model"></param>
+            <returns>Returns status code and message</returns>
+            <response code="200">New user added</response>
+            <response code="409">User already exists!</response>
+            <response code="400">User creation failed!</response>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.AuthenticateController.UpdateUserDetails(covid_monitor_api.Authentication.Manage.UpdateUserDetails)">
+            <summary>
+            Updates user deatils.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.AuthenticateController.UpdateUserPassword(covid_monitor_api.Authentication.Manage.UpdateUserPassword)">
+            <summary>
+            Updates user password.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.AuthenticateController.GetProfileDetails">
+            <summary>
+            Gets user details.
+            </summary>
+            <returns>Returns user details</returns>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.DailyInformationFormController.GetAllDailyForms">
+            <summary>
+            Gets forms of all users.
+            </summary>
+            <returns>Returns all forms from database</returns>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.DailyInformationFormController.PostDailyForm(covid_monitor_api.Models.DailyInformationForm)">
+            <summary>
+            Adds new form to database.
+            </summary>
+            <remarks>
+            Sample request:
+            
+                POST /api/DailyInformationForm
+                {
+                    "temperature": 36.6,
+                    "bloodPressure": "130",
+                    "saturation": 100,
+                    "pulse": 75,
+                    "headache": 2,
+                    "runningNose": 0,
+                    "musclePain": 2,
+                    "dryCough": 1,
+                    "fatigue": 3,
+                    "lossOfTaste": 1,
+                    "diffBreathing": 2,
+                    "chestPain": 0
+                }
+            </remarks>
+            <param name="model"></param>
+            <returns>Returns the newly created form.</returns>
+            <response code="200">Created. Returns the newly created form.</response>
+            <response code="403">Only 3 forms per day are allowed!</response>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.DailyInformationFormController.GetHio">
+            <summary>
+            Gets forms for specific user.
+            </summary>
+            <returns>Returns specific user forms</returns>
+            <response code="200">Returns specific user forms</response>
+            <response code="404">If user forms are not found</response>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.HealthInformationOverviewsController.GetAllHealthInformationOverviews">
+            <summary>
+            Gets all initial forms.
+            </summary>
+            <returns>All initial forms.</returns>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.HealthInformationOverviewsController.PostHealthInformationOverview(covid_monitor_api.Models.HealthInformationOverview)">
+            <summary>
+            Adds initial form.
+            </summary>
+            <remarks>
+            Sample request:
+            
+                POST /api/HealthInformationOverviews
+                {
+                    "covidPositiveSince":"2021-06-30T21:00:06.817Z",
+                    "birthDate":"1998-06-15T21:00:06.817Z",
+                    "gender":"male",
+                    "height":186,
+                    "weight":85,
+                    "bloodType":"A+",
+                    "isNotifOn":true
+                }
+            </remarks>
+            <param name="model"></param>
+            <returns>Returns newly added form</returns>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.HealthInformationOverviewsController.UpdateNotifications(covid_monitor_api.Models.NotificationUpdate)">
+            <summary>
+            Updates notifications (true/false)
+            </summary>
+            <remarks>
+            Sample request:
+            
+                PUT /api/HealthInformationOverviews/UpdateNotifications
+                {
+                    isNotIfOn = true
+                }
+            </remarks>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:covid_monitor_api.Controllers.HealthInformationOverviewsController.GetHio">
+            <summary>
+            Gets current user initial form data.
+            </summary>
+            <returns>Returns user initial form data.</returns>
+        </member>
     </members>
 </doc>

@@ -11,8 +11,6 @@ using covid_monitor_api.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace covid_monitor_api.Controllers
 {
     [Route("api/[controller]")]
@@ -20,11 +18,9 @@ namespace covid_monitor_api.Controllers
     public class HealthInformationOverviewsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration _configuration;
-
 
         public HealthInformationOverviewsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
@@ -34,21 +30,47 @@ namespace covid_monitor_api.Controllers
             _configuration = configuration;
         }
 
-
-        // GET: api/HealthInformationOverviews
+        /// <summary>
+        /// Gets all initial forms.
+        /// </summary>
+        /// <returns>All initial forms.</returns>
+        [Authorize]
         [HttpGet]
+        [Produces("application/json")]
         public async Task<ActionResult<IEnumerable<HealthInformationOverview>>> GetAllHealthInformationOverviews()
         {
             return await _context.HealthInformationOverview.ToListAsync();
         }
 
-
-        // POST: api/HealthInformationOverviews
+        /// <summary>
+        /// Adds initial form.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     POST /api/HealthInformationOverviews
+        ///     {
+        ///         "covidPositiveSince":"2021-06-30T21:00:06.817Z",
+        ///         "birthDate":"1998-06-15T21:00:06.817Z",
+        ///         "gender":"male",
+        ///         "height":186,
+        ///         "weight":85,
+        ///         "bloodType":"A+",
+        ///         "isNotifOn":true
+        ///     }
+        /// </remarks>
+        /// <param name="model"></param>
+        /// <returns>Returns newly added form</returns>
         [Authorize]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<HealthInformationOverview>> PostHealthInformationOverview([FromBody] HealthInformationOverview model)
         {
-          
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
             HealthInformationOverview form = new HealthInformationOverview()
             {
                 OwnerId = userManager.GetUserId(User),
@@ -72,15 +94,60 @@ namespace covid_monitor_api.Controllers
             else
             {
                 return StatusCode(StatusCodes.Status406NotAcceptable, new Response { Status = "Error", Message = "User already filled this form!" });
-            }
-
-            //return CreatedAtAction("GetHealthInformationOverview", new { id = HealthInformationOverview.Id }, HealthInformationOverview);
-           
+            }      
         }
 
+        /// <summary>
+        /// Updates notifications (true/false)
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     PUT /api/HealthInformationOverviews/UpdateNotifications
+        ///     {
+        ///         isNotIfOn = true
+        ///     }
+        /// </remarks>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPut]
+        [Route("UpdateNotifications")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<HealthInformationOverview>> UpdateNotifications([FromBody] NotificationUpdate model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
 
+            var userExists = await userManager.GetUserAsync(HttpContext.User);
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
+
+            var OwnerId = userExists.Id;
+            HealthInformationOverview hio = _context.HealthInformationOverview.Where(p => p.OwnerId == OwnerId).FirstOrDefault<HealthInformationOverview>();
+            if (hio == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                hio.IsNotifOn = model.isNotIfOn;
+
+                _context.HealthInformationOverview.Update(hio);
+                await _context.SaveChangesAsync();
+                return Ok(new Response { Status = "Success", Message = "Notifications updated!" });
+            }
+        }
+
+        /// <summary>
+        /// Gets current user initial form data.
+        /// </summary>
+        /// <returns>Returns user initial form data.</returns>
         [HttpGet]
         [Route("GetCurrentUserHio")]
+        [Produces("application/json")]
         public async Task<ActionResult<HealthInformationOverview>> GetHio()
         {
             var userExists = await userManager.GetUserAsync(HttpContext.User);
@@ -94,7 +161,6 @@ namespace covid_monitor_api.Controllers
 
             return Ok(hio);
         }
-
 
         private bool HealthInformationOverviewExists(long id)
         {

@@ -11,35 +11,35 @@ namespace covid_monitor_api.Models
         public int Id { get; set; }
         public string OwnerId { get; set; }
         [Required]
-        public int Temperature { get; set; }
-        [Required]
+        public float Temperature { get; set; }
         public string BloodPressure { get; set; }
-        [Required]
-        [Range(1, 100, ErrorMessage = "Saturation level invalid (1-100).")]
+        [Range(0, 100, ErrorMessage = "Saturation level invalid (1-100).")]
         public int Saturation { get; set; }
-        [Required]
         public int Pulse { get; set; }
         [Required]
-        [Range(1, 5, ErrorMessage = "Headache level invalid (1-5).")]
+        [Range(0, 3, ErrorMessage = "Headache level invalid (0-3).")]
         public int Headache { get; set; }
         [Required]
-        public Boolean RunningNose { get; set; }
+        [Range(0, 3, ErrorMessage = "Running Nose level invalid (0-3).")]
+        public int RunningNose { get; set; }
         [Required]
-        [Range(1, 5, ErrorMessage = "Muscle Pain level invalid (1-5).")]
+        [Range(0, 3, ErrorMessage = "Muscle Pain level invalid (0-3).")]
         public int MusclePain { get; set; }
         [Required]
-        public Boolean DryCough { get; set; }
+        [Range(0, 3, ErrorMessage = "Dry Cough level invalid (0-3).")]
+        public int DryCough { get; set; }
         [Required]
-        [Range(1, 5, ErrorMessage = "Fatigue level invalid (1-5).")]
+        [Range(0, 3, ErrorMessage = "Fatigue level invalid (0-3).")]
         public int Fatigue { get; set; }
         [Required]
-        public Boolean LossOfTaste { get; set; }
+        [Range(0, 3, ErrorMessage = "Loss Of Taste level invalid (0-3).")]
+        public int LossOfTaste { get; set; }
         [Required]
-        [Range(1, 5, ErrorMessage = "Difficult Breathing level invalid (1-5).")]
+        [Range(0, 3, ErrorMessage = "Difficult Breathing level invalid (0-3).")]
         public int DiffBreathing { get; set; }
         [Required]
-        [Range(1, 5, ErrorMessage = "Chest Pain level invalid (1-5).")]
+        [Range(0, 3, ErrorMessage = "Chest Pain level invalid (0-3).")]
         public int ChestPain { get; set; }
-
+        public DateTime FilledDate { get; set; }
     }
 }

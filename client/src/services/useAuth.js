@@ -34,7 +34,7 @@ export default function useAuth() {
             }
             return response.data;
         }).catch((err) => {
-            setError(err.response.data.message);
+            setError(err.response.data.title);
         });
     };
 

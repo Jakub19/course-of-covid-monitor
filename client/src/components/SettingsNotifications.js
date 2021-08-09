@@ -1,28 +1,31 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import authHeader from '../services/authHeader';
+import { UserContext } from '../services/UserContext';
 import './SettingsNotifications.css'
 
 
 function SettingsNotifications(props) {
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const API_URL = "http://localhost:8080/api/";
+    const { API_URL } = useContext(UserContext);
 
     const onSubmit = async (data) => {
-        const { secEmail, isNotifOn } = data;
+        const { isNotifOn } = data;
 
-        return axios.put(API_URL + "Authenticate/UpdateUserDetails", {
-            secEmail, isNotifOn
+        return axios.put(API_URL + "/api/HealthInformationOverviews/UpdateNotifications", {
+            isNotifOn
         }, {
             headers: authHeader()
-        }).then(async (response) => {
-            console.log(response);
-        });
+        }).then(() => {
+            props.getHealthInformation()
+        })
     };
 
     useEffect(() => {
-        setValue('isNotifOn', props.userHealthInf.isNotifOn);
+        if (props.userHealthInf) {
+            setValue('isNotifOn', props.userHealthInf.isNotifOn)
+        }
     })
 
     return (
@@ -35,8 +38,8 @@ function SettingsNotifications(props) {
                         <h3>Enable SMS notifications </h3>
                     </label>
                     {errors.isNotifOn && (
-                            <p style={{ color: "red" }}>{errors.name.isNotifOn}</p>
-                        )}
+                        <p style={{ color: "red" }}>{errors.name.isNotifOn}</p>
+                    )}
                 </div>
                 <div className="settingsNotifications__buttons">
                     <input className="settingsNotifications__submit" type="submit" value="Save" />

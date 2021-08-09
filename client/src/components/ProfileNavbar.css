@@ -90,7 +90,7 @@
     width:calc(100% / 2);
     height: 3px; 
     background-color: #34498C;
-    transition:all 500ms ease-in-out;
+    transition:all 0.2s ease-in-out;
     bottom: 0;
 }
 

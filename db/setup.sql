@@ -215,24 +215,25 @@ END;
 
 GO
 
-IF NOT EXISTS (SELECT * FROM sys.tables t JOIN sys.schemas s ON (t.schema_id = s.schema_id) WHERE s.name = 'myschema' and t.name = 'DailyInformations')
+IF NOT EXISTS (SELECT * FROM sys.tables t JOIN sys.schemas s ON (t.schema_id = s.schema_id) WHERE s.name = 'myschema' and t.name = 'DailyInformationForm')
 BEGIN
-    CREATE TABLE [DailyInformations] (
+    CREATE TABLE [DailyInformationForm] (
         [Id] int NOT NULL IDENTITY,
         [OwnerId] nvarchar(max) NULL,
-        [Temperature] int NOT NULL,
-        [BloodPressure] nvarchar(max) NOT NULL,
-        [Saturation] int NOT NULL,
-        [Pulse] int NOT NULL,
+        [Temperature] real NOT NULL,
+        [BloodPressure] nvarchar(max) NULL,
+        [Saturation] int NULL,
+        [Pulse] int NULL,
         [Headache] int NOT NULL,
-        [RunningNose] bit NOT NULL,
+        [RunningNose] int NOT NULL,
         [MusclePain] int NOT NULL,
-        [DryCough] bit NOT NULL,
+        [DryCough] int NOT NULL,
         [Fatigue] int NOT NULL,
-        [LossOfTaste] bit NOT NULL,
+        [LossOfTaste] int NOT NULL,
         [DiffBreathing] int NOT NULL,
         [ChestPain] int NOT NULL,
-        CONSTRAINT [PK_DailyInformations] PRIMARY KEY ([Id])
+        [FilledDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000'
+        CONSTRAINT [PK_DailyInformationForm] PRIMARY KEY ([Id])
     );
 END;
 
