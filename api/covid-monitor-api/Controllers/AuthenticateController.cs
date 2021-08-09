@@ -233,7 +233,6 @@ namespace covid_monitor_api.Controllers
                 userExists.PostalCode = model.PostalCode;
             }
 
-
             // Attempt to commit changes to data store
             var result = await userManager.UpdateAsync(userExists);
 
@@ -247,7 +246,6 @@ namespace covid_monitor_api.Controllers
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Something went wrong! Check your data." });
             }
-
         }
 
         /// <summary>
@@ -267,7 +265,6 @@ namespace covid_monitor_api.Controllers
             if (userExists == null)
                 return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
 
-
             // Attempt to commit changes to data store
             var result = await userManager.ChangePasswordAsync(userExists, model.CurrentPassword, model.NewPassword);
 
@@ -281,13 +278,12 @@ namespace covid_monitor_api.Controllers
             {
                 return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Something went wrong! Check your data." });
             }
-
         }
+
         [HttpPost]
         [Route("SearchUsers")]
         public async Task<ActionResult<SearchUser>> SearchUsers([FromBody] SearchUser model)
         {
-
             var userExists = await userManager.GetUserAsync(HttpContext.User);
             if (userExists == null)
                 return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exsist!" });
@@ -307,7 +303,6 @@ namespace covid_monitor_api.Controllers
                 return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data not found!" });
 
             var foundUser = default(ApplicationUser);
-
 
             // If we have an email...
             if (foundUser == null && !string.IsNullOrEmpty(model.Email))
@@ -339,8 +334,6 @@ namespace covid_monitor_api.Controllers
                     foundUser.City,
                     foundUser.PhoneNumber,
                     foundUser.PostalCode
-
-
                 });
             }
 
@@ -371,8 +364,7 @@ namespace covid_monitor_api.Controllers
                         PhoneNumber = u.PhoneNumber,
                         Address = u.Address,
                         City = u.City,
-                        PostalCode = u.PostalCode,
-
+                        PostalCode = u.PostalCode
                     }));
                 }
             }
@@ -405,9 +397,6 @@ namespace covid_monitor_api.Controllers
                 userExists.PhoneNumber
 
             });
-
         }
     }
 }
-
-

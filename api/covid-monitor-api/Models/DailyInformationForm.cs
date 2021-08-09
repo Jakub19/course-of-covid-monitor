@@ -41,6 +41,5 @@ namespace covid_monitor_api.Models
         [Range(0, 3, ErrorMessage = "Chest Pain level invalid (0-3).")]
         public int ChestPain { get; set; }
         public DateTime FilledDate { get; set; }
-
     }
 }
