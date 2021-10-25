@@ -8,8 +8,6 @@ namespace covid_monitor_api.Authentication.Manage
     public class UpdateUserPassword
     {
         public string CurrentPassword { get; set; }
-
-
         public string NewPassword { get; set; }
     }
 }

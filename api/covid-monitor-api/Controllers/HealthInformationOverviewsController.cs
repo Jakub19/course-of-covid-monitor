@@ -11,8 +11,6 @@ using covid_monitor_api.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace covid_monitor_api.Controllers
 {
     [Route("api/[controller]")]
@@ -20,11 +18,9 @@ namespace covid_monitor_api.Controllers
     public class HealthInformationOverviewsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration _configuration;
-
 
         public HealthInformationOverviewsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
@@ -33,7 +29,6 @@ namespace covid_monitor_api.Controllers
             this.roleManager = roleManager;
             _configuration = configuration;
         }
-
 
         /// <summary>
         /// Gets all initial forms.
@@ -46,7 +41,6 @@ namespace covid_monitor_api.Controllers
         {
             return await _context.HealthInformationOverview.ToListAsync();
         }
-
 
         /// <summary>
         /// Adds initial form.
