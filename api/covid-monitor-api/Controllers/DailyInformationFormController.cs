@@ -11,6 +11,8 @@ using covid_monitor_api.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace covid_monitor_api.Controllers
 {
     [Route("api/[controller]")]
@@ -23,6 +25,7 @@ namespace covid_monitor_api.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration _configuration;
 
+
         public DailyInformationFormController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             _context = context;
@@ -30,6 +33,7 @@ namespace covid_monitor_api.Controllers
             this.roleManager = roleManager;
             _configuration = configuration;
         }
+
 
         /// <summary>
         /// Gets forms of all users.
@@ -105,7 +109,8 @@ namespace covid_monitor_api.Controllers
 
                 return CreatedAtAction(nameof(GetAllDailyForms), new { id = form.Id }, form);
             }
-            return StatusCode(StatusCodes.Status403Forbidden, new Response { Status = "Error", Message = "Only 3 forms per day are allowed!" }); 
+            return StatusCode(StatusCodes.Status403Forbidden, new Response { Status = "Error", Message = "Only 3 forms per day are allowed!" });
+            
         }
 
         /// <summary>
@@ -135,6 +140,7 @@ namespace covid_monitor_api.Controllers
 
             return Ok(dif);
         }
+
 
         private bool DailyInformationFormExists(long id)
         {

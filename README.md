@@ -33,7 +33,7 @@ React.js, ASP.NET Core, Microsoft SQL Server, nginx, Docker
 [Docker Desktop instalation guide](https://docs.docker.com/docker-for-windows/install/)
 
 ## Working on
-* Writing tests
+* Personalized medical advice
 * Page with statistics based on anonymous data entered by app users
 
 ## Contact

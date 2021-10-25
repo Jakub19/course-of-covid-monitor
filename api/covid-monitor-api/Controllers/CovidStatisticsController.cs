@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace covid_monitor_api.Controllers
 {
-    // Currently not in use
     [ApiController]
     public class CovidStatisticsController : Controller
     {
@@ -27,7 +26,8 @@ namespace covid_monitor_api.Controllers
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
                 return Ok(body);
-            }   
+            }
+            
         }
 
         [HttpGet]
@@ -50,4 +50,5 @@ namespace covid_monitor_api.Controllers
 
         }
     }
+
 }

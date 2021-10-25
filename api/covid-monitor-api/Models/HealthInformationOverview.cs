@@ -6,6 +6,7 @@ namespace covid_monitor_api.Models
     public class HealthInformationOverview
     {
         public int Id { get; set; }
+
         public string OwnerId { get; set; }
         [Required]
         public DateTime CovidPositiveSince { get; set; }
