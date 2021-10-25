@@ -24,25 +24,25 @@ function SettingsPassword() {
 
     return (
         <div className="settingsPassword">
-            <h1 className="settingsPassword__h1">Zmiana hasła</h1>
+            <h1 className="settingsPassword__h1">Password settings</h1>
             <form className="settingsPassword__form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="settingsPassword__inputs">
                     <label className="settingsPassword__label">
-                        <h3>Aktualne hasło</h3>
+                        <h3>Current password</h3>
                         <input className="settingsPassword__input" type="password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="currentPassword" {...register("currentPassword")} />
                         {errors.currentPassword && (
                             <p style={{ color: "red" }}>{errors.currentPassword.message}</p>
                         )}
                     </label>
                     <label className="settingsPassword__label">
-                        <h3>Nowe hasło</h3>
+                        <h3>New password</h3>
                         <input className="settingsPassword__input" type="password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="newPassword" {...register("newPassword")} />
                         {errors.newPassword && (
                             <p style={{ color: "red" }}>{errors.newPassword.message}</p>
                         )}
                     </label>
                     <label className="settingsPassword__label">
-                        <h3>Potwierdź nowe hasło</h3>
+                        <h3>Confirm new password</h3>
                         <input className="settingsPassword__input" type="password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="newPassConf" {...register("newPassConf", 
                         {
                             validate: {

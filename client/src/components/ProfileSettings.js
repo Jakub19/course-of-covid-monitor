@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import profileDetails from '../services/profileDetails'
+import Avatar from './Avatar'
 import SettingsAccount from './SettingsAccount'
 import SettingsPassword from './SettingsPassword'
 import SettingsNotifications from './SettingsNotifications'
@@ -42,16 +43,17 @@ function ProfileSettings(props) {
         <div className="profileSettings">
             <div className='profileSettings__card'>
                 <div className="profileSettings__nav">
+                    <Avatar />
                     <h1 className="profileSettings__username">{data.name + ' ' + data.surname}</h1>
                     <ul className="profileSettings__list">
                         <Link className="profileSettings__link" to={`${url}/account`}>
-                            <li className={`profileSettings__button ${activeTab === 0 ? "profileSettings__button--active" : ' '}`} >Zmiana danych</li>
+                            <li className={`profileSettings__button ${activeTab === 0 ? "profileSettings__button--active" : ' '}`} >Account</li>
                         </Link>
                         <Link className="profileSettings__link" to={`${url}/password`}>
-                            <li className={`profileSettings__button ${activeTab === 1 ? "profileSettings__button--active" : ' '}`} >Zmiana hasła</li>
+                            <li className={`profileSettings__button ${activeTab === 1 ? "profileSettings__button--active" : ' '}`} >Password</li>
                         </Link>
                         <Link className="profileSettings__link" to={`${url}/notifications`}>
-                            <li className={`profileSettings__button ${activeTab === 2 ? "profileSettings__button--active" : ' '}`} >Powiadomienia</li>
+                            <li className={`profileSettings__button ${activeTab === 2 ? "profileSettings__button--active" : ' '}`} >Notifications</li>
                         </Link>
                     </ul>
                 </div>

@@ -1,8 +1,7 @@
 .navbar{
-    background-color: rgb(26, 26, 26);
     position: absolute;
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
@@ -10,18 +9,16 @@
 }
 
 .navbar__logo{
-    height: 150px;
+    height: 50px;
 }
 
-.navbar__login{
+.navbar__buttons{
     display: flex;
-    width: 100%;
     flex-flow: row;
-    justify-content: flex-end;
+    align-items: center;
 }
 
 .navbar__button{
-    color: white;
     height: 50px;
     margin: 0px 30px;
     border: none;
@@ -39,20 +36,20 @@
 
 .navbar__button--register{
     width: 150px;
-    border: 1px #ff9100 solid;
+    border: 1px #FA555F solid;
     border-radius: 25px;
     margin-right: 0;
-    color: #ff9100;
+    color: #FA555F;
 }
 
 .navbar__button:hover {
-    color: #ff9100;
+    color: #34498C;
     transition: 0.2s;
 }
 
 .navbar__button--register:hover{
     color: white;
-    background-color: #ff9100;
+    background-color: #FA555F;
 }
 
 .navbar__container{
@@ -61,19 +58,28 @@
     align-items: center;
 }
 
+.navbar__avatar{
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 2px #34498C solid;
+    margin: 0px 10px;
+    overflow: hidden;
+    border-radius: 50%;
+    min-width: 50px;
+    min-height: 50px;
+
+}
+
 .navbar__img{
     position: relative;
     text-align: center;
-    width: 21px;
-    height: 21px;
-    min-width: 21px;
-    min-height: 21px;
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
 }
 
 .navbar__username{
-    color:  white;
-}
-
-.navbar__pages{
-    padding-top: 20px;
+    color: #3F3F3F;
 }

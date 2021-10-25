@@ -24,8 +24,8 @@ function Login(props) {
             <form onSubmit={handleLogin}>
                 <span className="login__error">{error === 'Unauthorized' ? "Wrong email or password" : error}</span>
                 <input className="login__input" type="email" required="required" placeholder="email" name="email" value={values.email} onChange={handleChange} />
-                <input className="login__input" type="password" required="required" placeholder="hasło" name="password" value={values.password} onChange={handleChange} />
-                <button className="login__button" type="submit" >Zaloguj</button>
+                <input className="login__input" type="password" required="required" placeholder="password" name="password" value={values.password} onChange={handleChange} />
+                <button className="login__button" type="submit" >Sign in</button>
             </form>
         </div>
     )
