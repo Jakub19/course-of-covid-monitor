@@ -30,12 +30,12 @@ function SettingsNotifications(props) {
 
     return (
         <div className="settingsNotifications">
-            <h1 className="settingsNotifications__h1">Notifications settings</h1>
+            <h1 className="settingsNotifications__h1">Ustawienia powiadomimeń</h1>
             <form className="settingsNotifications__form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="settingsNotifications__inputs">
                     <label className="settingsNotifications__sms">
                         <input className="settingsNotifications__checkbox" type="checkbox" name="isNotifOn"{...register("isNotifOn")} />
-                        <h3>Enable SMS notifications </h3>
+                        <h3>Włącz powiadomienia SMS </h3>
                     </label>
                     {errors.isNotifOn && (
                         <p style={{ color: "red" }}>{errors.name.isNotifOn}</p>

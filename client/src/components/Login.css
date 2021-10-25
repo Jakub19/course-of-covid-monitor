@@ -7,15 +7,15 @@
     cursor: pointer;
     transition: 0.2s;
     width: 150px;
-    border: 1px #34498C solid;
+    border: 1px #ff9100 solid;
     border-radius: 25px;
-    color: #34498C;
+    color: #ff9100;
     margin-left: 15px;
 }
 
 .login__button:hover{
     color: white;
-    background-color: #34498C;
+    background-color: #ff9100;
 }
 
 .login__input{

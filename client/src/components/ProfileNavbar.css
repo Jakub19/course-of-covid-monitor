@@ -3,14 +3,15 @@
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: rgb(26, 26, 26);
     padding: 20px;
     height: 70px;
     width: 100%;
 }
 
-.profileNavbar_logo{
-    height: 50px;
+.profileNavbar__logo{
+    width: 50px;
+    margin-right: 270px;
 }
 
 .profileNavbar__profile--container{
@@ -22,7 +23,6 @@
 
 .profileNavbar__logout{
     height: 50px;
-    margin: 0px 30px;
     background-color: rgba(255, 255, 255, 0);
     text-align: center;
     text-decoration: none;
@@ -30,15 +30,15 @@
     cursor: pointer;
     transition: 0.2s;
     width: 150px;
-    border: 1px #FA555F solid;
+    border: 1px #ff9100 solid;
     border-radius: 25px;
-    margin-right: 0;
-    color: #FA555F;
+    margin-left: 170px;
+    color: #ff9100;
 }
 
 .profileNavbar__logout:hover{
     color: white;
-    background-color: #FA555F;
+    background-color: #ff9100;
 }
 
 .tab{
@@ -73,15 +73,15 @@
     height: 70px;
     width: 160px;
     border: none;
-    border-left: 1px #e7e7e7 solid;
-    border-right: 1px #e7e7e7 solid;
+    border-left: 1px rgb(26, 26, 26) solid;
+    border-right: 1px rgb(26, 26, 26) solid;
     font-size: 16px;
     font-weight: 600;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: 0.2s;
-    color: #3F3F3F;
+    color: white;
     
 }
 
@@ -89,17 +89,17 @@
     position:absolute;
     width:calc(100% / 2);
     height: 3px; 
-    background-color: #34498C;
+    background-color: #ff9100;
     transition:all 0.2s ease-in-out;
     bottom: 0;
 }
 
 .tab__button--active{
-    color: #34498C;
+    color: #ff9100;
     transition: 0.2s;
 }
 
 .tab__button:hover {
-    color: #34498C;
+    color: #ff9100;
     transition: 0.2s;
 }

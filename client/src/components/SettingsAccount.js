@@ -38,18 +38,18 @@ function SettingsAccount(props) {
 
     return (
         <div className="settingsAccount">
-            <h1 className="settingsAccount__h1">Account settings</h1>
+            <h1 className="settingsAccount__h1">Zmiana danych</h1>
             <form className="settingsAccount__form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="settingsAccount__inputs">
                     <label className="settingsAccount__label">
-                        <h3>First name</h3>
+                        <h3>Imię</h3>
                         <input className="settingsAccount__input" type="text" required="required" name="name" {...register("name", { maxLength: 20 })} defaultValue={props.data.name} />
                         {errors.name && (
                             <p style={{ color: "red" }}>{errors.name.message}</p>
                         )}
                     </label>
                     <label className="settingsAccount__label">
-                        <h3>Last name</h3>
+                        <h3>Nazwisko</h3>
                         <input className="settingsAccount__input" type="text" required="required" name="surname" {...register("surname", { maxLength: 20 })} defaultValue={props.data.surname} />
                         {errors.surname && (
                             <p style={{ color: "red" }}>{errors.surname.message}</p>
@@ -63,21 +63,21 @@ function SettingsAccount(props) {
                         )}
                     </label>
                     <label className="settingsAccount__label">
-                        <h3>Phone number</h3>
+                        <h3>Telefon</h3>
                         <input className="settingsAccount__input" type="tel" required="required" name="phoneNumber" pattern="[0-9]{9}" {...register("phoneNumber")} defaultValue={props.data.phoneNumber} />
                         {errors.phoneNumber && (
                             <p style={{ color: "red" }}>{errors.phoneNumber.message}</p>
                         )}
                     </label>
                     <label className="settingsAccount__label">
-                        <h3>Address</h3>
+                        <h3>Ulica i nr domu/mieszkania</h3>
                         <input className="settingsAccount__input" type="text" required="required" name="address" {...register("address")} defaultValue={props.data.address} />
                         {errors.address && (
                             <p style={{ color: "red" }}>{errors.address.message}</p>
                         )}
                     </label>
                     <label className="settingsAccount__label">
-                        <h3>City</h3>
+                        <h3>Miasto</h3>
                         <input className="settingsAccount__input" type="text" required="required" name="city" {...register("city")} defaultValue={props.data.city} />
                         {errors.city && (
                             <p style={{ color: "red" }}>{errors.city.message}</p>

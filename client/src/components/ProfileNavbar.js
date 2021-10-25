@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import logo from '../images/logos/logo.svg'
+import logo from '../images/logos/logo.png'
 import useAuth from '../services/useAuth';
 import './ProfileNavbar.css'
 import {
@@ -34,14 +34,14 @@ function ProfileNavbar(props){
             <ul className="tab">
                 <span className="tab__indicator"></span>
                 <Link className="tab__link tab__link--left" to={`${url}`}>
-                    <li className={`tab__button ${activeTab===0?"tab__button--active":' ' }`} id="btn1">Overview</li>
+                    <li className={`tab__button ${activeTab===0?"tab__button--active":' ' }`} id="btn1">Twój profil</li>
                 </Link>
                 <Link className="tab__link tab__link--right" to={`${url}/settings/account`}>
-                    <li className={`tab__button ${activeTab===1?"tab__button--active":' ' }`}>Settings</li>
+                    <li className={`tab__button ${activeTab===1?"tab__button--active":' ' }`}>Ustawienia</li>
                 </Link>
             </ul>
             <div className="profileNavbar__profile--container">
-                <button className="profileNavbar__logout" onClick={()=> logoutUser()}>Logout</button>
+                <button className="profileNavbar__logout" onClick={()=> logoutUser()}>Wyloguj</button>
             </div>
         </nav>
     )

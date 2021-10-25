@@ -3,7 +3,6 @@
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
-    background: url(../images/background.png) fixed no-repeat;
     background-size: cover;
     min-height: 100vh;
 }
