@@ -4,19 +4,23 @@ import authHeader from './authHeader';
 import { UserContext } from './UserContext';
 export default function useAuth() {
     const [error, setError] = useState(null);
-    const { API_URL} = useContext(UserContext);;
+    const { API_URL, user } = useContext(UserContext);;
     const [data, setData] = useState('');
 
     //register user
     function getProfileDetails() {
-        axios.get(API_URL + "/api/Authenticate/Profile/ProfileDetails", {
-            headers: authHeader()
-        }).then((response) => {
-            setData(response.data)
-        }).catch((error) => {
-            setError(error)
-        })
-        return data
+        if (user) {
+            axios.get(API_URL + "/api/Authenticate/Profile/ProfileDetails", {
+                headers: authHeader()
+            }).then((response) => {
+                setData(response.data)
+            }).catch((error) => {
+                setError(error)
+            })
+            return data
+        } else {
+            return
+        }
     };
 
     return {
