@@ -9,10 +9,10 @@ import profileDetails from '../services/profileDetails'
 
 function Navbar(props) {
     const { user } = useContext(UserContext);
-    const {data, setData, getProfileDetails} = profileDetails()
+    const {data, getProfileDetails} = profileDetails()
 
     useEffect(() => {
-        setData(getProfileDetails());
+        getProfileDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
