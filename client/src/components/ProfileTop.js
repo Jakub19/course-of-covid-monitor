@@ -41,6 +41,7 @@ function ProfileTop(props) {
             setPositiveSince(formatDate(since))
             setEndOfquarantine(formatDate(end))
         } else {
+            setdaysLeft('No data')
             setPositiveSince('No data')
             setEndOfquarantine('No data')
         }

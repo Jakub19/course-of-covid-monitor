@@ -30,8 +30,8 @@ function UserPage(props) {
 
 
     //Fetch user health information
-    const getHealthInformation = () => {
-        axios.get(API_URL + "/api/HealthInformationOverviews/GetCurrentUserHio", { headers: authHeader() })
+    const getHealthInformation = async () => {
+        await axios.get(API_URL + "/api/HealthInformationOverviews/GetCurrentUserHio", { headers: authHeader() })
             .then((response) => {
                 setUserHealthInf(response.data[0])
                 showInitialForm(response.data[0])

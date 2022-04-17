@@ -5,7 +5,7 @@ export default function useFindUser() {
 
     useEffect(() => {
         async function findUser() {
-            const cookie = JSON.parse(localStorage.getItem('user'));
+            const cookie = await JSON.parse(localStorage.getItem('user'));
             if (cookie != null) {
                 setUser(cookie);
                 setLoading(false);

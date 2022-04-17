@@ -24,12 +24,12 @@ export default function useAuth() {
     //login user
     const loginUser = async (data) => {
         const { email, password } = data;
-        return axios.post(API_URL + "login", {
+        await axios.post(API_URL + "login", {
             email, password
         }).then(async (response) => {
             if (response.data.token) {
-                localStorage.setItem("user", JSON.stringify(response.data));
-                setUser(response.data);
+                await localStorage.setItem("user", JSON.stringify(response.data));
+                await setUser(response.data);
                 history.push('/profile');
             }
             return response.data;

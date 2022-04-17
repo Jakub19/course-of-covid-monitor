@@ -8,9 +8,9 @@ export default function useAuth() {
     const [data, setData] = useState('');
 
     //register user
-    function getProfileDetails() {
+    async function getProfileDetails() {
         if (user) {
-            axios.get(API_URL + "/api/Authenticate/Profile/ProfileDetails", {
+            await axios.get(API_URL + "/api/Authenticate/Profile/ProfileDetails", {
                 headers: authHeader()
             }).then((response) => {
                 setData(response.data)
